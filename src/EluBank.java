@@ -40,11 +40,11 @@ public class EluBank {
             }
         });
 
-//        try {
-//            new Client().startClient();
-//        } catch (Exception e) {
-//            System.out.println("Something falied: " + e.getMessage());
-//            e.printStackTrace();
-//        }
+        try {
+            Client.startClient();
+        } catch (Exception e) {
+            System.out.println("Something falied: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
