@@ -7,7 +7,7 @@
  *
  * @author madd
  */
-public class EluBank {
+public class ELUBankClient {
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -23,28 +23,28 @@ public class EluBank {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EluFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EluFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EluFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EluFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LOGIN().setVisible(true);
+                new LoginFrame().setVisible(true);
             }
         });
 
-        try {
-            Client.startClient();
-        } catch (Exception e) {
-            System.out.println("Something falied: " + e.getMessage());
-            e.printStackTrace();
-        }
+//        try {
+//            Client.startClient();
+//        } catch (Exception e) {
+//            System.out.println("Something falied: " + e.getMessage());
+//            e.printStackTrace();
+//        }
     }
 }

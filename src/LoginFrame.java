@@ -9,12 +9,12 @@
  *
  * @author USER
  */
-public class LOGIN extends javax.swing.JFrame {
+public class LoginFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form LOGIN
      */
-    public LOGIN() {
+    public LoginFrame() {
         initComponents();
     }
 
@@ -42,7 +42,7 @@ public class LOGIN extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Log In ", 0, 0, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Log In ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel1.setOpaque(false);
 
         jPasswordField1.setText("jPasswordField1");
@@ -119,7 +119,7 @@ public class LOGIN extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {            
-               new EluFrame().setVisible(true);
+               new ClientFrame().setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
