@@ -5,15 +5,12 @@
 
 
 import java.awt.CardLayout;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *
  * @author madd
  */
 public class ClientFrame extends javax.swing.JFrame {
-
     /**
      * Creates new form EluFrame
      */
@@ -76,7 +73,7 @@ public class ClientFrame extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(804, 680));
         jPanel2.setLayout(new java.awt.CardLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Наличност", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(134, 174, 213))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Наличност по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(134, 174, 213))); // NOI18N
         jPanel3.setMaximumSize(new java.awt.Dimension(790, 680));
         jPanel3.setMinimumSize(new java.awt.Dimension(790, 680));
         jPanel3.setPreferredSize(new java.awt.Dimension(804, 680));
@@ -110,8 +107,9 @@ public class ClientFrame extends javax.swing.JFrame {
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
 
         jPanel2.add(jPanel3, "card2");
+        jPanel3.getAccessibleContext().setAccessibleName("Наличност по сметки");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Последни транзакции", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(133, 174, 215))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Движение по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(133, 174, 215))); // NOI18N
         jPanel4.setMaximumSize(new java.awt.Dimension(804, 680));
         jPanel4.setMinimumSize(new java.awt.Dimension(804, 680));
         jPanel4.setPreferredSize(new java.awt.Dimension(804, 680));
@@ -185,6 +183,7 @@ public class ClientFrame extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel4, "card3");
+        jPanel4.getAccessibleContext().setAccessibleName("Движение по сметки");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Смяна на парола", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(96, 151, 205))); // NOI18N
         jPanel5.setMaximumSize(new java.awt.Dimension(804, 680));
@@ -248,7 +247,7 @@ public class ClientFrame extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5, "card4");
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Информация за клиент", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(107, 158, 209))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Моят профил", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(107, 158, 209))); // NOI18N
         jPanel6.setMaximumSize(new java.awt.Dimension(804, 680));
         jPanel6.setMinimumSize(new java.awt.Dimension(804, 680));
         jPanel6.setPreferredSize(new java.awt.Dimension(804, 680));
@@ -318,6 +317,7 @@ public class ClientFrame extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel6, "card5");
+        jPanel6.getAccessibleContext().setAccessibleName("Моят профил");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Меню", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 0, 18), new java.awt.Color(105, 169, 212))); // NOI18N
         jPanel1.setDoubleBuffered(false);
@@ -328,9 +328,10 @@ public class ClientFrame extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(235, 230, 230));
         jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Наличност");
+        jButton1.setText("Наличност по сметки");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton1.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButton1.setMaximumSize(new java.awt.Dimension(180, 33));
         jButton1.setMinimumSize(new java.awt.Dimension(180, 33));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -341,9 +342,10 @@ public class ClientFrame extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(235, 230, 230));
         jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton2.setText("Последни транзакции");
+        jButton2.setText("Движение по сметки");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton2.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButton2.setMaximumSize(new java.awt.Dimension(180, 33));
         jButton2.setMinimumSize(new java.awt.Dimension(180, 33));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -354,9 +356,10 @@ public class ClientFrame extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(235, 230, 230));
         jButton3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton3.setText("Смяна парола");
+        jButton3.setText("Смяна на парола");
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton3.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton3.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButton3.setMaximumSize(new java.awt.Dimension(180, 33));
         jButton3.setMinimumSize(new java.awt.Dimension(180, 33));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -367,9 +370,10 @@ public class ClientFrame extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(235, 230, 230));
         jButton4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton4.setText("Информация клиент");
+        jButton4.setText("Моят профил");
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton4.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButton4.setMaximumSize(new java.awt.Dimension(180, 33));
         jButton4.setMinimumSize(new java.awt.Dimension(180, 33));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -382,7 +386,8 @@ public class ClientFrame extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton5.setText("Изход (Logout)");
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton5.setMargin(new java.awt.Insets(2, 5, 2, 5));
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton5.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButton5.setMaximumSize(new java.awt.Dimension(180, 33));
         jButton5.setMinimumSize(new java.awt.Dimension(180, 33));
 
@@ -397,7 +402,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
