@@ -115,38 +115,38 @@ public class LoginFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private static String hashpass(String password) {
-
-        String SALT_BEGIN = "n@,k4gj@.@";
-        String SALT_END = "4!ok^|</`c";
-
-        return md5(md5(SALT_BEGIN + password + SALT_END));
-    }
-
-    // create md5 sum (used to encrypt the user's password)
-    private static String md5(String input) {
-
-        String md5 = null;
-
-        if (input == null) {
-            return null;
-        }
-
-        try {
-            //Create MessageDigest object for MD5
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-
-            //Update input string in message digest
-            digest.update(input.getBytes(), 0, input.length());
-
-            //Converts message digest value in base 16 (hex) 
-            md5 = new BigInteger(1, digest.digest()).toString(16);
-
-        } catch (NoSuchAlgorithmException e) {
-        }
-        
-        return md5;
-    }
+//private static String hashpass(String password) {
+//
+//        String SALT_BEGIN = "n@,k4gj@.@";
+//        String SALT_END = "4!ok^|</`c";
+//
+//        return md5(md5(SALT_BEGIN + password + SALT_END));
+//    }
+//
+//    // create md5 sum (used to encrypt the user's password)
+//    private static String md5(String input) {
+//
+//        String md5 = null;
+//
+//        if (input == null) {
+//            return null;
+//        }
+//
+//        try {
+//            //Create MessageDigest object for MD5
+//            MessageDigest digest = MessageDigest.getInstance("MD5");
+//
+//            //Update input string in message digest
+//            digest.update(input.getBytes(), 0, input.length());
+//
+//            //Converts message digest value in base 16 (hex) 
+//            md5 = new BigInteger(1, digest.digest()).toString(16);
+//
+//        } catch (NoSuchAlgorithmException e) {
+//        }
+//        
+//        return md5;
+//    }
     public void selectionButtonPressed(){
     
     };
@@ -162,7 +162,7 @@ private static String hashpass(String password) {
         else {
          if(user.equals("proekt1")&& pass.equals("proekt1"))
          {// tuk trqbwa da e kriptiraneto na parolata i izpra]aneto na zaqwkata
-             hashpass(pass);
+           //  hashpass(pass);
              
              
           //  prowerka za heshirane JOptionPane.showMessageDialog(null, hashpass(pass)); 
