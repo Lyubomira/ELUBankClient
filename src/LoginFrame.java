@@ -161,11 +161,12 @@ private static String hashpass(String password) {
         }
         else {
          if(user.equals("proekt1")&& pass.equals("proekt1"))
-         {// tuk trqbwa da e kriptiraneto na parolata i izpra]aneto na zaqwkata
-             hashpass(pass);
+         {
+            // hashpass(pass);
+        
+             Client.fromUser = "login"+user + pass;      
              
-             
-          //  prowerka za heshirane JOptionPane.showMessageDialog(null, hashpass(pass)); 
+          
              
              selectionButtonPressed();
             //this.setVisible(false); 
@@ -177,7 +178,7 @@ private static String hashpass(String password) {
         
          
         
-      //  Client.fromUser ="login, " + user + ", " + pass;
+     
         
         
         
