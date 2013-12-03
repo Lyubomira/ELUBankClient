@@ -85,7 +85,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addComponent(login_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(login_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
         );
@@ -156,7 +156,7 @@ private static String hashpass(String password) {
         
         if (user.trim().length()==0 ||pass.length()==0 )
         {
-            JOptionPane.showMessageDialog(null, "Please, fill the Text Fields first !");
+            JOptionPane.showMessageDialog(null, "Моля, попълнете всички полета!");
                
         }
         else {
@@ -171,7 +171,7 @@ private static String hashpass(String password) {
             //this.setVisible(false); 
             new ClientFrame().setVisible(true);
          }
-         else {JOptionPane.showMessageDialog(null, "Invalid Username or Password","Error message", JOptionPane.ERROR_MESSAGE);
+         else {JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.","Грешка", JOptionPane.ERROR_MESSAGE);
           }
         }
         
