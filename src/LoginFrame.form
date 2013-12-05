@@ -64,7 +64,7 @@
                       <Component id="txt_name" min="-2" pref="183" max="-2" attributes="0"/>
                       <Component id="txt_pass" min="-2" pref="183" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="170" max="32767" attributes="0"/>
+                  <EmptySpace pref="166" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
@@ -88,7 +88,7 @@
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_pass" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace pref="59" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="login_btn" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="ForgottenPass_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
