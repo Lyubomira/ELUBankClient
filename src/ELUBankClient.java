@@ -36,15 +36,8 @@ public class ELUBankClient {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClientFrame().setVisible(true);
+                new LoginFrame().setVisible(true);
             }
         });
-
-//        try {
-//            Client.startClient();
-//        } catch (Exception e) {
-//            System.out.println("Something falied: " + e.getMessage());
-//            e.printStackTrace();
-//        }
     }
 }

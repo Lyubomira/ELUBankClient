@@ -3,13 +3,10 @@ import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 
-
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author USER
@@ -125,42 +122,39 @@ public class LoginFrame extends javax.swing.JFrame {
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
         String user = txt_name.getText();
         String pass = txt_pass.getText();
-        
-        
-        if (user.trim().length()==0 ||pass.length()==0 )
-        {
+
+        if (user.trim().length() == 0 || pass.length() == 0) {
             JOptionPane.showMessageDialog(null, "Моля, попълнете всички полета!");
-               this.setVisible(true);
+            this.setVisible(true);
+        } else {
+            
+            SSLClient client = new SSLClient();
+            currentUser.setUsername(user);
+            currentUser.setPassword(pass);
+            currentUser.setRequest("login");
+            currentUser = (User)client.runClient(currentUser);
+                        
+            if (currentUser.getLoggedIn()) {
+                this.setVisible(false);
+                new ClientFrame().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.", "Грешка", JOptionPane.ERROR_MESSAGE);
+                this.setVisible(true);
+            }
         }
-        else {
-         if(user.equals("proekt1")&& pass.equals("proekt1"))
-         {
-           
-        
-             Client.fromUser = "login"+user + pass;      
-             
-            this.setVisible(false); 
-           new ClientFrame().setVisible(true);
-         }
-         else {JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.","Грешка", JOptionPane.ERROR_MESSAGE);
-         this.setVisible(true);
-          }
-        }
-        
-         
-        
-     
-        
-        
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {            
-             
+            public void run() {
                 new ClientFrame();//.setVisible(true);
             }
         });
     }//GEN-LAST:event_login_btnActionPerformed
 
+    public User getUser() {
+        return currentUser;
+    }
+    
+    private User currentUser = new User();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLabel;
     private javax.swing.JLabel ForgottenPass_lbl;
