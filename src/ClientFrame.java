@@ -6,6 +6,7 @@ import java.awt.CardLayout;
  * @author madd
  */
 public class ClientFrame extends javax.swing.JFrame {
+
     /**
      * Creates new form EluFrame
      */
@@ -27,7 +28,7 @@ public class ClientFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        accountHolderName = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
@@ -118,9 +119,8 @@ public class ClientFrame extends javax.swing.JFrame {
         jLabel8.setText("Имена на титуляра");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Иван Иванов");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+        accountHolderName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel3.add(accountHolderName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         jPanel2.add(jPanel3, "card2");
 
@@ -164,10 +164,12 @@ public class ClientFrame extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTable2);
-        jTable2.getColumnModel().getColumn(0).setResizable(false);
-        jTable2.getColumnModel().getColumn(1).setResizable(false);
-        jTable2.getColumnModel().getColumn(2).setResizable(false);
-        jTable2.getColumnModel().getColumn(3).setResizable(false);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
+            jTable2.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -600,12 +602,14 @@ public class ClientFrame extends javax.swing.JFrame {
         jTable4.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTable4);
-        jTable4.getColumnModel().getColumn(0).setResizable(false);
-        jTable4.getColumnModel().getColumn(0).setPreferredWidth(50);
-        jTable4.getColumnModel().getColumn(1).setResizable(false);
-        jTable4.getColumnModel().getColumn(1).setPreferredWidth(61);
-        jTable4.getColumnModel().getColumn(2).setResizable(false);
-        jTable4.getColumnModel().getColumn(2).setPreferredWidth(61);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(0).setResizable(false);
+            jTable4.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTable4.getColumnModel().getColumn(1).setResizable(false);
+            jTable4.getColumnModel().getColumn(1).setPreferredWidth(61);
+            jTable4.getColumnModel().getColumn(2).setResizable(false);
+            jTable4.getColumnModel().getColumn(2).setPreferredWidth(61);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -622,7 +626,7 @@ public class ClientFrame extends javax.swing.JFrame {
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -672,30 +676,30 @@ public class ClientFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CardLayout jPanel2Cl = (CardLayout)(jPanel2.getLayout());
+        CardLayout jPanel2Cl = (CardLayout) (jPanel2.getLayout());
         jPanel2Cl.show(jPanel2, "card2");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        CardLayout jPanel2Cl = (CardLayout)(jPanel2.getLayout());
+        CardLayout jPanel2Cl = (CardLayout) (jPanel2.getLayout());
         jPanel2Cl.show(jPanel2, "card4");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        CardLayout jPanel2Cl = (CardLayout)(jPanel2.getLayout());
+        CardLayout jPanel2Cl = (CardLayout) (jPanel2.getLayout());
         jPanel2Cl.show(jPanel2, "card3");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        CardLayout jPanel2Cl = (CardLayout)(jPanel2.getLayout());
+        CardLayout jPanel2Cl = (CardLayout) (jPanel2.getLayout());
         jPanel2Cl.show(jPanel2, "card5");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        CardLayout jPanel2Cl = (CardLayout)(jPanel2.getLayout());
+        CardLayout jPanel2Cl = (CardLayout) (jPanel2.getLayout());
         jPanel2Cl.show(jPanel2, "card6");
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -703,8 +707,8 @@ public class ClientFrame extends javax.swing.JFrame {
         this.setVisible(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginFrame().setVisible(true);                 
-            }            
+                new LoginFrame().setVisible(true);
+            }
         });
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -744,7 +748,19 @@ public class ClientFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    public void setUser(User user) {
+        this.currentUser = user;
+    }
+
+    public void setAccountHolderName() {
+        String name = currentUser.getName();
+        String familyname = currentUser.getFamilyname();
+        accountHolderName.setText(name + " " + familyname);
+    }
+
+    private User currentUser = new User();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accountHolderName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -771,7 +787,6 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -48,8 +48,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Log In ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel1.setOpaque(false);
 
-        txt_pass.setText("jPasswordField1");
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Password");
 
@@ -127,33 +125,26 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, попълнете всички полета!");
             this.setVisible(true);
         } else {
-            
+
             SSLClient client = new SSLClient();
             currentUser.setUsername(user);
             currentUser.setPassword(pass);
             currentUser.setRequest("login");
-            currentUser = (User)client.runClient(currentUser);
-                        
+            currentUser = (User) client.runClient(currentUser);
+
             if (currentUser.getLoggedIn()) {
                 this.setVisible(false);
-                new ClientFrame().setVisible(true);
+                ClientFrame cFrame = new ClientFrame();
+                cFrame.setVisible(true);
+                cFrame.setUser(currentUser);
+                cFrame.setAccountHolderName();
             } else {
                 JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.", "Грешка", JOptionPane.ERROR_MESSAGE);
                 this.setVisible(true);
             }
         }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClientFrame();//.setVisible(true);
-            }
-        });
     }//GEN-LAST:event_login_btnActionPerformed
 
-    public User getUser() {
-        return currentUser;
-    }
-    
     private User currentUser = new User();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLabel;
