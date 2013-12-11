@@ -72,6 +72,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 login_btnActionPerformed(evt);
             }
         });
+        login_btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                login_btnKeyPressed(evt);
+            }
+        });
 
         ForgottenPass_lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         ForgottenPass_lbl.setText("Забравена парола");
@@ -131,27 +136,29 @@ public class LoginFrame extends javax.swing.JFrame {
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
         String user = txt_name.getText();
         String pass = txt_pass.getText();
+        String request = "login";
 
         if (user.trim().length() == 0 || pass.length() == 0) {
             JOptionPane.showMessageDialog(null, "Моля, попълнете всички полета!");
-            this.setVisible(true);
         } else {
 
             SSLClient client = new SSLClient();
             currentUser.setUsername(user);
             currentUser.setPassword(pass);
-            currentUser.setRequest("login");
+            currentUser.setRequest(request);
             currentUser = (User) client.runClient(currentUser);
 
             if (currentUser.getLoggedIn()) {
+
                 this.setVisible(false);
                 ClientFrame cFrame = new ClientFrame();
                 cFrame.setVisible(true);
                 cFrame.setUser(currentUser);
                 cFrame.setAccountHolderName();
+
             } else {
-                JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.", "Грешка", JOptionPane.ERROR_MESSAGE);
-                this.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.",
+                        "Грешка", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_login_btnActionPerformed
@@ -179,6 +186,14 @@ public class LoginFrame extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_txt_passKeyPressed
+
+    private void login_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_btnKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login_btn.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_login_btnKeyPressed
 
     private User currentUser = new User();
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -134,6 +134,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login_btnActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="login_btnKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="ForgottenPass_lbl">
