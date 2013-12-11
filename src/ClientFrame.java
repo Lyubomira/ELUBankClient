@@ -1,5 +1,6 @@
 
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -73,7 +74,7 @@ public class ClientFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
@@ -506,6 +507,11 @@ public class ClientFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(235, 230, 230));
         jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -518,6 +524,11 @@ public class ClientFrame extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
             }
         });
 
@@ -534,6 +545,11 @@ public class ClientFrame extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(235, 230, 230));
         jButton4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -548,23 +564,33 @@ public class ClientFrame extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        jButton5.setBackground(new java.awt.Color(235, 230, 230));
-        jButton5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton5.setText("Изход (Logout)");
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton5.setMargin(new java.awt.Insets(2, 4, 2, 4));
-        jButton5.setMaximumSize(new java.awt.Dimension(180, 33));
-        jButton5.setMinimumSize(new java.awt.Dimension(180, 33));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+        jButton4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton4KeyPressed(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+
+        logoutButton.setBackground(new java.awt.Color(235, 230, 230));
+        logoutButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        logoutButton.setText("Изход (Logout)");
+        logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        logoutButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        logoutButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
+        logoutButton.setMaximumSize(new java.awt.Dimension(180, 33));
+        logoutButton.setMinimumSize(new java.awt.Dimension(180, 33));
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        logoutButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                logoutButtonKeyPressed(evt);
             }
         });
 
@@ -577,6 +603,11 @@ public class ClientFrame extends javax.swing.JFrame {
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
+            }
+        });
+        jButton8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton8KeyPressed(evt);
             }
         });
 
@@ -628,7 +659,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 2, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -648,7 +679,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
@@ -703,18 +734,18 @@ public class ClientFrame extends javax.swing.JFrame {
         jPanel2Cl.show(jPanel2, "card6");
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.setVisible(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
             }
         });
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -748,6 +779,72 @@ public class ClientFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            jButton2.doClick();
+            jButton2.grabFocus();
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            jButton1.doClick();
+            jButton1.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            jButton3.doClick();
+            jButton3.grabFocus();
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            jButton2.doClick();
+            jButton2.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            jButton4.doClick();
+            jButton4.grabFocus();
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
+    private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            jButton3.doClick();
+            jButton3.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            jButton8.doClick();
+            jButton8.grabFocus();
+        }
+    }//GEN-LAST:event_jButton4KeyPressed
+
+    private void jButton8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton8KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            jButton4.doClick();
+            jButton4.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            logoutButton.grabFocus();
+        }
+    }//GEN-LAST:event_jButton8KeyPressed
+
+    private void logoutButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logoutButtonKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE
+                || evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            logoutButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            jButton8.doClick();
+            jButton8.grabFocus();
+        }
+    }//GEN-LAST:event_logoutButtonKeyPressed
+
     public void setUser(User user) {
         this.currentUser = user;
     }
@@ -765,7 +862,6 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -814,5 +910,6 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton logoutButton;
     // End of variables declaration//GEN-END:variables
 }

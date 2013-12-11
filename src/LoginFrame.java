@@ -1,6 +1,5 @@
 
-import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /*
@@ -48,8 +47,20 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Log In ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel1.setOpaque(false);
 
+        txt_pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_passKeyPressed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Password");
+
+        txt_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nameKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Username");
@@ -144,6 +155,30 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_login_btnActionPerformed
+
+    private void txt_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nameKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            txt_pass.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login_btn.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            txt_pass.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_txt_nameKeyPressed
+
+    private void txt_passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login_btn.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            txt_name.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            txt_name.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_txt_passKeyPressed
 
     private User currentUser = new User();
     // Variables declaration - do not modify//GEN-BEGIN:variables
