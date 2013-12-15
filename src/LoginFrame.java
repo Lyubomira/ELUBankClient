@@ -180,26 +180,26 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_login_btnActionPerformed
 
     private void txt_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nameKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            txt_pass.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             login_btn.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            txt_pass.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            txt_name.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            txt_name.grabFocus();
         }
     }//GEN-LAST:event_txt_nameKeyPressed
 
     private void txt_passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             login_btn.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             txt_name.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             txt_name.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         }
     }//GEN-LAST:event_txt_passKeyPressed
 
