@@ -185,9 +185,9 @@ public class LoginFrame extends javax.swing.JFrame {
         } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            txt_name.grabFocus();
+            txt_pass.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            txt_name.grabFocus();
+            txt_pass.grabFocus();
         }
     }//GEN-LAST:event_txt_nameKeyPressed
 

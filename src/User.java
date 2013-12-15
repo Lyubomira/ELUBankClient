@@ -5,30 +5,30 @@ public class User implements Serializable {
 
     static final long serialVersionUID = 1L;
 
-    private String userId, username, password, name, surname, familyname,
-            egn, address, phone, email, userType, pinCode, isActive, request;
+    private String username, password, name, surname, familyname,
+            egn, country, city, address, phone, email, userType, request;
 
     boolean loggedIn = false;
 
     public User() {
     }
 
-    public User(String userId, String username, String password, String name,
-            String surname, String familyname, String egn, String address,
-            String phone, String email, String userType, String pinCode, String isActive) {
-        this.userId = userId;
+    public User(String username, String password,
+            String name, String surname, String familyname,
+            String egn, String country, String city, String address,
+            String phone, String email, String userType) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.familyname = familyname;
         this.egn = egn;
+        this.country = country;
+        this.city = city;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.userType = userType;
-        this.pinCode = pinCode;
-        this.isActive = isActive;
     }
 
     public String getUsername() {
@@ -84,6 +84,6 @@ public class User implements Serializable {
     }
 
     public void setLoggedIn(boolean isloggedIn) {
-        this.loggedIn = true;
+        this.loggedIn = isloggedIn;
     }
 }
