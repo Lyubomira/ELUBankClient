@@ -2,13 +2,9 @@
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author USER
+ * 
+ * @author ELUBank team
  */
 public class LoginFrame extends javax.swing.JFrame {
 
@@ -170,7 +166,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 ClientFrame cFrame = new ClientFrame();
                 cFrame.setVisible(true);
                 cFrame.setUser(currentUser);
-                cFrame.setAccountHolderName();
+                cFrame.loadUserInfo();
 
             } else {
                 JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.",

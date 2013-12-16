@@ -849,10 +849,13 @@ public class ClientFrame extends javax.swing.JFrame {
         this.currentUser = user;
     }
 
-    public void setAccountHolderName() {
+    public void loadUserInfo() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
         accountHolderName.setText(name + " " + familyname);
+        jTextField4.setText(currentUser.getPhone());
+        jTextField6.setText(currentUser.getAddress());
+        jTextField7.setText(currentUser.getEmail());
     }
 
     private User currentUser = new User();
