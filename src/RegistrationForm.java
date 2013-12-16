@@ -1,3 +1,6 @@
+
+import java.awt.event.ActionEvent;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -78,6 +81,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel10.setText("E-mail ");
 
         jButton1.setText("Потвърди");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,7 +184,9 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       
+    }                                        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLbl;
     private javax.swing.JTextField Nme_registr;

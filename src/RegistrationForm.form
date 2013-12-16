@@ -276,6 +276,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x442;&#x432;&#x44a;&#x440;&#x434;&#x438;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
