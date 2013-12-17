@@ -189,6 +189,7 @@ public class LoginFrame extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 1010, 550));
 
         BackgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
+        BackgroundLabel.setPreferredSize(new java.awt.Dimension(1024, 720));
         getContentPane().add(BackgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 700));
 
         jLabel1.setText("jLabel1");
