@@ -68,6 +68,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userName_txt = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        userLevel_txt = new javax.swing.JTextField();
+        CancelButton = new javax.swing.JButton();
         NewAccountPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -81,6 +84,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         PartBackground_lbl = new javax.swing.JLabel();
         BackgroundLbl = new javax.swing.JLabel();
 
@@ -176,81 +181,95 @@ public class RegistrationForm extends javax.swing.JFrame {
         RegistrationPanel.setOpaque(false);
         RegistrationPanel.setPreferredSize(new java.awt.Dimension(804, 680));
 
-        jLabel2.setText("Име");
+        jLabel2.setText("First name");
 
-        jLabel3.setText("Презиме");
+        jLabel3.setText("Middle name");
 
-        jLabel4.setText("Фамилия");
+        jLabel4.setText("Last name");
 
-        jLabel5.setText("ЕГН");
+        jLabel5.setText("Personal Id Number ");
 
-        jLabel6.setText("Адрес: кв./.........ул./........№/....ет./....ап./.... ");
+        jLabel6.setText("Address:  district./.........Str./........№/....fl./....ap./.... ");
 
-        jLabel7.setText("Държава");
+        jLabel7.setText("Country");
 
         jComboBox1.setBackground(new java.awt.Color(160, 199, 200));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете държава", "Австралия", "Австрия", "Азербайджан", "Албания", "Алжир", "Ангола", "Андора", "Аржентина", "Армения", "Афганистан", "Бангладеш", "Барбадос", "Бахамски острови", "Бахрейн", "Беларус", "Белгия", "Боливия", "Босна и Херцеговина", "Бразилия", "Бруней", "България", "Венецуела", "Виетнам", "Габон", "Гамбия", "Гана", "Гватемала", "Гвинея", "Гърция", "Дания", "Египет", "Еквадор", "Израел", "Ирак", "Иран", "Ирландия", "Исландия", "Испания", "Италия", "Канада", "Катар", "Кения", "Кипър", "Куба", " " }));
 
-        jLabel8.setText("Град");
+        jLabel8.setText("City");
 
-        jLabel9.setText("Телефон");
+        jLabel9.setText("Telephone number");
 
         jLabel10.setText("E-mail ");
 
         jButton1.setBackground(new java.awt.Color(168, 199, 200));
-        jButton1.setText("Потвърди");
+        jButton1.setText("Confirm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Потребителско име");
+        jLabel1.setText("Username");
+
+        jLabel17.setText("Acess level");
+
+        CancelButton.setBackground(new java.awt.Color(168, 199, 200));
+        CancelButton.setText("Cancel");
 
         javax.swing.GroupLayout RegistrationPanelLayout = new javax.swing.GroupLayout(RegistrationPanel);
         RegistrationPanel.setLayout(RegistrationPanelLayout);
         RegistrationPanelLayout.setHorizontalGroup(
             RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(address_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(surNme_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(secondName_resitr, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PIN_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(userName_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                .addComponent(Nme_registr, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(67, 67, 67)
                         .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                .addComponent(mail_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(92, 92, 92)
-                                .addComponent(jButton1))
-                            .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(city_registr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(20, 20, 20)))
-                            .addComponent(phone_restr, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(288, Short.MAX_VALUE))
+                                .addGap(58, 58, 58)
+                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(userLevel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phone_restr, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mail_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
+                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(surNme_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(secondName_resitr, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PIN_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(userName_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                        .addComponent(Nme_registr, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(city_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(address_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)))))
+                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
+                        .addGap(342, 342, 342)
+                        .addComponent(jButton1)
+                        .addGap(41, 41, 41)
+                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
         RegistrationPanelLayout.setVerticalGroup(
             RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,32 +294,38 @@ public class RegistrationForm extends javax.swing.JFrame {
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(PIN_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(address_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(city_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(address_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phone_restr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(phone_restr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
                         .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(mail_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
+                            .addComponent(jLabel17)
+                            .addComponent(userLevel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16))
                     .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1)))
-                .addContainerGap(238, Short.MAX_VALUE))
+                        .addComponent(mail_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)))
+                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(CancelButton))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         CentralCardLayoutPanel.add(RegistrationPanel, "RegistrationCard");
@@ -312,42 +337,48 @@ public class RegistrationForm extends javax.swing.JFrame {
         NewAccountPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         NewAccountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setText("Name");
-        NewAccountPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        jLabel11.setText("First name");
+        NewAccountPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         jTextField1.setText("jTextField1");
         NewAccountPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 130, -1));
 
-        jLabel12.setText("Secondname");
-        NewAccountPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        jLabel12.setText("Middlename");
+        NewAccountPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
         jTextField2.setText("jTextField2");
         NewAccountPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 150, -1));
 
-        jLabel13.setText("Surname");
-        NewAccountPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, 20));
+        jLabel13.setText("Last name");
+        NewAccountPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, 20));
 
         jTextField3.setText("jTextField3");
         NewAccountPanel.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 150, -1));
 
-        jLabel14.setText("PIN");
-        NewAccountPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        jLabel14.setText("Personal Id Number");
+        NewAccountPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jTextField4.setText("jTextField4");
         NewAccountPanel.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 130, -1));
 
         jLabel15.setText("Username");
-        NewAccountPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+        NewAccountPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         jTextField5.setText("jTextField5");
         NewAccountPanel.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 130, -1));
 
         jComboBox2.setBackground(new java.awt.Color(160, 199, 200));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select type ", "-----------------------------", "Regular Savings", "Standard deposit ", "Fixed deposit", "Noticed deposit", " " }));
-        NewAccountPanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 180, -1));
+        NewAccountPanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 180, -1));
 
         jLabel16.setText("Account type");
-        NewAccountPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        NewAccountPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+
+        jLabel18.setText("Acess level");
+        NewAccountPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+
+        jTextField6.setText("jTextField6");
+        NewAccountPanel.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
         PartBackground_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         PartBackground_lbl.setText("Фамилия");
@@ -394,6 +425,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     }                                        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLbl;
+    private javax.swing.JButton CancelButton;
     private javax.swing.JPanel CentralCardLayoutPanel;
     private javax.swing.JButton CreateNewAccountButton;
     private javax.swing.JButton CreateNewClientButton;
@@ -420,6 +452,8 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -433,10 +467,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField mail_registr;
     private javax.swing.JTextField phone_restr;
     private javax.swing.JTextField secondName_resitr;
     private javax.swing.JTextField surNme_registr;
+    private javax.swing.JTextField userLevel_txt;
     private javax.swing.JTextField userName_txt;
     // End of variables declaration//GEN-END:variables
 }
