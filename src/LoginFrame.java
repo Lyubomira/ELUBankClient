@@ -41,6 +41,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         ElectronicServices_lbl = new javax.swing.JLabel();
         tariff_lbl = new javax.swing.JLabel();
+        contact_lbl = new javax.swing.JLabel();
         BackgroundLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -148,7 +149,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         ElectronicServices_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         ElectronicServices_lbl.setForeground(new java.awt.Color(0, 153, 153));
-        ElectronicServices_lbl.setText("Electronic Services ");
+        ElectronicServices_lbl.setText("Internet Banking");
 
         tariff_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         tariff_lbl.setForeground(new java.awt.Color(0, 153, 153));
@@ -159,6 +160,10 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
+        contact_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        contact_lbl.setForeground(new java.awt.Color(0, 153, 153));
+        contact_lbl.setText("Contact Us");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -167,7 +172,8 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ElectronicServices_lbl)
-                    .addComponent(tariff_lbl))
+                    .addComponent(tariff_lbl)
+                    .addComponent(contact_lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
@@ -179,6 +185,8 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(ElectronicServices_lbl)
                 .addGap(45, 45, 45)
                 .addComponent(tariff_lbl)
+                .addGap(42, 42, 42)
+                .addComponent(contact_lbl)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(113, Short.MAX_VALUE)
@@ -286,6 +294,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel BackgroundLabel;
     private javax.swing.JLabel ELUBank_lbl;
     private javax.swing.JLabel ElectronicServices_lbl;
+    private javax.swing.JLabel contact_lbl;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
