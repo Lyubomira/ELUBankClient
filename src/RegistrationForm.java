@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,7 +26,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     /**
      * Creates new form SetNewClient
      */
-    public RegistrationForm() {
+    public RegistrationForm ()   { 
         initComponents();
     }
 
@@ -43,9 +44,12 @@ public class RegistrationForm extends javax.swing.JFrame {
         ManagementPanel = new javax.swing.JPanel();
         CreateNewClientButton = new javax.swing.JButton();
         CreateNewAccountButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        DeleteBankingAccount = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         CentralCardLayoutPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        Welcome_lbl = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         RegistrationPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,12 +69,16 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         phone_restr = new javax.swing.JTextField();
         mail_registr = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        ConfirmButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userName_txt = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         userLevel_txt = new javax.swing.JTextField();
         CancelButton = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jComboBox4 = new javax.swing.JComboBox();
+        jComboBox5 = new javax.swing.JComboBox();
         NewAccountPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -87,13 +95,17 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         PartBackground_lbl = new javax.swing.JLabel();
+        DeleteAccountPanel = new javax.swing.JPanel();
+        BackgroundPart_lbl = new javax.swing.JLabel();
         BackgroundLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 720));
+        setMaximumSize(new java.awt.Dimension(1040, 700));
+        setMinimumSize(new java.awt.Dimension(1040, 700));
+        setPreferredSize(new java.awt.Dimension(1040, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ELUBank_lbl.setFont(new java.awt.Font("Times New Roman", 2, 48)); // NOI18N
+        ELUBank_lbl.setFont(new java.awt.Font("Times New Roman", 3, 48)); // NOI18N
         ELUBank_lbl.setForeground(new java.awt.Color(0, 153, 153));
         ELUBank_lbl.setText("ELU Bank");
         getContentPane().add(ELUBank_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, -1, -1));
@@ -110,7 +122,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CreateNewClientButton.setBackground(new java.awt.Color(168, 199, 200));
         CreateNewClientButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        CreateNewClientButton.setText("Creating new client");
+        CreateNewClientButton.setText("Create new client");
         CreateNewClientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreateNewClientButtonActionPerformed(evt);
@@ -119,18 +131,19 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CreateNewAccountButton.setBackground(new java.awt.Color(168, 199, 200));
         CreateNewAccountButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        CreateNewAccountButton.setText("Creating new banking account");
+        CreateNewAccountButton.setText("Create new banking account");
         CreateNewAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreateNewAccountButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(168, 199, 200));
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        DeleteBankingAccount.setBackground(new java.awt.Color(168, 199, 200));
+        DeleteBankingAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        DeleteBankingAccount.setText("Delete banking account");
+        DeleteBankingAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                DeleteBankingAccountActionPerformed(evt);
             }
         });
 
@@ -145,7 +158,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeleteBankingAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CreateNewAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CreateNewClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
@@ -158,7 +171,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(CreateNewAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DeleteBankingAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(181, Short.MAX_VALUE))
@@ -174,159 +187,106 @@ public class RegistrationForm extends javax.swing.JFrame {
         CentralCardLayoutPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         CentralCardLayoutPanel.setLayout(new java.awt.CardLayout());
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Welcome_lbl.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        Welcome_lbl.setForeground(new java.awt.Color(0, 153, 153));
+        Welcome_lbl.setText("Welcome to the Administration Management System ");
+        jPanel1.add(Welcome_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 80));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
+        jLabel19.setText("W");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 613));
+
+        CentralCardLayoutPanel.add(jPanel1, "card5");
+
         RegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registration", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 24), new java.awt.Color(0, 153, 153))); // NOI18N
         RegistrationPanel.setForeground(new java.awt.Color(0, 153, 153));
         RegistrationPanel.setMaximumSize(new java.awt.Dimension(804, 680));
         RegistrationPanel.setMinimumSize(new java.awt.Dimension(804, 680));
         RegistrationPanel.setOpaque(false);
         RegistrationPanel.setPreferredSize(new java.awt.Dimension(804, 680));
+        RegistrationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("First name");
+        RegistrationPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         jLabel3.setText("Middle name");
+        RegistrationPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 128, -1, -1));
 
         jLabel4.setText("Last name");
+        RegistrationPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 166, -1, -1));
 
         jLabel5.setText("Personal Id Number ");
+        RegistrationPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
         jLabel6.setText("Address:  district./.........Str./........№/....fl./....ap./.... ");
+        RegistrationPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+        RegistrationPanel.add(Nme_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 122, -1));
+        RegistrationPanel.add(secondName_resitr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 156, -1));
+        RegistrationPanel.add(surNme_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 156, -1));
+        RegistrationPanel.add(PIN_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 125, -1));
+        RegistrationPanel.add(address_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 437, -1));
 
         jLabel7.setText("Country");
+        RegistrationPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jComboBox1.setBackground(new java.awt.Color(160, 199, 200));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете държава", "Австралия", "Австрия", "Азербайджан", "Албания", "Алжир", "Ангола", "Андора", "Аржентина", "Армения", "Афганистан", "Бангладеш", "Барбадос", "Бахамски острови", "Бахрейн", "Беларус", "Белгия", "Боливия", "Босна и Херцеговина", "Бразилия", "Бруней", "България", "Венецуела", "Виетнам", "Габон", "Гамбия", "Гана", "Гватемала", "Гвинея", "Гърция", "Дания", "Египет", "Еквадор", "Израел", "Ирак", "Иран", "Ирландия", "Исландия", "Испания", "Италия", "Канада", "Катар", "Кения", "Кипър", "Куба", " " }));
+        RegistrationPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 145, -1));
 
         jLabel8.setText("City");
+        RegistrationPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 27, -1));
+        RegistrationPanel.add(city_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 113, -1));
 
         jLabel9.setText("Telephone number");
+        RegistrationPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
 
         jLabel10.setText("E-mail ");
+        RegistrationPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
+        RegistrationPanel.add(phone_restr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 116, -1));
+        RegistrationPanel.add(mail_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 200, -1));
 
-        jButton1.setBackground(new java.awt.Color(168, 199, 200));
-        jButton1.setText("Confirm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ConfirmButton.setBackground(new java.awt.Color(168, 199, 200));
+        ConfirmButton.setText("Confirm");
+        ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ConfirmButtonActionPerformed(evt);
             }
         });
+        RegistrationPanel.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
 
         jLabel1.setText("Username");
+        RegistrationPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 52, -1, -1));
+        RegistrationPanel.add(userName_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 122, -1));
 
         jLabel17.setText("Acess level");
+        RegistrationPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
+        RegistrationPanel.add(userLevel_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 62, -1));
 
         CancelButton.setBackground(new java.awt.Color(168, 199, 200));
         CancelButton.setText("Cancel");
+        RegistrationPanel.add(CancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, 73, -1));
 
-        javax.swing.GroupLayout RegistrationPanelLayout = new javax.swing.GroupLayout(RegistrationPanel);
-        RegistrationPanel.setLayout(RegistrationPanelLayout);
-        RegistrationPanelLayout.setHorizontalGroup(
-            RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel17))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userLevel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phone_restr, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(mail_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(surNme_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(secondName_resitr, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PIN_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(userName_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                        .addComponent(Nme_registr, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                .addGap(72, 72, 72)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(city_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(address_registr, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)))))
-                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(jButton1)
-                        .addGap(41, 41, 41)
-                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(236, Short.MAX_VALUE))
-        );
-        RegistrationPanelLayout.setVerticalGroup(
-            RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(userName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Nme_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(secondName_resitr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(surNme_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(PIN_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(10, 10, 10)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(city_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(address_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(phone_restr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(userLevel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
-                    .addGroup(RegistrationPanelLayout.createSequentialGroup()
-                        .addComponent(mail_registr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)))
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(CancelButton))
-                .addContainerGap(206, Short.MAX_VALUE))
-        );
+        jLabel20.setText("Date of birth");
+        RegistrationPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+
+        jComboBox3.setBackground(new java.awt.Color(168, 199, 200));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "______", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
+        jComboBox3.setMaximumSize(new java.awt.Dimension(61, 20));
+        jComboBox3.setMinimumSize(new java.awt.Dimension(61, 20));
+        jComboBox3.setPreferredSize(new java.awt.Dimension(61, 20));
+        RegistrationPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 70, -1));
+
+        jComboBox4.setBackground(new java.awt.Color(168, 199, 200));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "______", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        jComboBox4.setMaximumSize(new java.awt.Dimension(61, 20));
+        RegistrationPanel.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 70, -1));
+
+        jComboBox5.setBackground(new java.awt.Color(168, 199, 200));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year", "______", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", " ", " " }));
+        jComboBox5.setMaximumSize(new java.awt.Dimension(61, 20));
+        RegistrationPanel.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 70, -1));
 
         CentralCardLayoutPanel.add(RegistrationPanel, "RegistrationCard");
         RegistrationPanel.getAccessibleContext().setAccessibleParent(CentralCardLayoutPanel);
@@ -390,6 +350,26 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CentralCardLayoutPanel.add(NewAccountPanel, "createAccountCard");
 
+        BackgroundPart_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
+        BackgroundPart_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout DeleteAccountPanelLayout = new javax.swing.GroupLayout(DeleteAccountPanel);
+        DeleteAccountPanel.setLayout(DeleteAccountPanelLayout);
+        DeleteAccountPanelLayout.setHorizontalGroup(
+            DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 724, Short.MAX_VALUE)
+            .addGroup(DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(BackgroundPart_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DeleteAccountPanelLayout.setVerticalGroup(
+            DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+            .addGroup(DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(BackgroundPart_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 606, Short.MAX_VALUE))
+        );
+
+        CentralCardLayoutPanel.add(DeleteAccountPanel, "DeleteAcntCard");
+
         getContentPane().add(CentralCardLayoutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 610, 590));
 
         BackgroundLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
@@ -398,9 +378,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void DeleteBankingAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBankingAccountActionPerformed
+ CardLayout deleteAccount = (CardLayout) (CentralCardLayoutPanel.getLayout());
+        deleteAccount.show(CentralCardLayoutPanel, "DeleteAcntCard");        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteBankingAccountActionPerformed
 
     private void CreateNewClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewClientButtonActionPerformed
        CardLayout registrationPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
@@ -414,21 +395,67 @@ public class RegistrationForm extends javax.swing.JFrame {
 //        try {
 //            image = ImageIO.read(new File("C:\\Users\\USER\\Documents\\NetBeansProjects\\ELUBankClient\\src\\abstract_background.jpg"));
 //        } catch (IOException ex) {
-//            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(RegistrationFoAdminForm()).log(Level.SEVERE, null, ex);
 //        }
            
        
         accoutPanel.show(CentralCardLayoutPanel, "createAccountCard");
     }//GEN-LAST:event_CreateNewAccountButtonActionPerformed
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       
-    }                                        
+
+    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
+        
+        String user = userName_txt.getText();
+        String pass = "test3";
+        String Fname = Nme_registr.getText();
+        String Mname = secondName_resitr.getText();
+        String Lname = surNme_registr.getText();
+        String pin = PIN_registr.getText();
+        String country = (String) jComboBox1.getSelectedItem();
+        String city = city_registr.getText();
+        String address = address_registr.getText();
+        String phone = phone_restr.getText();
+        String email = mail_registr.getText();
+        String access = userLevel_txt.getText();
+        String request = "login";
+             
+                if (user.trim().length() == 0 || Fname.length() == 0 ||Mname.trim().length() == 0 ||Lname.trim().length() == 0 ||pin.trim().length() == 0 ||country.trim().length() == 0 ||city.trim().length() == 0|| address.length() == 0|| phone.length() == 0|| email.length() == 0 ) {
+            JOptionPane.showMessageDialog(null, "Please fill all the fields!");
+        } else {
+
+            SSLClient client = new SSLClient();
+            newUser.setUsername(user);
+            newUser.setPassword(pass);
+            newUser.setName(Fname);
+            newUser.setSurname(Mname);
+            newUser.setFamilyname(Lname);
+            newUser.setEgn(pin);
+            newUser.setCountry(country);
+            newUser.setCity(city);
+            newUser.setAddress(address);
+            newUser.setPhone(phone);
+            newUser.setEmail(email);
+            newUser.setUserType(access);
+            newUser.setRequest(request);
+            newUser = (User)client.runClient(newUser);
+        
+        
+        
+    }//GEN-LAST:event_ConfirmButtonActionPerformed
+    
+    }
+   
+    private User newUser = new User(); 
+                
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLbl;
+    private javax.swing.JLabel BackgroundPart_lbl;
     private javax.swing.JButton CancelButton;
     private javax.swing.JPanel CentralCardLayoutPanel;
+    private javax.swing.JButton ConfirmButton;
     private javax.swing.JButton CreateNewAccountButton;
     private javax.swing.JButton CreateNewClientButton;
+    private javax.swing.JPanel DeleteAccountPanel;
+    private javax.swing.JButton DeleteBankingAccount;
     private javax.swing.JLabel ELUBank_lbl;
     private javax.swing.JPanel ManagementPanel;
     private javax.swing.JPanel MenuCardLayoutPanel;
@@ -437,13 +464,15 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField PIN_registr;
     private javax.swing.JLabel PartBackground_lbl;
     private javax.swing.JPanel RegistrationPanel;
+    private javax.swing.JLabel Welcome_lbl;
     private javax.swing.JTextField address_registr;
     private javax.swing.JTextField city_registr;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -454,7 +483,9 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -462,6 +493,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
