@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author USER
@@ -26,7 +25,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     /**
      * Creates new form SetNewClient
      */
-    public RegistrationForm ()   { 
+    public RegistrationForm() {
         initComponents();
     }
 
@@ -194,7 +193,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         Welcome_lbl.setText("Welcome to the Administration Management System ");
         jPanel1.add(Welcome_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 80));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         jLabel19.setText("W");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 613));
 
@@ -274,8 +272,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         jComboBox3.setBackground(new java.awt.Color(168, 199, 200));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "______", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
         jComboBox3.setMaximumSize(new java.awt.Dimension(61, 20));
-        jComboBox3.setMinimumSize(new java.awt.Dimension(61, 20));
-        jComboBox3.setPreferredSize(new java.awt.Dimension(61, 20));
         RegistrationPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 70, -1));
 
         jComboBox4.setBackground(new java.awt.Color(168, 199, 200));
@@ -340,7 +336,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         jTextField6.setText("jTextField6");
         NewAccountPanel.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
-        PartBackground_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         PartBackground_lbl.setText("Фамилия");
         PartBackground_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         PartBackground_lbl.setMaximumSize(new java.awt.Dimension(804, 700));
@@ -350,7 +345,6 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CentralCardLayoutPanel.add(NewAccountPanel, "createAccountCard");
 
-        BackgroundPart_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         BackgroundPart_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout DeleteAccountPanelLayout = new javax.swing.GroupLayout(DeleteAccountPanel);
@@ -365,7 +359,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 606, Short.MAX_VALUE)
             .addGroup(DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(BackgroundPart_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 606, Short.MAX_VALUE))
+                .addComponent(BackgroundPart_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE))
         );
 
         CentralCardLayoutPanel.add(DeleteAccountPanel, "DeleteAcntCard");
@@ -379,17 +373,17 @@ public class RegistrationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DeleteBankingAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBankingAccountActionPerformed
- CardLayout deleteAccount = (CardLayout) (CentralCardLayoutPanel.getLayout());
+        CardLayout deleteAccount = (CardLayout) (CentralCardLayoutPanel.getLayout());
         deleteAccount.show(CentralCardLayoutPanel, "DeleteAcntCard");        // TODO add your handling code here:
     }//GEN-LAST:event_DeleteBankingAccountActionPerformed
 
     private void CreateNewClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewClientButtonActionPerformed
-       CardLayout registrationPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
+        CardLayout registrationPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
         registrationPanel.show(CentralCardLayoutPanel, "RegistrationCard");
     }//GEN-LAST:event_CreateNewClientButtonActionPerformed
 
     private void CreateNewAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewAccountButtonActionPerformed
-       
+
         CardLayout accoutPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
 //        BufferedImage image = null;
 //        try {
@@ -397,55 +391,60 @@ public class RegistrationForm extends javax.swing.JFrame {
 //        } catch (IOException ex) {
 //            Logger.getLogger(RegistrationFoAdminForm()).log(Level.SEVERE, null, ex);
 //        }
-           
-       
+
         accoutPanel.show(CentralCardLayoutPanel, "createAccountCard");
     }//GEN-LAST:event_CreateNewAccountButtonActionPerformed
 
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
-        
+
         String user = userName_txt.getText();
         String pass = "test3";
         String Fname = Nme_registr.getText();
         String Mname = secondName_resitr.getText();
         String Lname = surNme_registr.getText();
         String pin = PIN_registr.getText();
+        String bday = (String) jComboBox3.getSelectedItem();
+        String bmonth = (String) jComboBox4.getSelectedItem();
+        String byear = (String) jComboBox5.getSelectedItem();
         String country = (String) jComboBox1.getSelectedItem();
         String city = city_registr.getText();
         String address = address_registr.getText();
         String phone = phone_restr.getText();
         String email = mail_registr.getText();
         String access = userLevel_txt.getText();
-        String request = "login";
-             
-                if (user.trim().length() == 0 || Fname.length() == 0 ||Mname.trim().length() == 0 ||Lname.trim().length() == 0 ||pin.trim().length() == 0 ||country.trim().length() == 0 ||city.trim().length() == 0|| address.length() == 0|| phone.length() == 0|| email.length() == 0 ) {
-            JOptionPane.showMessageDialog(null, "Please fill all the fields!");
-        } else {
+        String request = "create";
 
-            SSLClient client = new SSLClient();
-            newUser.setUsername(user);
-            newUser.setPassword(pass);
-            newUser.setName(Fname);
-            newUser.setSurname(Mname);
-            newUser.setFamilyname(Lname);
-            newUser.setEgn(pin);
-            newUser.setCountry(country);
-            newUser.setCity(city);
-            newUser.setAddress(address);
-            newUser.setPhone(phone);
-            newUser.setEmail(email);
-            newUser.setUserType(access);
-            newUser.setRequest(request);
-            newUser = (User)client.runClient(newUser);
-        
-        
-        
+        if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
+                || Lname.trim().length() == 0 || pin.trim().length() == 0
+                || country.trim().length() == 0 || city.trim().length() == 0
+                || address.length() == 0 || phone.length() == 0 || email.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Please fill all the fields!");
+            return;
+        }
+
+        SSLClient client = new SSLClient();
+        newUser.setUsername(user);
+        newUser.setPassword(pass);
+        newUser.setName(Fname);
+        newUser.setSurname(Mname);
+        newUser.setFamilyname(Lname);
+        newUser.setEgn(pin);
+        newUser.setDayOfBirth(bday);
+        newUser.setMonthOfBirth(bmonth);
+        newUser.setYearOfBirth(byear);
+        newUser.setCountry(country);
+        newUser.setCity(city);
+        newUser.setAddress(address);
+        newUser.setPhone(phone);
+        newUser.setEmail(email);
+        newUser.setUserType(access);
+        newUser.setRequest(request);
+        newUser = (User) client.runClient(newUser);
+
     }//GEN-LAST:event_ConfirmButtonActionPerformed
-    
-    }
-   
-    private User newUser = new User(); 
-                
+
+    private User newUser = new User();
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLbl;
     private javax.swing.JLabel BackgroundPart_lbl;

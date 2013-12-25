@@ -2,15 +2,10 @@
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * Login
  *
- * @author USER
+ * @author ELUBank team
  */
 public class LoginFrame extends javax.swing.JFrame {
 
@@ -38,7 +33,6 @@ public class LoginFrame extends javax.swing.JFrame {
         txt_pass = new javax.swing.JPasswordField();
         txt_name = new javax.swing.JTextField();
         login_btn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         ElectronicServices_lbl = new javax.swing.JLabel();
         tariff_lbl = new javax.swing.JLabel();
         contact_lbl = new javax.swing.JLabel();
@@ -67,7 +61,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("Password");
 
-        txt_pass.setText("jPasswordField1");
+        txt_pass.setToolTipText("");
         txt_pass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_passKeyPressed(evt);
@@ -99,21 +93,10 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("registration");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,8 +116,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton2)
-                .addGap(72, 72, 72)
+                .addGap(95, 95, 95)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,7 +189,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
-         String user = txt_name.getText();
+        String user = txt_name.getText();
         String pass = txt_pass.getText();
         String request = "login";
 
@@ -224,18 +206,26 @@ public class LoginFrame extends javax.swing.JFrame {
             if (currentUser.getLoggedIn()) {
 
                 this.setVisible(false);
-                ClientFrame cFrame = new ClientFrame();
-                cFrame.setVisible(true);
-                cFrame.setUser(currentUser);
-                cFrame.loadUserInfo();
+
+                // user type 1 = clerk
+                if (currentUser.getUserType().equalsIgnoreCase("1")) {
+                    RegistrationForm bForm = new RegistrationForm();
+                    bForm.setVisible(true);
+                } // user type 2 = customer with all rights
+                else if (currentUser.getUserType().equalsIgnoreCase("2")) {
+                    ClientFrame cFrame = new ClientFrame();
+                    cFrame.setVisible(true);
+                    cFrame.setUser(currentUser);
+                    cFrame.loadUserInfo();
+                } // user type 3 = customer with no transaction rights
+                else {
+                }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.",
                         "Грешка", JOptionPane.ERROR_MESSAGE);
             }
         }
-                                          
-
     }//GEN-LAST:event_login_btnActionPerformed
 
     private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
@@ -243,7 +233,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nameActionPerformed
 
     private void txt_passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passKeyPressed
-       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             login_btn.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
@@ -255,7 +245,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passKeyPressed
 
     private void txt_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nameKeyPressed
-       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             login_btn.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
@@ -267,27 +257,18 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nameKeyPressed
 
     private void login_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_btnKeyPressed
-       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             login_btn.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
     }//GEN-LAST:event_login_btnKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.setVisible(false);
-        new RegistrationForm().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void tariff_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tariff_lblMouseClicked
-       this.setVisible(false);
-       new InterestsForm().setVisible(true);
+        this.setVisible(false);
+        new InterestsForm().setVisible(true);
     }//GEN-LAST:event_tariff_lblMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-   
     private User currentUser = new User();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -295,7 +276,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel ELUBank_lbl;
     private javax.swing.JLabel ElectronicServices_lbl;
     private javax.swing.JLabel contact_lbl;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
