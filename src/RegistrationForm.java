@@ -61,7 +61,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         PIN_registr = new javax.swing.JTextField();
         address_registr = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboBoxCountry = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         city_registr = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -72,12 +72,12 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         userName_txt = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        userLevel_txt = new javax.swing.JTextField();
         CancelButton = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
-        jComboBox5 = new javax.swing.JComboBox();
+        comboBoxDateOfBirth = new javax.swing.JComboBox();
+        comboBoxMonthOfBirth = new javax.swing.JComboBox();
+        comboBoxYearOfBirth = new javax.swing.JComboBox();
+        comboBoxUserType = new javax.swing.JComboBox();
         NewAccountPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -102,6 +102,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1040, 700));
         setMinimumSize(new java.awt.Dimension(1040, 700));
         setPreferredSize(new java.awt.Dimension(1040, 700));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ELUBank_lbl.setFont(new java.awt.Font("Times New Roman", 3, 48)); // NOI18N
@@ -229,9 +230,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel7.setText("Country");
         RegistrationPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(160, 199, 200));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете държава", "Австралия", "Австрия", "Азербайджан", "Албания", "Алжир", "Ангола", "Андора", "Аржентина", "Армения", "Афганистан", "Бангладеш", "Барбадос", "Бахамски острови", "Бахрейн", "Беларус", "Белгия", "Боливия", "Босна и Херцеговина", "Бразилия", "Бруней", "България", "Венецуела", "Виетнам", "Габон", "Гамбия", "Гана", "Гватемала", "Гвинея", "Гърция", "Дания", "Египет", "Еквадор", "Израел", "Ирак", "Иран", "Ирландия", "Исландия", "Испания", "Италия", "Канада", "Катар", "Кения", "Кипър", "Куба", " " }));
-        RegistrationPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 145, -1));
+        comboBoxCountry.setBackground(new java.awt.Color(160, 199, 200));
+        comboBoxCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете държава", "Австралия", "Австрия", "Азербайджан", "Албания", "Алжир", "Ангола", "Андора", "Аржентина", "Армения", "Афганистан", "Бангладеш", "Барбадос", "Бахамски острови", "Бахрейн", "Беларус", "Белгия", "Боливия", "Босна и Херцеговина", "Бразилия", "Бруней", "България", "Венецуела", "Виетнам", "Габон", "Гамбия", "Гана", "Гватемала", "Гвинея", "Гърция", "Дания", "Египет", "Еквадор", "Израел", "Ирак", "Иран", "Ирландия", "Исландия", "Испания", "Италия", "Канада", "Катар", "Кения", "Кипър", "Куба", " " }));
+        RegistrationPanel.add(comboBoxCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 145, -1));
 
         jLabel8.setText("City");
         RegistrationPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 27, -1));
@@ -260,7 +261,6 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         jLabel17.setText("Acess level");
         RegistrationPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
-        RegistrationPanel.add(userLevel_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 62, -1));
 
         CancelButton.setBackground(new java.awt.Color(168, 199, 200));
         CancelButton.setText("Cancel");
@@ -269,20 +269,24 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel20.setText("Date of birth");
         RegistrationPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
-        jComboBox3.setBackground(new java.awt.Color(168, 199, 200));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "______", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
-        jComboBox3.setMaximumSize(new java.awt.Dimension(61, 20));
-        RegistrationPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 70, -1));
+        comboBoxDateOfBirth.setBackground(new java.awt.Color(168, 199, 200));
+        comboBoxDateOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Date]", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
+        comboBoxDateOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
+        RegistrationPanel.add(comboBoxDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 70, -1));
 
-        jComboBox4.setBackground(new java.awt.Color(168, 199, 200));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "______", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
-        jComboBox4.setMaximumSize(new java.awt.Dimension(61, 20));
-        RegistrationPanel.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 70, -1));
+        comboBoxMonthOfBirth.setBackground(new java.awt.Color(168, 199, 200));
+        comboBoxMonthOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Month]", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        comboBoxMonthOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
+        RegistrationPanel.add(comboBoxMonthOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 70, -1));
 
-        jComboBox5.setBackground(new java.awt.Color(168, 199, 200));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year", "______", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", " ", " " }));
-        jComboBox5.setMaximumSize(new java.awt.Dimension(61, 20));
-        RegistrationPanel.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 70, -1));
+        comboBoxYearOfBirth.setBackground(new java.awt.Color(168, 199, 200));
+        comboBoxYearOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Year]", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", " ", " " }));
+        comboBoxYearOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
+        RegistrationPanel.add(comboBoxYearOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 70, -1));
+
+        comboBoxUserType.setBackground(new java.awt.Color(160, 199, 200));
+        comboBoxUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете тип на потребителя", "Банков служител", "Депозиращ Клиент", "Клиент" }));
+        RegistrationPanel.add(comboBoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 190, -1));
 
         CentralCardLayoutPanel.add(RegistrationPanel, "RegistrationCard");
         RegistrationPanel.getAccessibleContext().setAccessibleParent(CentralCardLayoutPanel);
@@ -398,52 +402,76 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
 
         String user = userName_txt.getText();
-        String pass = "test3";
+        String pass = "elu" + PIN_registr.getText();
         String Fname = Nme_registr.getText();
         String Mname = secondName_resitr.getText();
         String Lname = surNme_registr.getText();
         String pin = PIN_registr.getText();
-        String bday = (String) jComboBox3.getSelectedItem();
-        String bmonth = (String) jComboBox4.getSelectedItem();
-        String byear = (String) jComboBox5.getSelectedItem();
-        String country = (String) jComboBox1.getSelectedItem();
+        String bday = (String) comboBoxDateOfBirth.getSelectedItem();
+        String bmonth = (String) comboBoxMonthOfBirth.getSelectedItem();
+        String byear = (String) comboBoxYearOfBirth.getSelectedItem();
+        String country = (String) comboBoxCountry.getSelectedItem();
         String city = city_registr.getText();
         String address = address_registr.getText();
         String phone = phone_restr.getText();
         String email = mail_registr.getText();
-        String access = userLevel_txt.getText();
+        String access = comboBoxUserType.getSelectedIndex() + "";
         String request = "create";
 
         if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
                 || Lname.trim().length() == 0 || pin.trim().length() == 0
                 || country.trim().length() == 0 || city.trim().length() == 0
-                || address.length() == 0 || phone.length() == 0 || email.length() == 0) {
+                || address.length() == 0 || phone.length() == 0 || email.length() == 0
+                || comboBoxCountry.getSelectedIndex() == 0 || comboBoxDateOfBirth.getSelectedIndex() == 0
+                || comboBoxMonthOfBirth.getSelectedIndex() == 0 || comboBoxYearOfBirth.getSelectedIndex() == 0
+                || comboBoxUserType.getSelectedIndex() == 0) {
+
             JOptionPane.showMessageDialog(null, "Please fill all the fields!");
             return;
         }
 
         SSLClient client = new SSLClient();
-        newUser.setUsername(user);
-        newUser.setPassword(pass);
-        newUser.setName(Fname);
-        newUser.setSurname(Mname);
-        newUser.setFamilyname(Lname);
-        newUser.setEgn(pin);
-        newUser.setDayOfBirth(bday);
-        newUser.setMonthOfBirth(bmonth);
-        newUser.setYearOfBirth(byear);
-        newUser.setCountry(country);
-        newUser.setCity(city);
-        newUser.setAddress(address);
-        newUser.setPhone(phone);
-        newUser.setEmail(email);
-        newUser.setUserType(access);
+
+        newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
+                country, city, address, phone, email, access);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
 
+        if (newUser.getResponse() == null) {
+            clearRegistrationForm();
+            JOptionPane.showMessageDialog(null, "New User Successfully Created!");
+            return;
+        }
+
+        if (newUser.getResponse().equalsIgnoreCase("userExists")) {
+            JOptionPane.showMessageDialog(null, "Username already exists!");
+            return;
+        }
+
+        if (newUser.getResponse().equalsIgnoreCase("egnExists")) {
+            JOptionPane.showMessageDialog(null, "PIN number already exists!");
+            return;
+        }
     }//GEN-LAST:event_ConfirmButtonActionPerformed
 
-    private User newUser = new User();
+    private void clearRegistrationForm() {
+        userName_txt.setText("");
+        Nme_registr.setText("");
+        secondName_resitr.setText("");
+        surNme_registr.setText("");
+        PIN_registr.setText("");
+        comboBoxDateOfBirth.setSelectedIndex(0);
+        comboBoxMonthOfBirth.setSelectedIndex(0);
+        comboBoxYearOfBirth.setSelectedIndex(0);
+        comboBoxCountry.setSelectedIndex(0);
+        city_registr.setText("");
+        address_registr.setText("");
+        phone_restr.setText("");
+        mail_registr.setText("");
+        comboBoxUserType.setSelectedIndex(0);
+    }
+
+    private User newUser;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLbl;
@@ -466,12 +494,13 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel Welcome_lbl;
     private javax.swing.JTextField address_registr;
     private javax.swing.JTextField city_registr;
+    private javax.swing.JComboBox comboBoxCountry;
+    private javax.swing.JComboBox comboBoxDateOfBirth;
+    private javax.swing.JComboBox comboBoxMonthOfBirth;
+    private javax.swing.JComboBox comboBoxUserType;
+    private javax.swing.JComboBox comboBoxYearOfBirth;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -503,7 +532,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField phone_restr;
     private javax.swing.JTextField secondName_resitr;
     private javax.swing.JTextField surNme_registr;
-    private javax.swing.JTextField userLevel_txt;
     private javax.swing.JTextField userName_txt;
     // End of variables declaration//GEN-END:variables
 }

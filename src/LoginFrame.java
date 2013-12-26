@@ -206,6 +206,7 @@ public class LoginFrame extends javax.swing.JFrame {
             if (currentUser.getLoggedIn()) {
 
                 this.setVisible(false);
+                currentUser.setLoggedIn(false);
 
                 // user type 1 = clerk
                 if (currentUser.getUserType().equalsIgnoreCase("1")) {
