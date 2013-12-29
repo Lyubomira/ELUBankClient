@@ -46,7 +46,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         DeleteBankingAccount = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         CentralCardLayoutPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        WelcomePanel = new javax.swing.JPanel();
         Welcome_lbl = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         RegistrationPanel = new javax.swing.JPanel();
@@ -187,17 +187,17 @@ public class RegistrationForm extends javax.swing.JFrame {
         CentralCardLayoutPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         CentralCardLayoutPanel.setLayout(new java.awt.CardLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        WelcomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Welcome_lbl.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         Welcome_lbl.setForeground(new java.awt.Color(0, 153, 153));
         Welcome_lbl.setText("Welcome to the Administration Management System ");
-        jPanel1.add(Welcome_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 80));
+        WelcomePanel.add(Welcome_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 80));
 
-        jLabel19.setText("W");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 613));
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
+        WelcomePanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 613));
 
-        CentralCardLayoutPanel.add(jPanel1, "card5");
+        CentralCardLayoutPanel.add(WelcomePanel, "card5");
 
         RegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registration", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 24), new java.awt.Color(0, 153, 153))); // NOI18N
         RegistrationPanel.setForeground(new java.awt.Color(0, 153, 153));
@@ -340,6 +340,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         jTextField6.setText("jTextField6");
         NewAccountPanel.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
+        PartBackground_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         PartBackground_lbl.setText("Фамилия");
         PartBackground_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         PartBackground_lbl.setMaximumSize(new java.awt.Dimension(804, 700));
@@ -349,6 +350,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CentralCardLayoutPanel.add(NewAccountPanel, "createAccountCard");
 
+        BackgroundPart_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         BackgroundPart_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout DeleteAccountPanelLayout = new javax.swing.GroupLayout(DeleteAccountPanel);
@@ -361,9 +363,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         );
         DeleteAccountPanelLayout.setVerticalGroup(
             DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+            .addGap(0, 666, Short.MAX_VALUE)
             .addGroup(DeleteAccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(BackgroundPart_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE))
+                .addComponent(BackgroundPart_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         CentralCardLayoutPanel.add(DeleteAccountPanel, "DeleteAcntCard");
@@ -491,6 +493,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField PIN_registr;
     private javax.swing.JLabel PartBackground_lbl;
     private javax.swing.JPanel RegistrationPanel;
+    private javax.swing.JPanel WelcomePanel;
     private javax.swing.JLabel Welcome_lbl;
     private javax.swing.JTextField address_registr;
     private javax.swing.JTextField city_registr;
@@ -521,7 +524,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
