@@ -1,4 +1,4 @@
-
+b 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -80,19 +82,20 @@ public class RegistrationForm extends javax.swing.JFrame {
         comboBoxUserType = new javax.swing.JComboBox();
         NewAccountPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        fnme_txt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        mname_txt = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        lname_txt = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        egn_txt = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        user_txt = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        access_txt = new javax.swing.JTextField();
+        search_button = new javax.swing.JButton();
         PartBackground_lbl = new javax.swing.JLabel();
         DeleteAccountPanel = new javax.swing.JPanel();
         BackgroundPart_lbl = new javax.swing.JLabel();
@@ -253,7 +256,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                 ConfirmButtonActionPerformed(evt);
             }
         });
-        RegistrationPanel.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
+        RegistrationPanel.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 503, 70, 30));
 
         jLabel1.setText("Username");
         RegistrationPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 52, -1, -1));
@@ -264,7 +267,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CancelButton.setBackground(new java.awt.Color(168, 199, 200));
         CancelButton.setText("Cancel");
-        RegistrationPanel.add(CancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, 73, -1));
+        RegistrationPanel.add(CancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 503, 73, 30));
 
         jLabel20.setText("Date of birth");
         RegistrationPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
@@ -299,33 +302,23 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         jLabel11.setText("First name");
         NewAccountPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
-
-        jTextField1.setText("jTextField1");
-        NewAccountPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 130, -1));
+        NewAccountPanel.add(fnme_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 130, -1));
 
         jLabel12.setText("Middlename");
         NewAccountPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
-
-        jTextField2.setText("jTextField2");
-        NewAccountPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 150, -1));
+        NewAccountPanel.add(mname_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 150, -1));
 
         jLabel13.setText("Last name");
         NewAccountPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, 20));
-
-        jTextField3.setText("jTextField3");
-        NewAccountPanel.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 150, -1));
+        NewAccountPanel.add(lname_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 150, -1));
 
         jLabel14.setText("Personal Id Number");
         NewAccountPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-
-        jTextField4.setText("jTextField4");
-        NewAccountPanel.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 130, -1));
+        NewAccountPanel.add(egn_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 130, -1));
 
         jLabel15.setText("Username");
         NewAccountPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
-
-        jTextField5.setText("jTextField5");
-        NewAccountPanel.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 130, -1));
+        NewAccountPanel.add(user_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 130, -1));
 
         jComboBox2.setBackground(new java.awt.Color(160, 199, 200));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select type ", "-----------------------------", "Regular Savings", "Standard deposit ", "Fixed deposit", "Noticed deposit", " " }));
@@ -336,9 +329,15 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         jLabel18.setText("Acess level");
         NewAccountPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+        NewAccountPanel.add(access_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 70, -1));
 
-        jTextField6.setText("jTextField6");
-        NewAccountPanel.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+        search_button.setText("Search");
+        search_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_buttonActionPerformed(evt);
+            }
+        });
+        NewAccountPanel.add(search_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
 
         PartBackground_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
         PartBackground_lbl.setText("Фамилия");
@@ -391,12 +390,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void CreateNewAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewAccountButtonActionPerformed
 
         CardLayout accoutPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
-//        BufferedImage image = null;
-//        try {
-//            image = ImageIO.read(new File("C:\\Users\\USER\\Documents\\NetBeansProjects\\ELUBankClient\\src\\abstract_background.jpg"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(RegistrationFoAdminForm()).log(Level.SEVERE, null, ex);
-//        }
+        
 
         accoutPanel.show(CentralCardLayoutPanel, "createAccountCard");
     }//GEN-LAST:event_CreateNewAccountButtonActionPerformed
@@ -420,6 +414,16 @@ public class RegistrationForm extends javax.swing.JFrame {
         String access = comboBoxUserType.getSelectedIndex() + "";
         String request = "create";
 
+        
+        
+        // check eng field for 10 digits
+        Pattern egn_val = Pattern.compile("\\d{10,10}");
+        Matcher m_val = egn_val.matcher(pin);
+        if (!m_val.find()) {
+            JOptionPane.showMessageDialog(null, "EGN може да съдържа само цифри");
+            return;
+        }
+        
         if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
                 || Lname.trim().length() == 0 || pin.trim().length() == 0
                 || country.trim().length() == 0 || city.trim().length() == 0
@@ -431,6 +435,9 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please fill all the fields!");
             return;
         }
+        
+        
+        
 
         SSLClient client = new SSLClient();
 
@@ -438,7 +445,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                 country, city, address, phone, email, access);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
-
+        
         if (newUser.getResponse() == null) {
             clearRegistrationForm();
             JOptionPane.showMessageDialog(null, "New User Successfully Created!");
@@ -456,6 +463,57 @@ public class RegistrationForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ConfirmButtonActionPerformed
 
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
+        
+      
+      
+        String pin = egn_txt.getText();
+        String request = "create";
+        
+        Pattern egn_val = Pattern.compile("\\d{10,10}");
+        Matcher m_val = egn_val.matcher(pin);
+        if (!m_val.find()) {
+            JOptionPane.showMessageDialog(null, "EGN може да съдържа само цифри");
+            return;
+        }
+        
+          
+          
+         SSLClient client = new SSLClient();
+         
+ // TUK TRQBVA NOV REQUEST ZA SMETKA i NOV User
+         
+     //   newUser = new User(user, Fname, Mname, Lname, pin, access);
+        newUser.setRequest(request);
+        newUser = (User) client.runClient(newUser);
+        
+        
+        if (newUser.getResponse() == null) {
+            clearRegistrationForm();
+            JOptionPane.showMessageDialog(null, "New User Successfully Created!");
+            return;
+        }
+        
+        
+        
+    }//GEN-LAST:event_search_buttonActionPerformed
+
+     public void setUser(User user) {
+        this.currentUser = user;
+    }
+
+    public void loadUserInfo() {
+        String name = currentUser.getName();
+        String familyname = currentUser.getFamilyname();
+        String surname = currentUser.getSurname();
+        fnme_txt.setText(name);
+        mname_txt.setText(surname);
+        lname_txt.setText(familyname);
+        user_txt.setText(currentUser.getUsername());
+        access_txt.setText(currentUser.getUserType());
+    }
+
+    private User currentUser = new User();
     private void clearRegistrationForm() {
         userName_txt.setText("");
         Nme_registr.setText("");
@@ -495,6 +553,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JPanel RegistrationPanel;
     private javax.swing.JPanel WelcomePanel;
     private javax.swing.JLabel Welcome_lbl;
+    private javax.swing.JTextField access_txt;
     private javax.swing.JTextField address_registr;
     private javax.swing.JTextField city_registr;
     private javax.swing.JComboBox comboBoxCountry;
@@ -502,6 +561,8 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JComboBox comboBoxMonthOfBirth;
     private javax.swing.JComboBox comboBoxUserType;
     private javax.swing.JComboBox comboBoxYearOfBirth;
+    private javax.swing.JTextField egn_txt;
+    private javax.swing.JTextField fnme_txt;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -524,16 +585,14 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField lname_txt;
     private javax.swing.JTextField mail_registr;
+    private javax.swing.JTextField mname_txt;
     private javax.swing.JTextField phone_restr;
+    private javax.swing.JButton search_button;
     private javax.swing.JTextField secondName_resitr;
     private javax.swing.JTextField surNme_registr;
     private javax.swing.JTextField userName_txt;
+    private javax.swing.JTextField user_txt;
     // End of variables declaration//GEN-END:variables
 }
