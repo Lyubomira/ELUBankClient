@@ -1,4 +1,4 @@
-b 
+
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
