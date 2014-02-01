@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 cf651b7a954f512decb3b435d9b01aff18ec0d93 USER <USER@192.168.0.41> 1386883537 +0200	branch: Created from branch refs/remotes/origin/master
+cf651b7a954f512decb3b435d9b01aff18ec0d93 984513f4e149b0cae778843323b47a58ea8f6f12 USER <USER@192.168.0.41> 1386939668 +0200	commit: Промяна: Login формата/ нов бутон регистрация / нова форма за регистрация
+984513f4e149b0cae778843323b47a58ea8f6f12 6e64a104e391fd296f957a534bcff8d17f13b6c4 USER <USER@192.168.0.41> 1386940632 +0200	commit: Промяна: Login формата/ нов бутон регистрация / нова форма за регистрация
+6e64a104e391fd296f957a534bcff8d17f13b6c4 4877bd724212158410c70c8ded438f0ab970fdc9 USER <USER@192.168.0.41> 1386940914 +0200	commit: Промяна: Login формата/ нов бутон регистрация / нова форма за регистрация
+4877bd724212158410c70c8ded438f0ab970fdc9 a5c4929bad469773fb4c4c65a1a8052ecbb84c89 USER <USER@192.168.0.41> 1386943230 +0200	commit: Промяна: Login формата/ нов бутон регистрация / нова форма за регистрация
+a5c4929bad469773fb4c4c65a1a8052ecbb84c89 2a8613a28cdee52b83303985367edd3dba93e59b USER <USER@192.168.0.41> 1387221476 +0200	merge origin/master: Fast-forward
+2a8613a28cdee52b83303985367edd3dba93e59b 3c7922b2c60df6acf98f8d6778f8658edc422f08 USER <USER@192.168.0.41> 1387223336 +0200	commit: Промяна: таблица за олихвяване

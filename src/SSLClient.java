@@ -33,9 +33,8 @@ public class SSLClient {
             // Initializing the streams for Communication with the Server
             objOutStream = new ObjectOutputStream(sslSocket.getOutputStream());
             objInStream = new ObjectInputStream(sslSocket.getInputStream());
-
+            
             objOutStream.writeObject(objectToSend);
-
             receivedObj = objInStream.readObject();
 
         } catch (IOException ex) {

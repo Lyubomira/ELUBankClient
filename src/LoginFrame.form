@@ -51,7 +51,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Services">
+            <TitledBorder title="&#x423;&#x441;&#x43b;&#x443;&#x433;&#x438;">
               <Font PropertyName="font" name="Times New Roman" size="24" style="3"/>
               <Color PropertyName="color" blue="99" green="99" red="0" type="rgb"/>
             </TitledBorder>
@@ -75,7 +75,7 @@
                       <Component id="tariff_lbl" min="-2" max="-2" attributes="0"/>
                       <Component id="contact_lbl" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="243" max="32767" attributes="0"/>
+                  <EmptySpace pref="256" max="32767" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               </Group>
@@ -105,7 +105,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Log In">
+                <TitledBorder title="&#x414;&#x43e;&#x441;&#x442;&#x44a;&#x43f;">
                   <Font PropertyName="font" name="Times New Roman" size="24" style="2"/>
                   <Color PropertyName="color" blue="99" green="99" red="0" type="rgb"/>
                 </TitledBorder>
@@ -118,14 +118,19 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="86" max="32767" attributes="0"/>
+                      <EmptySpace pref="110" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel3" min="-2" pref="77" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txt_pass" min="-2" pref="125" max="-2" attributes="0"/>
                                   <Component id="txt_name" min="-2" pref="125" max="-2" attributes="0"/>
@@ -166,7 +171,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Username"/>
+                <Property name="text" type="java.lang.String" value="&#x418;&#x43c;&#x435;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -174,7 +179,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Password"/>
+                <Property name="text" type="java.lang.String" value="&#x41f;&#x430;&#x440;&#x43e;&#x43b;&#x430;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txt_pass">
@@ -199,7 +204,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="LogIn"/>
+                <Property name="text" type="java.lang.String" value="&#x412;&#x43b;&#x435;&#x437;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login_btnActionPerformed"/>
@@ -216,7 +221,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Internet Banking"/>
+            <Property name="text" type="java.lang.String" value="&#x418;&#x43d;&#x442;&#x435;&#x440;&#x43d;&#x435;&#x442; &#x431;&#x430;&#x43d;&#x43a;&#x438;&#x440;&#x430;&#x43d;&#x435;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="tariff_lbl">
@@ -227,7 +232,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Saving Component - Tariff "/>
+            <Property name="text" type="java.lang.String" value="&#x421;&#x43f;&#x435;&#x441;&#x442;&#x43e;&#x432;&#x43d;&#x430; &#x43a;&#x43e;&#x43c;&#x43f;&#x43e;&#x43d;&#x435;&#x43d;&#x442;&#x430;"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tariff_lblMouseClicked"/>
@@ -241,7 +246,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Contact Us"/>
+            <Property name="text" type="java.lang.String" value="&#x417;&#x430; &#x43a;&#x43e;&#x43d;&#x442;&#x430;&#x43a;&#x442;&#x438;"/>
           </Properties>
         </Component>
       </SubComponents>

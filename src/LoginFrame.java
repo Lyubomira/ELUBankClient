@@ -49,17 +49,17 @@ public class LoginFrame extends javax.swing.JFrame {
         ELUBank_lbl.setText("ELUBank");
         getContentPane().add(ELUBank_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, -1, -1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Services", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 24), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Услуги", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 24), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel2.setOpaque(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Log In", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 24), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Достъп", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 24), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setText("Username");
+        jLabel2.setText("Име");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel3.setText("Password");
+        jLabel3.setText("Парола");
 
         txt_pass.setToolTipText("");
         txt_pass.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -81,7 +81,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         login_btn.setBackground(new java.awt.Color(168, 199, 200));
         login_btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        login_btn.setText("LogIn");
+        login_btn.setText("Влез");
         login_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_btnActionPerformed(evt);
@@ -98,13 +98,16 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(110, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(28, 28, 28))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,11 +134,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         ElectronicServices_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         ElectronicServices_lbl.setForeground(new java.awt.Color(0, 153, 153));
-        ElectronicServices_lbl.setText("Internet Banking");
+        ElectronicServices_lbl.setText("Интернет банкиране");
 
         tariff_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         tariff_lbl.setForeground(new java.awt.Color(0, 153, 153));
-        tariff_lbl.setText("Saving Component - Tariff ");
+        tariff_lbl.setText("Спестовна компонента");
         tariff_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tariff_lblMouseClicked(evt);
@@ -144,7 +147,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         contact_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         contact_lbl.setForeground(new java.awt.Color(0, 153, 153));
-        contact_lbl.setText("Contact Us");
+        contact_lbl.setText("За контакти");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,7 +159,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addComponent(ElectronicServices_lbl)
                     .addComponent(tariff_lbl)
                     .addComponent(contact_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );

@@ -37,6 +37,7 @@ public class ELUBankClient {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
+                new InterestsForm().setVisible(false);
             }
         });
     }
