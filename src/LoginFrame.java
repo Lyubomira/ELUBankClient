@@ -197,11 +197,14 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, попълнете всички полета!");
         } else {
 
-            SSLClient client = new SSLClient();
             currentUser.setUsername(user);
             currentUser.setPassword(pass);
             currentUser.setRequest(request);
             currentUser = (User) client.runClient(currentUser);
+
+            currencyInfo = new Currency();
+            currencyInfo.setRequest("getAllCurrencyInfo");
+            currencyInfo = (Currency) client.runClient(currencyInfo);
 
             if (currentUser.getLoggedIn()) {
 
@@ -270,7 +273,9 @@ public class LoginFrame extends javax.swing.JFrame {
         new InterestsForm().setVisible(true);
     }//GEN-LAST:event_tariff_lblMouseClicked
 
+    private SSLClient client = new SSLClient();
     private User currentUser = new User();
+    private Currency currencyInfo = new Currency();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackgroundLabel;
