@@ -205,13 +205,14 @@ public class LoginFrame extends javax.swing.JFrame {
             currentUser.setRequest(request);
             currentUser = (User) client.runClient(currentUser);
 
-            currencyInfo = new Currency();
-            currencyInfo.setRequest("getAllCurrencyInfo");
-            currencyInfo = (Currency) client.runClient(currencyInfo);
-
             if (currentUser.getLoggedIn()) {
 
-                this.setVisible(false);
+                setVisible(false);
+                
+                currencyInfo = new Currency();
+                currencyInfo.setRequest("getAllCurrencyData");
+                currencyInfo = (Currency) client.runClient(currencyInfo);
+                
                 currentUser.setLoggedIn(false);
 
                 // user type 1 = clerk
@@ -220,10 +221,10 @@ public class LoginFrame extends javax.swing.JFrame {
                     bForm.setVisible(true);
                 } // user type 2 = customer with all rights
                 else if (currentUser.getUserType().equalsIgnoreCase("2")) {
-                    ClientFrame cFrame = new ClientFrame();
-                    cFrame.setVisible(true);
-                    cFrame.setUser(currentUser);
+                    ClientFrame cFrame = new ClientFrame(currentUser, currencyInfo);
                     cFrame.loadUserInfo();
+                    cFrame.setVisible(true);
+                    dispose();
                 } // user type 3 = customer with no transaction rights
                 else {
                 }
@@ -272,11 +273,11 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_login_btnKeyPressed
 
     private void tariff_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tariff_lblMouseClicked
-        this.setVisible(false);
+        dispose();
         new InterestsForm().setVisible(true);
     }//GEN-LAST:event_tariff_lblMouseClicked
 
-    private SSLClient client = new SSLClient();
+    private final SSLClient client = new SSLClient();
     private User currentUser = new User();
     private Currency currencyInfo = new Currency();
 

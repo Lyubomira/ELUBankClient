@@ -1,6 +1,7 @@
 
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,7 +12,9 @@ public class ClientFrame extends javax.swing.JFrame {
     /**
      * Creates new form EluFrame
      */
-    public ClientFrame() {
+    public ClientFrame(User user, Currency currencyData) {
+        this.currentUser = user;
+        this.currencyData = currencyData;
         initComponents();
     }
 
@@ -735,12 +738,13 @@ public class ClientFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        this.setVisible(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
+
             }
         });
+        dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
@@ -845,10 +849,6 @@ public class ClientFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logoutButtonKeyPressed
 
-    public void setUser(User user) {
-        this.currentUser = user;
-    }
-
     public void loadUserInfo() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
@@ -856,9 +856,32 @@ public class ClientFrame extends javax.swing.JFrame {
         jTextField4.setText(currentUser.getPhone());
         jTextField6.setText(currentUser.getAddress());
         jTextField7.setText(currentUser.getEmail());
+
+        
+        // Следващто е само пробва, после ще трябва да змисля някакъв алгоритъм
+        // за да сложим USD, EUR..
+        model = (DefaultTableModel) jTable4.getModel();
+        model.setColumnIdentifiers(new Object[]{"Валута", "Купува", "Продава"});
+
+        String code = currencyData.allCurrencies[0].getCode();
+        String bRate = currencyData.allCurrencies[0].getRate();
+        String sRate = currencyData.allCurrencies[0].getRate();
+        model.insertRow(0, new Object[]{code, bRate, sRate});
+
+        code = currencyData.allCurrencies[1].getCode();
+        bRate = currencyData.allCurrencies[1].getRate();
+        sRate = currencyData.allCurrencies[1].getRate();
+        model.insertRow(1, new Object[]{code, bRate, sRate});
+
+        code = currencyData.allCurrencies[2].getCode();
+        bRate = currencyData.allCurrencies[2].getRate();
+        sRate = currencyData.allCurrencies[2].getRate();
+        model.insertRow(2, new Object[]{code, bRate, sRate});
     }
 
-    private User currentUser = new User();
+    private DefaultTableModel model;
+    private final User currentUser;
+    private final Currency currencyData;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accountHolderName;
     private javax.swing.JButton jButton1;

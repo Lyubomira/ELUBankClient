@@ -1,16 +1,7 @@
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /*
@@ -40,6 +31,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        currencyTypeBtnGrp = new javax.swing.ButtonGroup();
         ELUBank_lbl = new javax.swing.JLabel();
         MenuCardLayoutPanel = new javax.swing.JPanel();
         ManagementPanel = new javax.swing.JPanel();
@@ -171,14 +163,13 @@ public class RegistrationForm extends javax.swing.JFrame {
         ManagementPanelLayout.setHorizontalGroup(
             ManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagementPanelLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(exit_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(ManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(delete_client_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DeleteBankingAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateNewAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CreateNewClientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(delete_client_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeleteBankingAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateNewAccountButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateNewClientButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
         );
         ManagementPanelLayout.setVerticalGroup(
@@ -319,15 +310,15 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         Fname_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Fname_lbl.setText("Име");
-        NewAccountPanel.add(Fname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+        NewAccountPanel.add(Fname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         Sname_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Sname_lbl.setText("Презиме");
-        NewAccountPanel.add(Sname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
+        NewAccountPanel.add(Sname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
         Lname_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Lname_lbl.setText("Фамилия");
-        NewAccountPanel.add(Lname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 20));
+        NewAccountPanel.add(Lname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, 20));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Единен Граждански Номер (ЕГН)");
@@ -361,10 +352,14 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CheckBox_Panel.setOpaque(false);
 
+        currencyTypeBtnGrp.add(BGN_checkbox);
+        BGN_checkbox.setSelected(true);
         BGN_checkbox.setText("BGN");
 
+        currencyTypeBtnGrp.add(EUR_checkbox);
         EUR_checkbox.setText("EUR");
 
+        currencyTypeBtnGrp.add(USD_checkbox);
         USD_checkbox.setText("USD");
 
         javax.swing.GroupLayout CheckBox_PanelLayout = new javax.swing.GroupLayout(CheckBox_Panel);
@@ -398,6 +393,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         NewAccountPanel.add(InitialAmount_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 180, -1));
 
         jButton1.setText("Създай");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         NewAccountPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -411,7 +411,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         PartBackground_lbl.setMaximumSize(new java.awt.Dimension(804, 700));
         PartBackground_lbl.setMinimumSize(new java.awt.Dimension(804, 700));
         PartBackground_lbl.setPreferredSize(new java.awt.Dimension(804, 680));
-        NewAccountPanel.add(PartBackground_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 725, 606));
+        NewAccountPanel.add(PartBackground_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 725, 606));
 
         CentralCardLayoutPanel.add(NewAccountPanel, "createAccountCard");
 
@@ -458,7 +458,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void CreateNewAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewAccountButtonActionPerformed
 
         CardLayout accoutPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
-        
 
         accoutPanel.show(CentralCardLayoutPanel, "createAccountCard");
     }//GEN-LAST:event_CreateNewAccountButtonActionPerformed
@@ -482,8 +481,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         String access = comboBoxUserType.getSelectedIndex() + "";
         String request = "create";
 
-        
-        
         // check eng field for 10 digits
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
@@ -491,7 +488,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само цифри");
             return;
         }
-        
+
         if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
                 || Lname.trim().length() == 0 || pin.trim().length() == 0
                 || country.trim().length() == 0 || city.trim().length() == 0
@@ -503,17 +500,12 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, поълнете всички полета!");
             return;
         }
-        
-        
-        
-
-        SSLClient client = new SSLClient();
 
         newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
                 country, city, address, phone, email, access);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
-        
+
         if (newUser.getResponse() == null) {
             clearRegistrationForm();
             JOptionPane.showMessageDialog(null, "Успешно създадохте нов потребител!");
@@ -532,52 +524,65 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmButtonActionPerformed
 
     private void serachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serachActionPerformed
-        
-      
-      
+
         String pin = egn_txt.getText();
-        String request = "create";
-        
+        String request = "searchByEGN";
+
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само цифри");
             return;
         }
-        
-          
-          
-         SSLClient client = new SSLClient();
-         
- 
-         
-     //   newUser = new User(user, Fname, Mname, Lname, pin, access);
+
+        newUser = new User();
+        newUser.setEgn(pin);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
-        
-        
-        if (newUser.getResponse() == null) {
-            clearRegistrationForm();
-            JOptionPane.showMessageDialog(null, "New User Successfully Created!");
-            return;
+
+        if (newUser.getResponse() != null) {
+            if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
+                JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
+                return;
+            }
         }
-        
-        
-        
+
+        // tova FOUND si go slojih samo dokato slojil label za imena,
+        // za da vijdam dali se srabotilo. Iztrii go posle i komentara, i nego
+        egn_txt.setText(newUser.getEgn() + " FOUND!");
     }//GEN-LAST:event_serachActionPerformed
 
     private void exit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_btnActionPerformed
-        this.setVisible(false);
-       new LoginFrame().setVisible(true);
+        dispose();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginFrame().setVisible(true);
+                new InterestsForm().setVisible(false);
+            }
+        });
     }//GEN-LAST:event_exit_btnActionPerformed
 
-     public void setUser(User user) {
-        this.currentUser = user;
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // jComboBox2 IBAN_txt InitialAmount_txt currencyTypeBtnGrp
 
-   
+        if (BGN_checkbox.isSelected()) {
+            accounts.setCurrency(BGN_checkbox.getText());
+        } else if (EUR_checkbox.isSelected()) {
+            accounts.setCurrency(EUR_checkbox.getText());
+        } else if (USD_checkbox.isSelected()) {
+            accounts.setCurrency(USD_checkbox.getText());
+        }
 
-    private User currentUser = new User();
+        accounts.setUserEGN(egn_txt.getText());
+        accounts.setAccountType(jComboBox2.getSelectedItem().toString());
+        accounts.setIBAN(IBAN_txt.getText());
+        accounts.setAmount(InitialAmount_txt.getText());
+        accounts.setRequest("create");
+
+        accounts = (Accounts) client.runClient(accounts);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void clearRegistrationForm() {
         userName_txt.setText("");
         Nme_registr.setText("");
@@ -595,6 +600,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         comboBoxUserType.setSelectedIndex(0);
     }
 
+    private final SSLClient client = new SSLClient();
+    private Accounts accounts = new Accounts();
     private User newUser;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -633,6 +640,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JComboBox comboBoxMonthOfBirth;
     private javax.swing.JComboBox comboBoxUserType;
     private javax.swing.JComboBox comboBoxYearOfBirth;
+    private javax.swing.ButtonGroup currencyTypeBtnGrp;
     private javax.swing.JLabel currency_lbl;
     private javax.swing.JButton delete_client_btn;
     private javax.swing.JTextField egn_txt;

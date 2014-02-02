@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author USER
  */
 import java.awt.Font;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import static javax.swing.text.StyleConstants.Italic;
 
 public class InterestsForm extends javax.swing.JFrame {
 
@@ -19,31 +11,24 @@ public class InterestsForm extends javax.swing.JFrame {
      * Creates new form InterestsForm
      */
     DefaultTableModel model;
-    
 
-    
     public InterestsForm() {
         initComponents();
-        
-        model = (DefaultTableModel)jTable1.getModel();
-        model.setColumnIdentifiers(new Object[] {
-                "Нива на олихвяване, според остатъка ", "Годишен лихвен процент BGN  ", "Годишен лихвен процент EUR ", "Годишен лихвен процент USD " });
 
-         
-            model.insertRow(0, new Object[] { "до 99,99", "0,35%", "0,35%","0,35%"});
-            model.insertRow(1, new Object[] { "от 100,00 до 999,99","1,00%", "0,60%","0,50%"});
-            model.insertRow(2, new Object[] { "от 1 000,00 до 4 999,99", "1,75%", "1,00%","0,75%"});
-            model.insertRow(3, new Object[] { "от 5 000,00 до 9 999,99", "2,75%", "1,20%","0,95%"});
-            model.insertRow(4, new Object[] { "над 10 000,00", " 3,50%", " 2,00%","1,50%"});
-            
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setColumnIdentifiers(new Object[]{
+            "Нива на олихвяване, според остатъка ", "Годишен лихвен процент BGN  ", "Годишен лихвен процент EUR ", "Годишен лихвен процент USD "});
 
-        
-       for (int count = 0; count < 5; count++){
-          jTable1.setRowHeight(count, 70);
-          jTable1.setFont(new Font("Times New Roman", Font.ITALIC, 18));
+        model.insertRow(0, new Object[]{"до 99,99", "0,35%", "0,35%", "0,35%"});
+        model.insertRow(1, new Object[]{"от 100,00 до 999,99", "1,00%", "0,60%", "0,50%"});
+        model.insertRow(2, new Object[]{"от 1 000,00 до 4 999,99", "1,75%", "1,00%", "0,75%"});
+        model.insertRow(3, new Object[]{"от 5 000,00 до 9 999,99", "2,75%", "1,20%", "0,95%"});
+        model.insertRow(4, new Object[]{"над 10 000,00", " 3,50%", " 2,00%", "1,50%"});
+
+        for (int count = 0; count < 5; count++) {
+            jTable1.setRowHeight(count, 70);
+            jTable1.setFont(new Font("Times New Roman", Font.ITALIC, 18));
         }
-        
-
 
     }
 
@@ -125,18 +110,23 @@ public class InterestsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.setVisible(false);
-       new LoginFrame().setVisible(true);
+        dispose();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginFrame().setVisible(true);
+                new InterestsForm().setVisible(false);
+            }
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
