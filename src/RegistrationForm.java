@@ -564,16 +564,15 @@ public class RegistrationForm extends javax.swing.JFrame {
         /**
          * check EGN field for 10 digits
          */
-     
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
         }
-/**
- * Check if all required fields are filled in
- */
+        /**
+         * Check if all required fields are filled in
+         */
         if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
                 || Lname.trim().length() == 0 || pin.trim().length() == 0
                 || country.trim().length() == 0 || city.trim().length() == 0
@@ -612,28 +611,27 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         String pin = egn_txt.getText();
         String request = "searchByEGN";
-/**
- * check EGN field for 10 digits
- */
-         
-        
+        /**
+         * check EGN field for 10 digits
+         */
+
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
         }
- /**
-  * creates new User
-  * 
-  */
+        /**
+         * creates new User object
+         *
+         */
         newUser = new User();
         newUser.setEgn(pin);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
-/**
- * 
- */
+        /**
+         *
+         */
         if (newUser.getResponse() != null) {
             if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
                 JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
@@ -641,10 +639,9 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         }
 
-  /**
-   * linking information about user from db with label fields 
-   */     
-        
+        /**
+         * linking information about user from db with label fields
+         */
         FirstName_lbl.setText(newUser.getName());
         SecondName_lbl.setText(newUser.getSurname());
         FamilyName_lbl.setText(newUser.getFamilyname());
@@ -662,18 +659,16 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // jComboBox2 IBAN_txt InitialAmount_txt currencyTypeBtnGrp
 
-         
         String pin = egn_txt.getText();
-        String InitialAmount_= InitialAmount_txt.getText();
-        String EUR= EUR_checkbox.getText();
-        String USD= USD_checkbox.getText();    
-        String BGN= BGN_checkbox.getText();  
-        
- /**
-  * check for selected currency 
-  */       
+        String InitialAmount_ = InitialAmount_txt.getText();
+        String EUR = EUR_checkbox.getText();
+        String USD = USD_checkbox.getText();
+        String BGN = BGN_checkbox.getText();
+
+        /**
+         * check for selected currency
+         */
         if (BGN_checkbox.isSelected()) {
             accounts.setCurrency(BGN_checkbox.getText());
         } else if (EUR_checkbox.isSelected()) {
@@ -681,23 +676,33 @@ public class RegistrationForm extends javax.swing.JFrame {
         } else if (USD_checkbox.isSelected()) {
             accounts.setCurrency(USD_checkbox.getText());
         }
-/**
- * Check if all required fields are filled in
- */
-        if (pin.trim().length() == 0 || typeOfaccount_comboBox.getSelectedIndex()== 0|| InitialAmount_.trim().length() == 0&& BGN.trim().length()==0
-                && EUR.trim().length()==0 && USD.trim().length()==0)
-         {
+        /**
+         * Check if all required fields are filled in
+         */
+        if (pin.trim().length() == 0 || typeOfaccount_comboBox.getSelectedIndex() == 0
+                || InitialAmount_.trim().length() == 0 && BGN.trim().length() == 0
+                && EUR.trim().length() == 0 && USD.trim().length() == 0) {
 
             JOptionPane.showMessageDialog(null, "Моля, поълнете всички полета!");
             return;
         }
+
         accounts.setUserEGN(egn_txt.getText());
         accounts.setAccountType(typeOfaccount_comboBox.getSelectedItem().toString());
-        accounts.setIBAN(IBAN_txt.getText());
         accounts.setAmount(InitialAmount_txt.getText());
         accounts.setRequest("create");
 
-        accounts = (Accounts) client.runClient(accounts);
+        do {
+            IBAN_txt.setText(generateIBAN());
+            accounts.setIBAN(IBAN_txt.getText());
+            accounts = (Accounts) client.runClient(accounts);
+        } while (accounts.getResponse() != null
+                && accounts.getResponse().equalsIgnoreCase("ibanExists"));
+
+        if (accounts.getResponse() == null) {
+            JOptionPane.showMessageDialog(null, "Успешно създадохте нова потребителска сметка!\n"
+                    + "IBAN: " + IBAN_txt.getText());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void typeOfaccount_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeOfaccount_comboBoxActionPerformed
@@ -705,36 +710,35 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_typeOfaccount_comboBoxActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-         
+
         clearRegistrationForm();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void search_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_deleteAccount_btnActionPerformed
-       
-         String pin = EGN_deleteAccount_txt.getText();
+
+        String pin = EGN_deleteAccount_txt.getText();
         String request = "searchByEGN";
-/**
- * check EGN field for 10 digits
- */
-         
-        
+        /**
+         * check EGN field for 10 digits
+         */
+
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
         }
- /**
-  * creates new User
-  * 
-  */
+        /**
+         * creates new User object
+         *
+         */
         newUser = new User();
         newUser.setEgn(pin);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
-/**
- * 
- */
+        /**
+         * Checking if the PIN exists in the database
+         */
         if (newUser.getResponse() != null) {
             if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
                 JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
@@ -742,21 +746,18 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         }
 
-  /**
-   * linking information about user from db with label fields 
-   */     
-        
+        /**
+         * linking information about user from db with label fields
+         */
         FirstName_deleteAccount_lbl.setText(newUser.getName());
         SecondName_deleteAccount_lbl.setText(newUser.getSurname());
         LastName_deleteAccount_lbl.setText(newUser.getFamilyname());
-                                  
-        
-        
-        
+
+
     }//GEN-LAST:event_search_deleteAccount_btnActionPerformed
- /**
-  * creates method for clearing out the form
-  */
+    /**
+     * creates method for clearing out the form
+     */
     private void clearRegistrationForm() {
         userName_txt.setText("");
         Nme_registr.setText("");
@@ -772,6 +773,23 @@ public class RegistrationForm extends javax.swing.JFrame {
         phone_restr.setText("");
         mail_registr.setText("");
         comboBoxUserType.setSelectedIndex(0);
+    }
+
+    public String generateIBAN() {
+        // begging of the IBAN: BG + code + EBUBank initials + Sofia postal code.
+        String IBAN = "BG11ELUB1632";
+
+        // followed by type of account 01, 02, 03, etc.
+        String accountType = "0" + (typeOfaccount_comboBox.getSelectedIndex() - 1);
+        IBAN += accountType;
+
+        // followed by random code.
+        int minValue = 10000000;
+        int maxValue = 99999999;
+        int IBANrandom = minValue + (int) (Math.random() * ((maxValue - minValue) + 1));
+        IBAN += IBANrandom;
+
+        return IBAN;
     }
 
     private final SSLClient client = new SSLClient();
