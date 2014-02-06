@@ -1,6 +1,7 @@
 
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -687,7 +688,7 @@ public class ClientFrame extends javax.swing.JFrame {
                             .addComponent(btnPayments, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CurrencyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -887,9 +888,23 @@ public class ClientFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutKeyPressed
 
     private void btnSaveCh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCh1ActionPerformed
-        // TODO add your handling code here:
+        updUserInfo();
     }//GEN-LAST:event_btnSaveCh1ActionPerformed
 
+    private void updUserInfo(){
+        if(tfieldTel.getText().equals("") || tfieldAddress.getText().equals("") || tfieldMail.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Полетата не може да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        User newInfo = new User();
+        newInfo.setPhone(tfieldTel.getText());
+        newInfo.setAddress(tfieldAddress.getText());
+        newInfo.setEmail(tfieldMail.getText());
+        newInfo.setRequest("update");
+        currentUser = (User) client.runClient(newInfo);
+    }
+    
+            
     public void loadUserInfo() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
@@ -921,8 +936,9 @@ public class ClientFrame extends javax.swing.JFrame {
     }
 
     private DefaultTableModel model;
-    private final User currentUser;
+    private User currentUser;
     private final Currency currencyData;
+    private final SSLClient client = new SSLClient();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background_lbl;
     private javax.swing.JScrollPane CurrencyPanel;
