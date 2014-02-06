@@ -893,7 +893,7 @@ public class ClientFrame extends javax.swing.JFrame {
     public void loadUserInfo() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
-        // TBoxHolderName.setText(name + " " + familyname);
+        lblHolderName.setText("Имена на титуляра: " + name + " " + familyname);
         tfieldTel.setText(currentUser.getPhone());
         tfieldAddress.setText(currentUser.getAddress());
         tfieldMail.setText(currentUser.getEmail());
