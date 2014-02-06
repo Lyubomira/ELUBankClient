@@ -9,9 +9,11 @@ import javax.swing.table.DefaultTableModel;
  * @author madd
  */
 public class ClientFrame extends javax.swing.JFrame {
-
     /**
-     * Creates new form EluFrame
+     * Creates new form ClientFrame
+     * 
+     * @param user - Current user instance.
+     * @param currencyData - Current currency instance.
      */
     public ClientFrame(User user, Currency currencyData) {
         this.currentUser = user;
@@ -47,11 +49,11 @@ public class ClientFrame extends javax.swing.JFrame {
         tfieldConfirm = new javax.swing.JTextField();
         btnSavePass = new javax.swing.JButton();
         pnlUserProfile = new javax.swing.JPanel();
-        lblTel = new javax.swing.JLabel();
+        lblPhone = new javax.swing.JLabel();
         lblGSM = new javax.swing.JLabel();
         lblAddress = new javax.swing.JLabel();
         lblMail = new javax.swing.JLabel();
-        tfieldTel = new javax.swing.JTextField();
+        tfieldPhone = new javax.swing.JTextField();
         tfieldGSM = new javax.swing.JTextField();
         tfieldAddress = new javax.swing.JTextField();
         tfieldMail = new javax.swing.JTextField();
@@ -277,8 +279,8 @@ public class ClientFrame extends javax.swing.JFrame {
         pnlUserProfile.setOpaque(false);
         pnlUserProfile.setPreferredSize(new java.awt.Dimension(804, 680));
 
-        lblTel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTel.setText("Телефон");
+        lblPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblPhone.setText("Телефон");
 
         lblGSM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblGSM.setText("GSM");
@@ -315,7 +317,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserProfileLayout.createSequentialGroup()
                         .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTel)
+                            .addComponent(lblPhone)
                             .addComponent(lblGSM)
                             .addComponent(lblAddress))
                         .addGap(72, 72, 72))
@@ -323,7 +325,7 @@ public class ClientFrame extends javax.swing.JFrame {
                         .addComponent(lblMail)
                         .addGap(92, 92, 92)))
                 .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfieldTel)
+                    .addComponent(tfieldPhone)
                     .addComponent(tfieldGSM)
                     .addComponent(tfieldAddress)
                     .addComponent(tfieldMail, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
@@ -340,8 +342,8 @@ public class ClientFrame extends javax.swing.JFrame {
             .addGroup(pnlUserProfileLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTel)
-                    .addComponent(tfieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPhone)
+                    .addComponent(tfieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaveCh1))
                 .addGap(15, 15, 15)
                 .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -891,25 +893,42 @@ public class ClientFrame extends javax.swing.JFrame {
         updUserInfo();
     }//GEN-LAST:event_btnSaveCh1ActionPerformed
 
-    private void updUserInfo(){
-        if(tfieldTel.getText().equals("") || tfieldAddress.getText().equals("") || tfieldMail.getText().equals("")){
+    private void updUserInfo() {
+        if(tfieldPhone.getText().isEmpty() || tfieldAddress.getText().isEmpty() || tfieldMail.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Полетата не може да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        User newInfo = new User();
-        newInfo.setPhone(tfieldTel.getText());
-        newInfo.setAddress(tfieldAddress.getText());
-        newInfo.setEmail(tfieldMail.getText());
-        newInfo.setRequest("update");
-        currentUser = (User) client.runClient(newInfo);
+        
+        // Get the new info from the text fields.
+        currentUser.setPhone(tfieldPhone.getText());
+        currentUser.setAddress(tfieldAddress.getText());
+        currentUser.setEmail(tfieldMail.getText());
+        
+        // Set request name.
+        currentUser.setRequest("update");
+        
+        // Make the request and get the response.
+        User response = (User) client.runClient(currentUser);
+        
+        if (response.getResponse() == null) {
+            // Update current user instance.
+            // TODO: This way we are overwriting loggedIn status.
+            // Check if this will have impact on the application.
+            currentUser = response;
+            JOptionPane.showMessageDialog(this, "Промените са запазени успешно.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            // Revert to old values.
+            loadUserInfo();
+            JOptionPane.showMessageDialog(this, "Грешка при запазване на промените: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
-            
     public void loadUserInfo() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
         lblHolderName.setText("Имена на титуляра: " + name + " " + familyname);
-        tfieldTel.setText(currentUser.getPhone());
+        tfieldPhone.setText(currentUser.getPhone());
         tfieldAddress.setText(currentUser.getAddress());
         tfieldMail.setText(currentUser.getEmail());
 
@@ -968,7 +987,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblMail;
     private javax.swing.JLabel lblNewPass;
     private javax.swing.JLabel lblOldPass;
-    private javax.swing.JLabel lblTel;
+    private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblTrAddressee;
     private javax.swing.JLabel lblTrAmount;
     private javax.swing.JLabel lblTrBank;
@@ -991,7 +1010,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfieldMail;
     private javax.swing.JTextField tfieldNewPsss;
     private javax.swing.JTextField tfieldOldPass;
-    private javax.swing.JTextField tfieldTel;
+    private javax.swing.JTextField tfieldPhone;
     private javax.swing.JTextField tfieldTrAddressee;
     private javax.swing.JTextField tfieldTrAmount;
     private javax.swing.JTextField tfieldTrBank;

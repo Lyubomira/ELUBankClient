@@ -504,7 +504,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblGSM" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblAddress" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -516,7 +516,7 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tfieldTel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfieldPhone" alignment="0" max="32767" attributes="0"/>
                           <Component id="tfieldGSM" alignment="0" max="32767" attributes="0"/>
                           <Component id="tfieldAddress" alignment="0" max="32767" attributes="0"/>
                           <Component id="tfieldMail" alignment="0" pref="320" max="32767" attributes="0"/>
@@ -537,8 +537,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblTel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfieldTel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfieldPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnSaveCh1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -565,7 +565,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblTel">
+            <Component class="javax.swing.JLabel" name="lblPhone">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -597,7 +597,7 @@
                 <Property name="text" type="java.lang.String" value="E-mail"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfieldTel">
+            <Component class="javax.swing.JTextField" name="tfieldPhone">
             </Component>
             <Component class="javax.swing.JTextField" name="tfieldGSM">
             </Component>
