@@ -61,7 +61,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         CentralCardLayoutPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         Welcome_lbl = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         RegistrationPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -114,7 +113,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         FirstName_lbl = new javax.swing.JLabel();
         SecondName_lbl = new javax.swing.JLabel();
         FamilyName_lbl = new javax.swing.JLabel();
-        PartBackground_lbl = new javax.swing.JLabel();
         DeleteAccountPanel = new javax.swing.JPanel();
         egn_deleteAccount_lbl = new javax.swing.JLabel();
         EGN_deleteAccount_txt = new javax.swing.JTextField();
@@ -129,7 +127,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         Accounts_table = new javax.swing.JTable();
         Delete_deleteAccount_btn = new javax.swing.JButton();
         Cancel_deleteAccount_btn = new javax.swing.JButton();
-        BackgroundPart_lbl = new javax.swing.JLabel();
         BackgroundLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -232,6 +229,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         CentralCardLayoutPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         CentralCardLayoutPanel.setLayout(new java.awt.CardLayout());
 
+        WelcomePanel.setOpaque(false);
         WelcomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Welcome_lbl.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
@@ -239,12 +237,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         Welcome_lbl.setText("Добре дошли в системата за управление на клиенти");
         WelcomePanel.add(Welcome_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 610, 80));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
-        WelcomePanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 613));
-
         CentralCardLayoutPanel.add(WelcomePanel, "card5");
 
-        RegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Регистрация", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 24), new java.awt.Color(0, 153, 153))); // NOI18N
+        RegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Регистрация", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 18), new java.awt.Color(0, 153, 153))); // NOI18N
         RegistrationPanel.setForeground(new java.awt.Color(0, 153, 153));
         RegistrationPanel.setMaximumSize(new java.awt.Dimension(804, 680));
         RegistrationPanel.setMinimumSize(new java.awt.Dimension(804, 680));
@@ -410,9 +405,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         CentralCardLayoutPanel.add(RegistrationPanel, "RegistrationCard");
         RegistrationPanel.getAccessibleContext().setAccessibleParent(CentralCardLayoutPanel);
 
-        NewAccountPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        NewAccountPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Нова сметка", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 18), new java.awt.Color(0, 153, 153))); // NOI18N
         NewAccountPanel.setMaximumSize(new java.awt.Dimension(804, 680));
         NewAccountPanel.setMinimumSize(new java.awt.Dimension(804, 680));
+        NewAccountPanel.setOpaque(false);
         NewAccountPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         NewAccountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -457,7 +453,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         separator.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         separator.setForeground(new java.awt.Color(0, 102, 102));
-        separator.setText("----------------------------------------------------------------------------------------------------------------------------------");
+        separator.setText("-----------------------------------------------------------------------------------------------------------------------");
         NewAccountPanel.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         currency_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -523,16 +519,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         NewAccountPanel.add(SecondName_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
         NewAccountPanel.add(FamilyName_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
 
-        PartBackground_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
-        PartBackground_lbl.setText("Валута");
-        PartBackground_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        PartBackground_lbl.setMaximumSize(new java.awt.Dimension(804, 700));
-        PartBackground_lbl.setMinimumSize(new java.awt.Dimension(804, 700));
-        PartBackground_lbl.setPreferredSize(new java.awt.Dimension(804, 680));
-        NewAccountPanel.add(PartBackground_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 725, 606));
-
         CentralCardLayoutPanel.add(NewAccountPanel, "createAccountCard");
 
+        DeleteAccountPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Закриване на сметка", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 18), new java.awt.Color(0, 153, 153))); // NOI18N
+        DeleteAccountPanel.setOpaque(false);
         DeleteAccountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         egn_deleteAccount_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -608,10 +598,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         Cancel_deleteAccount_btn.setBackground(new java.awt.Color(168, 199, 200));
         Cancel_deleteAccount_btn.setText("Откажи");
         DeleteAccountPanel.add(Cancel_deleteAccount_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, 90, -1));
-
-        BackgroundPart_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
-        BackgroundPart_lbl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        DeleteAccountPanel.add(BackgroundPart_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 610));
 
         CentralCardLayoutPanel.add(DeleteAccountPanel, "DeleteAcntCard");
 
@@ -915,8 +901,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void userName_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userName_txtKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             userName_txt.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -927,8 +911,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void Nme_registrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Nme_registrKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             userName_txt.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -940,8 +922,6 @@ public class RegistrationForm extends javax.swing.JFrame {
        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             secondName_resitr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -954,8 +934,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             surNme_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -967,8 +945,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             comboBoxDateOfBirth.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -979,8 +955,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void city_registrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_city_registrKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             comboBoxCountry.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -991,8 +965,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void secondName_resitrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondName_resitrKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             Nme_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1004,8 +976,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void address_registrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_registrKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             city_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1016,8 +986,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void phone_restrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phone_restrKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             address_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1028,8 +996,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void comboBoxUserTypeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxUserTypeKeyPressed
        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             mail_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1040,8 +1006,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void mail_registrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mail_registrKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             phone_restr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1052,8 +1016,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void comboBoxCountryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxCountryKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ConfirmButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             PIN_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1126,7 +1088,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTable Accounts_table;
     private javax.swing.JCheckBox BGN_checkbox;
     private javax.swing.JLabel BackgroundLbl;
-    private javax.swing.JLabel BackgroundPart_lbl;
     private javax.swing.JButton CancelButton;
     private javax.swing.JButton Cancel_deleteAccount_btn;
     private javax.swing.JPanel CentralCardLayoutPanel;
@@ -1155,7 +1116,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JPanel NewAccountPanel;
     private javax.swing.JTextField Nme_registr;
     private javax.swing.JTextField PIN_registr;
-    private javax.swing.JLabel PartBackground_lbl;
     private javax.swing.JPanel RegistrationPanel;
     private javax.swing.JLabel SecondName_deleteAccount_lbl;
     private javax.swing.JLabel SecondName_lbl;
@@ -1185,7 +1145,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
