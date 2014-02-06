@@ -83,22 +83,26 @@ public class ClientFrame extends javax.swing.JFrame {
         btnTransactions = new javax.swing.JButton();
         CurrencyPanel = new javax.swing.JScrollPane();
         CurrencyTable4 = new javax.swing.JTable();
+        Background_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ELU_Bank");
         setIconImages(null);
+        setMaximumSize(new java.awt.Dimension(1024, 720));
         setMinimumSize(new java.awt.Dimension(1024, 720));
         setResizable(false);
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
         MainPanel.setMaximumSize(new java.awt.Dimension(804, 680));
         MainPanel.setMinimumSize(new java.awt.Dimension(804, 680));
+        MainPanel.setOpaque(false);
         MainPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         MainPanel.setLayout(new java.awt.CardLayout());
 
         pnlAccBallance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Наличност по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(134, 174, 213))); // NOI18N
         pnlAccBallance.setMaximumSize(new java.awt.Dimension(790, 680));
         pnlAccBallance.setMinimumSize(new java.awt.Dimension(790, 680));
+        pnlAccBallance.setOpaque(false);
         pnlAccBallance.setPreferredSize(new java.awt.Dimension(804, 680));
         pnlAccBallance.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -130,6 +134,7 @@ public class ClientFrame extends javax.swing.JFrame {
         pnlPayments.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Движение по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(133, 174, 215))); // NOI18N
         pnlPayments.setMaximumSize(new java.awt.Dimension(804, 680));
         pnlPayments.setMinimumSize(new java.awt.Dimension(804, 680));
+        pnlPayments.setOpaque(false);
         pnlPayments.setPreferredSize(new java.awt.Dimension(804, 680));
 
         cBoxPayments.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "9867986986", "9869867989", "9089456085" }));
@@ -186,7 +191,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlPaymentsLayout.createSequentialGroup()
                 .addComponent(scrollPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         pnlPaymentsLayout.setVerticalGroup(
             pnlPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +201,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(lblChooseAcc)
                     .addComponent(cBoxPayments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPayments, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+                .addComponent(scrollPayments, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -205,6 +210,7 @@ public class ClientFrame extends javax.swing.JFrame {
         pnlChangePass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Смяна на парола", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(96, 151, 205))); // NOI18N
         pnlChangePass.setMaximumSize(new java.awt.Dimension(804, 680));
         pnlChangePass.setMinimumSize(new java.awt.Dimension(804, 680));
+        pnlChangePass.setOpaque(false);
         pnlChangePass.setPreferredSize(new java.awt.Dimension(804, 680));
 
         lblOldPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -259,7 +265,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(tfieldConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(btnSavePass)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addContainerGap(486, Short.MAX_VALUE))
         );
 
         MainPanel.add(pnlChangePass, "card4");
@@ -267,6 +273,7 @@ public class ClientFrame extends javax.swing.JFrame {
         pnlUserProfile.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Моят профил", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(107, 158, 209))); // NOI18N
         pnlUserProfile.setMaximumSize(new java.awt.Dimension(804, 680));
         pnlUserProfile.setMinimumSize(new java.awt.Dimension(804, 680));
+        pnlUserProfile.setOpaque(false);
         pnlUserProfile.setPreferredSize(new java.awt.Dimension(804, 680));
 
         lblTel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -350,12 +357,13 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(lblMail)
                     .addComponent(tfieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaveCh4))
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
         );
 
         MainPanel.add(pnlUserProfile, "card5");
 
         pnlTransactions.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Преводи", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(120, 169, 203))); // NOI18N
+        pnlTransactions.setOpaque(false);
 
         lblChooseAcc2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblChooseAcc2.setText("Избери сметка");
@@ -502,7 +510,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(tfieldTrAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(btnTrMakeTrans)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
 
         MainPanel.add(pnlTransactions, "card6");
@@ -679,7 +687,7 @@ public class ClientFrame extends javax.swing.JFrame {
                             .addComponent(btnPayments, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
                         .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CurrencyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -705,6 +713,12 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
+        Background_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
+        Background_lbl.setText("jLabel1");
+        Background_lbl.setMaximumSize(new java.awt.Dimension(1024, 720));
+        Background_lbl.setMinimumSize(new java.awt.Dimension(1024, 720));
+        Background_lbl.setPreferredSize(new java.awt.Dimension(1024, 720));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -715,14 +729,18 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Background_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 696, Short.MAX_VALUE)
-                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE))
+                    .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Background_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -906,6 +924,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private final User currentUser;
     private final Currency currencyData;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Background_lbl;
     private javax.swing.JScrollPane CurrencyPanel;
     private javax.swing.JTable CurrencyTable4;
     private javax.swing.JPanel MainPanel;
