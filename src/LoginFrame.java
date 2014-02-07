@@ -193,7 +193,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
         String user = txt_name.getText();
-        String pass = txt_pass.getText();
+        char[] passChar = txt_pass.getPassword();
+        String pass = String.valueOf(passChar);
         String request = "login";
 
         if (user.trim().length() == 0 || pass.length() == 0) {
@@ -221,9 +222,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     bForm.setVisible(true);
                 } // user type 2 = customer with all rights
                 else if (currentUser.getUserType().equalsIgnoreCase("2")) {
-                    ClientFrame cFrame = new ClientFrame(currentUser, currencyInfo);
-                    cFrame.loadUserInfo();
-                    cFrame.setVisible(true);
+                    new ClientFrame(currentUser, currencyInfo, client).setVisible(true);
                     dispose();
                 } // user type 3 = customer with no transaction rights
                 else {
