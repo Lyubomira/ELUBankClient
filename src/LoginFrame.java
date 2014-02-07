@@ -207,21 +207,17 @@ public class LoginFrame extends javax.swing.JFrame {
             currentUser = (User) client.runClient(currentUser);
 
             if (currentUser.getLoggedIn()) {
-
-                setVisible(false);
-                
-                currencyInfo = new Currency();
-                currencyInfo.setRequest("getAllCurrencyData");
-                currencyInfo = (Currency) client.runClient(currencyInfo);
-                
                 currentUser.setLoggedIn(false);
-
                 // user type 1 = clerk
                 if (currentUser.getUserType().equalsIgnoreCase("1")) {
                     RegistrationForm bForm = new RegistrationForm();
                     bForm.setVisible(true);
+                    dispose();
                 } // user type 2 = customer with all rights
                 else if (currentUser.getUserType().equalsIgnoreCase("2")) {
+                    currencyInfo = new Currency();
+                    currencyInfo.setRequest("getAllCurrencyData");
+                    currencyInfo = (Currency) client.runClient(currencyInfo);
                     new ClientFrame(currentUser, currencyInfo, client).setVisible(true);
                     dispose();
                 } // user type 3 = customer with no transaction rights

@@ -869,15 +869,17 @@ public class RegistrationForm extends javax.swing.JFrame {
                 currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
                 currentAccout.getAmount(), currentAccout.getCurrency()});
         }
-
-
     }//GEN-LAST:event_search_deleteAccount_btnActionPerformed
 
     private void Delete_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_deleteAccount_btnActionPerformed
 
+        int row = Accounts_table.getSelectedRow();
+        String iban = Accounts_table.getValueAt(row, 0).toString();
+        accounts.setIBAN(iban);
+        accounts.setRequest("delete");
+        accounts = (Accounts) client.runClient(accounts);
+
         modelTable.removeRow(Accounts_table.getSelectedRow());
-
-
     }//GEN-LAST:event_Delete_deleteAccount_btnActionPerformed
 
     private void userName_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userName_txtKeyPressed
