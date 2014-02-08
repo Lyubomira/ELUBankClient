@@ -84,7 +84,8 @@ public class TransactionsPanel extends javax.swing.JPanel {
         lblAmount = new javax.swing.JLabel();
         btnMakeTransaction = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Преводи", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(120, 169, 203))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Преводи", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(120, 169, 203))); // NOI18N
+        setOpaque(false);
 
         lblChooseAcc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblChooseAcc.setText("Избери сметка");

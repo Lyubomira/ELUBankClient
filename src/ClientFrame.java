@@ -1,17 +1,19 @@
 
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author madd
  */
 public class ClientFrame extends javax.swing.JFrame {
+
     /**
      * Creates new form ClientFrame
-     * 
+     *
      * @param user - Current user instance.
      * @param currencyData - Current currency instance.
      * @param client - Current SSL client instance.
@@ -21,10 +23,20 @@ public class ClientFrame extends javax.swing.JFrame {
         this.currencyData = currencyData;
         this.client = client;
         
+        // Set background image.
+        try {
+            this.setContentPane(new BackgroundImage(ImageIO.read(new File("client_frame_bg.jpg"))));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         initComponents();
-        
+
         // Update user interface elements.
         updUIState();
+        
+        System.out.println(getSize().width);
+        System.out.println(getSize().height);
     }
 
     /**
@@ -82,9 +94,10 @@ public class ClientFrame extends javax.swing.JFrame {
         setIconImages(null);
         setMaximumSize(new java.awt.Dimension(1024, 720));
         setMinimumSize(new java.awt.Dimension(1024, 720));
+        setPreferredSize(new java.awt.Dimension(1024, 720));
         setResizable(false);
 
-        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel.setBackground(new java.awt.Color(102, 255, 255));
         MainPanel.setMaximumSize(new java.awt.Dimension(804, 680));
         MainPanel.setMinimumSize(new java.awt.Dimension(804, 680));
         MainPanel.setOpaque(false);
@@ -188,7 +201,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(lblChooseAcc)
                     .addComponent(cBoxPayments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPayments, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                .addComponent(scrollPayments, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -265,9 +278,9 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addGroup(pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNewPassConfirm)
                     .addComponent(pfieldNewPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnSavePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addContainerGap(486, Short.MAX_VALUE))
         );
 
         MainPanel.add(pnlChangePass, "card4");
@@ -359,7 +372,7 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(lblMail)
                     .addComponent(tfieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaveCh4))
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addContainerGap(526, Short.MAX_VALUE))
         );
 
         MainPanel.add(pnlUserProfile, "card5");
@@ -369,10 +382,10 @@ public class ClientFrame extends javax.swing.JFrame {
         MenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Меню", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 0, 18), new java.awt.Color(105, 169, 212))); // NOI18N
         MenuPanel.setForeground(new java.awt.Color(255, 255, 255));
         MenuPanel.setDoubleBuffered(false);
-        MenuPanel.setMaximumSize(new java.awt.Dimension(204, 700));
-        MenuPanel.setMinimumSize(new java.awt.Dimension(204, 700));
+        MenuPanel.setMaximumSize(new java.awt.Dimension(186, 680));
+        MenuPanel.setMinimumSize(new java.awt.Dimension(186, 680));
         MenuPanel.setOpaque(false);
-        MenuPanel.setPreferredSize(new java.awt.Dimension(204, 700));
+        MenuPanel.setPreferredSize(new java.awt.Dimension(200, 680));
         MenuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAccBallance.setBackground(new java.awt.Color(235, 230, 230));
@@ -501,7 +514,7 @@ public class ClientFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -511,7 +524,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -523,32 +536,31 @@ public class ClientFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Полето 'Стара парола' не може да бъде празно!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Check if old password is valid.
         User request = new User();
         request.setRequest("login");
         request.setUsername(currentUser.getUsername());
         request.setPassword(String.valueOf(pfieldOldPass.getPassword()));
         User response = (User) client.runClient(request);
-        if ( ! response.getLoggedIn()) {
+        if (!response.getLoggedIn()) {
             JOptionPane.showMessageDialog(this, "Моля, въведете валидна текуща парола!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Ensure new pass and confirm new pass are not empty.
         if (pfieldNewPass.getPassword().length == 0 || pfieldNewPassConfirm.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Полетата 'Нова парола' и 'Потвърди нова парола' не трябва да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Ensure new pass and confirm new pass match.
-        if ( ! String.valueOf(pfieldNewPass.getPassword()).equals(String.valueOf(pfieldNewPassConfirm.getPassword()))) {
+        if (!String.valueOf(pfieldNewPass.getPassword()).equals(String.valueOf(pfieldNewPassConfirm.getPassword()))) {
             JOptionPane.showMessageDialog(this, "Данните в полетата 'Нова парола' и 'Потвърди нова парола' трябва да съвпадат!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // TODO: Password requirments (e.g. mininum length etc.)?
-        
         // At last, we are ready to go!
         request.setRequest("updatePass");
         request.setUsername(currentUser.getUsername());
@@ -556,11 +568,10 @@ public class ClientFrame extends javax.swing.JFrame {
         response = (User) client.runClient(request);
         if (response.getResponse() == null) {
             JOptionPane.showMessageDialog(this, "Промяната на паролата беше успешна.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "Грешка при опит за промяна на парола: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         // Clear field values.
         pfieldOldPass.setText(null);
         pfieldNewPass.setText(null);
@@ -588,7 +599,7 @@ public class ClientFrame extends javax.swing.JFrame {
 
     private void btnLogoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLogoutKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE
-            || evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                || evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnLogout.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             btnTransactions.doClick();
@@ -669,50 +680,50 @@ public class ClientFrame extends javax.swing.JFrame {
 
     /**
      * Shows the given panel in the main panel.
+     *
      * @param panelName - Panel name as set in CardName property.
      */
     private void changePanel(String panelName) {
         CardLayout mainPanelLayout = (CardLayout) (MainPanel.getLayout());
         mainPanelLayout.show(MainPanel, panelName);
     }
-    
+
     /**
      * Updates user profile information.
      */
     private void updUserInfo() {
-        if(tfieldPhone.getText().isEmpty() || tfieldAddress.getText().isEmpty() || tfieldMail.getText().isEmpty()){
+        if (tfieldPhone.getText().isEmpty() || tfieldAddress.getText().isEmpty() || tfieldMail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Полетата не може да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Get the new info from the text fields.
         currentUser.setPhone(tfieldPhone.getText());
         currentUser.setAddress(tfieldAddress.getText());
         currentUser.setEmail(tfieldMail.getText());
-        
+
         // Set request name.
         currentUser.setRequest("update");
-        
+
         // Make the request and get the response.
         User response = (User) client.runClient(currentUser);
-        
+
         if (response.getResponse() == null) {
             // Update current user instance.
             // TODO: This way we are overwriting loggedIn status.
             // Check if this will have impact on the application.
             currentUser = response;
             JOptionPane.showMessageDialog(this, "Промените са запазени успешно.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
+        } else {
             // Revert to old values.
             updUIState();
             JOptionPane.showMessageDialog(this, "Грешка при запазване на промените: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     /**
-     * Updates user interface elements with current user information.
-     * Updates currency pane information.
+     * Updates user interface elements with current user information. Updates
+     * currency pane information.
      */
     private void updUIState() {
         String name = currentUser.getName();
@@ -721,20 +732,20 @@ public class ClientFrame extends javax.swing.JFrame {
         tfieldPhone.setText(currentUser.getPhone());
         tfieldAddress.setText(currentUser.getAddress());
         tfieldMail.setText(currentUser.getEmail());
-        
+
         // Pass current user accounts to the transactions compoment.
         transactionsPanel.setAccountsList(currentUser.getAccounts());
         transactionsPanel.updateUiState();
-        
+
         // Pass currency data to currency component.
         currencyPanel.setCurrencies(currencyData.getAllCurrencies());
         currencyPanel.updateUiState();
     }
-    
+
     private User currentUser;
     private Currency currencyData;
     private SSLClient client;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuPanel;
