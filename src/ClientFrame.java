@@ -68,16 +68,14 @@ public class ClientFrame extends javax.swing.JFrame {
         btnSaveCh3 = new javax.swing.JButton();
         btnSaveCh4 = new javax.swing.JButton();
         transactionsPanel = new TransactionsPanel();
-        Background_lbl = new javax.swing.JLabel();
         MenuPanel = new javax.swing.JPanel();
         btnAccBallance = new javax.swing.JButton();
         btnPayments = new javax.swing.JButton();
         btnChangePass = new javax.swing.JButton();
         btnUserProfile = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
         btnTransactions = new javax.swing.JButton();
-        CurrencyPanel = new javax.swing.JScrollPane();
-        CurrencyTable4 = new javax.swing.JTable();
+        btnLogout = new javax.swing.JButton();
+        currencyPanel = new CurrencyPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ELU_Bank");
@@ -367,12 +365,6 @@ public class ClientFrame extends javax.swing.JFrame {
         MainPanel.add(pnlUserProfile, "card5");
         MainPanel.add(transactionsPanel, "card6");
 
-        Background_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
-        Background_lbl.setMaximumSize(new java.awt.Dimension(1024, 720));
-        Background_lbl.setMinimumSize(new java.awt.Dimension(1024, 720));
-        Background_lbl.setOpaque(true);
-        Background_lbl.setPreferredSize(new java.awt.Dimension(1024, 720));
-
         MenuPanel.setBackground(java.awt.SystemColor.window);
         MenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Меню", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 0, 18), new java.awt.Color(105, 169, 212))); // NOI18N
         MenuPanel.setForeground(new java.awt.Color(255, 255, 255));
@@ -463,6 +455,24 @@ public class ClientFrame extends javax.swing.JFrame {
         });
         MenuPanel.add(btnUserProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 150, 180, 32));
 
+        btnTransactions.setBackground(new java.awt.Color(255, 255, 255));
+        btnTransactions.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btnTransactions.setText("Преводи");
+        btnTransactions.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTransactions.setInheritsPopupMenu(true);
+        btnTransactions.setMargin(new java.awt.Insets(2, 4, 2, 4));
+        btnTransactions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransactionsActionPerformed(evt);
+            }
+        });
+        btnTransactions.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnTransactionsKeyPressed(evt);
+            }
+        });
+        MenuPanel.add(btnTransactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 188, 180, 32));
+
         btnLogout.setBackground(new java.awt.Color(235, 230, 230));
         btnLogout.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnLogout.setText("Изход (Logout)");
@@ -482,76 +492,7 @@ public class ClientFrame extends javax.swing.JFrame {
             }
         });
         MenuPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 640, 180, 32));
-
-        btnTransactions.setBackground(new java.awt.Color(255, 255, 255));
-        btnTransactions.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btnTransactions.setText("Преводи");
-        btnTransactions.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnTransactions.setInheritsPopupMenu(true);
-        btnTransactions.setMargin(new java.awt.Insets(2, 4, 2, 4));
-        btnTransactions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransactionsActionPerformed(evt);
-            }
-        });
-        btnTransactions.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnTransactionsKeyPressed(evt);
-            }
-        });
-        MenuPanel.add(btnTransactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 188, 180, 32));
-
-        CurrencyPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        CurrencyPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        CurrencyPanel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        CurrencyPanel.setHorizontalScrollBar(null);
-        CurrencyPanel.setMaximumSize(new java.awt.Dimension(180, 76));
-        CurrencyPanel.setMinimumSize(new java.awt.Dimension(180, 76));
-        CurrencyPanel.setPreferredSize(new java.awt.Dimension(180, 76));
-
-        CurrencyTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Валута", "Купува", "Продава"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        CurrencyTable4.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        CurrencyTable4.setAutoscrolls(false);
-        CurrencyTable4.setDoubleBuffered(true);
-        CurrencyTable4.setPreferredSize(new java.awt.Dimension(174, 0));
-        CurrencyTable4.setRowMargin(0);
-        CurrencyTable4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        CurrencyTable4.getTableHeader().setResizingAllowed(false);
-        CurrencyTable4.getTableHeader().setReorderingAllowed(false);
-        CurrencyTable4.getTableHeader().setFont(new java.awt.Font( "Tahoma" , 0, 9));
-        CurrencyPanel.setViewportView(CurrencyTable4);
-        if (CurrencyTable4.getColumnModel().getColumnCount() > 0) {
-            CurrencyTable4.getColumnModel().getColumn(0).setResizable(false);
-            CurrencyTable4.getColumnModel().getColumn(0).setPreferredWidth(10);
-            CurrencyTable4.getColumnModel().getColumn(1).setResizable(false);
-            CurrencyTable4.getColumnModel().getColumn(1).setPreferredWidth(10);
-            CurrencyTable4.getColumnModel().getColumn(2).setResizable(false);
-            CurrencyTable4.getColumnModel().getColumn(2).setPreferredWidth(10);
-        }
-
-        MenuPanel.add(CurrencyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 500, 180, 76));
+        MenuPanel.add(currencyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 500, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -563,8 +504,6 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Background_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,8 +512,6 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Background_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -789,37 +726,16 @@ public class ClientFrame extends javax.swing.JFrame {
         transactionsPanel.setAccountsList(currentUser.getAccounts());
         transactionsPanel.updateUiState();
         
-        System.out.println(currencyData.allCurrencies[0].toString());
-        
-        // Следващто е само пробва, после ще трябва да змисля някакъв алгоритъм
-        // за да сложим USD, EUR..
-//        model = (DefaultTableModel) CurrencyTable4.getModel();
-//        model.setColumnIdentifiers(new Object[]{"Валута", "Купува", "Продава"});
-//
-//        String code = currencyData.allCurrencies[0].getCode();
-//        String bRate = currencyData.allCurrencies[0].getRate();
-//        String sRate = currencyData.allCurrencies[0].getRate();
-//        model.insertRow(0, new Object[]{code, bRate, sRate});
-//
-//        code = currencyData.allCurrencies[1].getCode();
-//        bRate = currencyData.allCurrencies[1].getRate();
-//        sRate = currencyData.allCurrencies[1].getRate();
-//        model.insertRow(1, new Object[]{code, bRate, sRate});
-//
-//        code = currencyData.allCurrencies[2].getCode();
-//        bRate = currencyData.allCurrencies[2].getRate();
-//        sRate = currencyData.allCurrencies[2].getRate();
-//        model.insertRow(2, new Object[]{code, bRate, sRate});
+        // Pass currency data to currency component.
+        currencyPanel.setCurrencies(currencyData.getAllCurrencies());
+        currencyPanel.updateUiState();
     }
-
-    private DefaultTableModel model;
+    
     private User currentUser;
     private Currency currencyData;
     private SSLClient client;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Background_lbl;
-    private javax.swing.JScrollPane CurrencyPanel;
-    private javax.swing.JTable CurrencyTable4;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JButton btnAccBallance;
@@ -834,6 +750,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnTransactions;
     private javax.swing.JButton btnUserProfile;
     private javax.swing.JComboBox cBoxPayments;
+    private CurrencyPanel currencyPanel;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblChooseAcc;
     private javax.swing.JLabel lblGSM;

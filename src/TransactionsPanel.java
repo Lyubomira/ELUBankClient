@@ -46,17 +46,17 @@ public class TransactionsPanel extends javax.swing.JPanel {
         
         // We are always replacing the current row.
         if (model.getRowCount() > 0) {
-            model.removeRow(0);
+            model.getDataVector().removeAllElements();
         }
         
-        model.insertRow(0, new Object[]{
+        model.addRow(new Object[]{
             selAccount.getIBAN(),
             selAccount.getAccountType(),
             selAccount.getAmount(),
             selAccount.getCurrency()
         });
         
-        tblAccList.setModel(model);
+        // tblAccList.setModel(model);
     }
     
     /**
