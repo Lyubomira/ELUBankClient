@@ -27,8 +27,11 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         initComponents();
 
+        for (int count = 0; count < 21; count++) {
+            Accounts_table.setRowHeight(count, 25);
+            Accounts_table.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        }
         modelTable = (DefaultTableModel) Accounts_table.getModel();
-
         modelTable.setColumnIdentifiers(new Object[]{
             "IBAN ", "N на сметка", "Тип на сметка", "Сума", "Валута"});
         for (int i = 0; i < 21; i++) {
@@ -813,29 +816,29 @@ public class RegistrationForm extends javax.swing.JFrame {
             return;
         }
 
-        modelTable = (DefaultTableModel) Accounts_table.getModel();
-
-        modelTable.setColumnIdentifiers(new Object[]{
-            "IBAN ", "N на сметка", "Тип на сметка", "Сума", "Валута"});
-
-        // EXCTRACT ALL CURRENCIES DATA OUT OF THE CURRENCIES TABLE
-        for (int count = 0; count < 21; count++) {
-            Accounts_table.setRowHeight(count, 25);
-            Accounts_table.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-        }
-
         pin = EGN_deleteAccount_txt.getText();
         String request = "searchByEGN";
         /**
          * check EGN field for 10 digits
          */
-
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
         }
+
+        //зануляваме потребителската информацията и връщаме таблицата в начално състояние
+        FirstName_deleteAccount_lbl.setText("");
+        SecondName_deleteAccount_lbl.setText("");
+        LastName_deleteAccount_lbl.setText("");
+        while (modelTable.getRowCount() > 0) {
+            modelTable.removeRow(0);
+        }
+        for (int i = 0; i < 21; i++) {
+            modelTable.insertRow(i, new Object[]{"", "", "", ""});
+        }
+
         /**
          * creates new User object
          *
@@ -854,6 +857,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                 return;
             }
         }
+
         /**
          * linking information about user from db with label fields
          */
@@ -861,11 +865,13 @@ public class RegistrationForm extends javax.swing.JFrame {
         SecondName_deleteAccount_lbl.setText(newUser.getSurname());
         LastName_deleteAccount_lbl.setText(newUser.getFamilyname());
 
-        for (Accounts currentAccout : newUser.getAccounts()) {
-            int i = 0;
-            modelTable.insertRow(i++, new Object[]{currentAccout.getIBAN(),
-                currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
-                currentAccout.getAmount(), currentAccout.getCurrency()});
+        if (newUser.getAccounts() != null) {
+            for (Accounts currentAccout : newUser.getAccounts()) {
+                int i = 0;
+                modelTable.insertRow(i++, new Object[]{currentAccout.getIBAN(),
+                    currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
+                    currentAccout.getAmount(), currentAccout.getCurrency()});
+            }
         }
     }//GEN-LAST:event_search_deleteAccount_btnActionPerformed
 
@@ -1012,6 +1018,8 @@ public class RegistrationForm extends javax.swing.JFrame {
     /**
      * creates method for clearing out the form
      */
+    // TODO : Бубе, направи си такива методи за всяка една форма,
+    // а не един мето да чисти всичките. Викай си ги за сътветната форма ;)
     private void clearRegistrationForm() {
         userName_txt.setText("");
         Nme_registr.setText("");
@@ -1041,7 +1049,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         FirstName_deleteAccount_lbl.setText("");
         SecondName_deleteAccount_lbl.setText("");
         LastName_deleteAccount_lbl.setText("");
-
     }
 
     public String generateIBAN() {
