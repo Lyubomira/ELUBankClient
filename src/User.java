@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 
-    public User[] allUsers = null; // <-- TODO: Do we need this?
+    private User[] allUsers = null;
     private Accounts[] accounts = null;
     private Transactions[] transactions = null;
 
@@ -96,18 +96,22 @@ public class User implements Serializable {
         this.transactions = new Transactions[arraySize];
 
         for (int i = arraySize - 1; i >= 0; i--) {
-            transactions[i] = new Transactions();
+            transactions[ i] = new Transactions();
         }
     }
-    
+
+    public User[] getAllUser() {
+        return this.allUsers;
+    }
+
     public Accounts[] getAccounts() {
         return this.accounts;
     }
-    
+
     public Transactions[] getTransactions() {
         return this.transactions;
     }
-    
+
     public String getUsername() {
         return username;
     }
