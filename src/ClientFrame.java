@@ -511,7 +511,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnLogoutKeyPressed(evt);
             }
         });
-        MenuPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 640, 180, 32));
+        MenuPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 620, 180, 32));
         MenuPanel.add(currencyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 500, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

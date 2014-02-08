@@ -1,5 +1,12 @@
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -7,65 +14,101 @@ import javax.swing.table.DefaultTableModel;
  * @author Elena Koevska
  */
 public class TransactionsPanel extends javax.swing.JPanel implements PropertyChangeListener {
-    private Accounts[] accountList = null;
-    
+
+    private ArrayList<Accounts> accountList = new ArrayList<Accounts>();
+
     public TransactionsPanel() {
         initComponents();
+        
+        // Detect when the panel is shown and show alert if current user
+        // does not have checking accounts.
+        addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                if (((TransactionsPanel) event.getAncestor()).getAccountsList().length == 0) {
+                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(event.getAncestor());
+                    JOptionPane.showMessageDialog(frame, "Потребителят няма открити разплащателни сметки.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+            @Override
+            public void ancestorRemoved(AncestorEvent event) {
+                // Component removed from container
+            }
+
+            @Override
+            public void ancestorMoved(AncestorEvent event) {
+                // Component container moved
+            }
+        });
     }
-    
+
     public Accounts[] getAccountsList() {
-        return accountList;
+        return accountList.toArray(new Accounts[accountList.size()]);
     }
-    
+
     public void setAccountsList(Accounts[] accList) {
-        this.accountList = accList;
+        // Filter only checking accounts.
+        for (Accounts account : accList) {
+            if (account.getAccountType().equalsIgnoreCase("разплащателна сметка")) {
+                accountList.add(account);
+            }
+        }
     }
-    
+
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
             // Set accounts list.
-            this.accountList = ((User) pce.getNewValue()).getAccounts();
+            setAccountsList(((User) pce.getNewValue()).getAccounts());
 
-            // Populate account combo box.
-            if (accountList != null) {
-                for (Accounts acc : this.accountList) {
+            if (!accountList.isEmpty()) {
+                // Populate and enable account combo box.
+                for (Accounts acc : accountList) {
                     comboChooseAcc.addItem(acc.getIBAN());
                 }
-            }
-
-            // If account list is not empty populate account table and enable the combo box.
-            if (this.accountList.length > 0) {
-                updateAccTable(0);
                 comboChooseAcc.setEnabled(true);
+
+                // Update account info table.
+                updateAccTable(0);
+
+                // Enable all text fields.
+                for (java.awt.Component c : getComponents()) {
+                    if (c instanceof javax.swing.JTextField) {
+                        c.setEnabled(true);
+                    }
+                }
+
+                // Enable make transaction button.
+                btnMakeTransaction.setEnabled(true);
             }
         }
     }
-    
+
     /**
      * Updates the account info table
-     * @param accIndex - Accounts object index in @{link #accountList accountList}.
+     *
+     * @param accIndex - Accounts object index in @{link #accountList
+     * accountList}.
      */
     private void updateAccTable(int accIndex) {
-        Accounts selAccount = this.accountList[accIndex];
-        
+        Accounts selAccount = accountList.get(accIndex);
+
         DefaultTableModel model = (DefaultTableModel) tblAccList.getModel();
-        
+
         // We are always replacing the current row.
         if (model.getRowCount() > 0) {
             model.getDataVector().removeAllElements();
         }
-        
+
         model.addRow(new Object[]{
             selAccount.getIBAN(),
             selAccount.getAccountType(),
             selAccount.getAmount(),
             selAccount.getCurrency()
         });
-        
-        // tblAccList.setModel(model);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,22 +177,27 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
             tblAccList.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        fieldAddressee.setEnabled(false);
         fieldAddressee.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldAddressee.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldAddressee.setPreferredSize(new java.awt.Dimension(300, 24));
 
+        fieldIBAN.setEnabled(false);
         fieldIBAN.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldIBAN.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldIBAN.setPreferredSize(new java.awt.Dimension(300, 24));
 
+        fieldBank.setEnabled(false);
         fieldBank.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldBank.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldBank.setPreferredSize(new java.awt.Dimension(300, 24));
 
+        fieldPaymentReason.setEnabled(false);
         fieldPaymentReason.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldPaymentReason.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldPaymentReason.setPreferredSize(new java.awt.Dimension(300, 24));
 
+        fieldAmount.setEnabled(false);
         fieldAmount.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldAmount.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldAmount.setPreferredSize(new java.awt.Dimension(300, 24));
@@ -174,6 +222,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
 
         btnMakeTransaction.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnMakeTransaction.setText("Направи превод");
+        btnMakeTransaction.setEnabled(false);
         btnMakeTransaction.setMaximumSize(new java.awt.Dimension(140, 32));
         btnMakeTransaction.setMinimumSize(new java.awt.Dimension(140, 32));
         btnMakeTransaction.setPreferredSize(new java.awt.Dimension(140, 32));
