@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author madd
@@ -35,6 +30,7 @@ public class ELUBankClient {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LoginFrame().setVisible(true);
                 new InterestsForm().setVisible(false);

@@ -1,10 +1,12 @@
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Elena Koevska
  */
-public class TransactionsPanel extends javax.swing.JPanel {
+public class TransactionsPanel extends javax.swing.JPanel implements PropertyChangeListener {
     private Accounts[] accountList = null;
     
     public TransactionsPanel() {
@@ -19,19 +21,24 @@ public class TransactionsPanel extends javax.swing.JPanel {
         this.accountList = accList;
     }
     
-    public void updateUiState() {
-        // Populate account combo box.
-        if (accountList != null) {
-            for (Accounts acc: this.accountList) {
-                comboChooseAcc.addItem(acc.getIBAN());
+    @Override
+    public void propertyChange(PropertyChangeEvent pce) {
+        if (pce.getPropertyName().equals("currentUser")) {
+            // Set accounts list.
+            this.accountList = ((User) pce.getNewValue()).getAccounts();
+
+            // Populate account combo box.
+            if (accountList != null) {
+                for (Accounts acc : this.accountList) {
+                    comboChooseAcc.addItem(acc.getIBAN());
+                }
             }
-        }
-        
-        // If account list is not empty populate account table and enable
-        // the combo box.
-        if (this.accountList.length > 0) {
-            updateAccTable(0);
-            comboChooseAcc.setEnabled(true);
+
+            // If account list is not empty populate account table and enable the combo box.
+            if (this.accountList.length > 0) {
+                updateAccTable(0);
+                comboChooseAcc.setEnabled(true);
+            }
         }
     }
     

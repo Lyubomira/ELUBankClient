@@ -19,6 +19,7 @@ public class ClientFrame extends javax.swing.JFrame {
      * @param client - Current SSL client instance.
      */
     public ClientFrame(User user, Currency currencyData, SSLClient client) {
+        // Init private fields from the constructor params.
         this.currentUser = user;
         this.currencyData = currencyData;
         this.client = client;
@@ -29,14 +30,20 @@ public class ClientFrame extends javax.swing.JFrame {
         } catch (java.io.IOException e) {
             System.out.println(e.getMessage());
         }
-
-        initComponents();
-
-        // Update user interface elements.
-        updUIState();
         
-        System.out.println(getSize().width);
-        System.out.println(getSize().height);
+        // Init components.
+        initComponents();
+        
+        // Add all required components as listeners of the ClientFraeme.
+        this.addPropertyChangeListener(transactionsPanel);
+        this.addPropertyChangeListener(currencyPanel);
+        
+        // Fire property change events so the listeners can update their UI state.
+        this.firePropertyChange("currentUser", new User(), this.currentUser);
+        this.firePropertyChange("currencyData", new Currency(), this.currencyData);
+        
+        // TODO: This method will be removed when we convert all panels to separate beans.
+        updUIState();
     }
 
     /**
@@ -689,7 +696,7 @@ public class ClientFrame extends javax.swing.JFrame {
     }
 
     /**
-     * Updates user profile information.
+     * @deprecated Updates user profile information. It's going down soon...
      */
     private void updUserInfo() {
         if (tfieldPhone.getText().isEmpty() || tfieldAddress.getText().isEmpty() || tfieldMail.getText().isEmpty()) {
@@ -722,8 +729,8 @@ public class ClientFrame extends javax.swing.JFrame {
     }
 
     /**
-     * Updates user interface elements with current user information. Updates
-     * currency pane information.
+     * @deprecated Updates user interface elements with current user information.
+     * Updates currency pane information. It will be removed soon.
      */
     private void updUIState() {
         String name = currentUser.getName();
@@ -734,12 +741,12 @@ public class ClientFrame extends javax.swing.JFrame {
         tfieldMail.setText(currentUser.getEmail());
 
         // Pass current user accounts to the transactions compoment.
-        transactionsPanel.setAccountsList(currentUser.getAccounts());
-        transactionsPanel.updateUiState();
+        // transactionsPanel.setAccountsList(currentUser.getAccounts());
+        // transactionsPanel.updateUiState();
 
         // Pass currency data to currency component.
-        currencyPanel.setCurrencies(currencyData.getAllCurrencies());
-        currencyPanel.updateUiState();
+        // currencyPanel.setCurrencies(currencyData.getAllCurrencies());
+        // currencyPanel.updateUiState();
     }
 
     private User currentUser;

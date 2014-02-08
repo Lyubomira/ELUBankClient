@@ -1,3 +1,5 @@
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
@@ -5,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Elena Koevska
  */
-public class CurrencyPanel extends javax.swing.JPanel {
+public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeListener {
 
     private HashMap<String, Currency> currencies = new HashMap();
     private String[] displayed = {"EUR", "USD", "GBP"};
@@ -37,23 +39,30 @@ public class CurrencyPanel extends javax.swing.JPanel {
         this.displayed = codes;
     }
     
-    public void updateUiState() {
-        DefaultTableModel model = (DefaultTableModel) currencyTable.getModel();
-        
-        // If we are not setting currencies for the first time first delete all.
-        if (model.getRowCount() > 0) {
-            model.getDataVector().removeAllElements();
-        }
-        
-        // Populate table model.
-        Currency current;
-        for (String currencyCode: displayed) {
-            current = this.currencies.get(currencyCode);
-            model.addRow(new Object[]{
-                current.getCode(),
-                current.getRate(),
-                current.getReverserate()
-            });
+    @Override
+    public void propertyChange(PropertyChangeEvent pce) {
+        if (pce.getPropertyName().equals("currencyData")) {
+            // Set currencies list.
+            setCurrencies(((Currency) pce.getNewValue()).getAllCurrencies());
+            
+            // Get currencies table model.
+            DefaultTableModel model = (DefaultTableModel) currencyTable.getModel();
+
+            // If we are not setting currencies for the first time first delete all.
+            if (model.getRowCount() > 0) {
+                model.getDataVector().removeAllElements();
+            }
+
+            // Populate table model.
+            Currency current;
+            for (String currencyCode : displayed) {
+                current = this.currencies.get(currencyCode);
+                model.addRow(new Object[]{
+                    current.getCode(),
+                    current.getRate(),
+                    current.getReverserate()
+                });
+            }
         }
     }
     
