@@ -24,7 +24,7 @@ public class ClientFrame extends javax.swing.JFrame {
         initComponents();
         
         // Update user interface elements.
-        loadUserInfo();
+        updUIState();
     }
 
     /**
@@ -67,22 +67,8 @@ public class ClientFrame extends javax.swing.JFrame {
         btnSaveCh2 = new javax.swing.JButton();
         btnSaveCh3 = new javax.swing.JButton();
         btnSaveCh4 = new javax.swing.JButton();
-        pnlTransactions = new javax.swing.JPanel();
-        lblChooseAcc2 = new javax.swing.JLabel();
-        cboxTransactions = new javax.swing.JComboBox();
-        scrollTransactions = new javax.swing.JScrollPane();
-        tblTransactions = new javax.swing.JTable();
-        lblTrAddressee = new javax.swing.JLabel();
-        tfieldTrIBAN = new javax.swing.JTextField();
-        tfieldTrAddressee = new javax.swing.JTextField();
-        tfieldTrBank = new javax.swing.JTextField();
-        tfieldTrPaymentReason = new javax.swing.JTextField();
-        tfieldTrAmount = new javax.swing.JTextField();
-        lblTrIBAN = new javax.swing.JLabel();
-        lblTrBank = new javax.swing.JLabel();
-        lblTrPaymentReason = new javax.swing.JLabel();
-        lblTrAmount = new javax.swing.JLabel();
-        btnTrMakeTrans = new javax.swing.JButton();
+        transactionsPanel = new TransactionsPanel();
+        Background_lbl = new javax.swing.JLabel();
         MenuPanel = new javax.swing.JPanel();
         btnAccBallance = new javax.swing.JButton();
         btnPayments = new javax.swing.JButton();
@@ -92,7 +78,6 @@ public class ClientFrame extends javax.swing.JFrame {
         btnTransactions = new javax.swing.JButton();
         CurrencyPanel = new javax.swing.JScrollPane();
         CurrencyTable4 = new javax.swing.JTable();
-        Background_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ELU_Bank");
@@ -380,124 +365,13 @@ public class ClientFrame extends javax.swing.JFrame {
         );
 
         MainPanel.add(pnlUserProfile, "card5");
+        MainPanel.add(transactionsPanel, "card6");
 
-        pnlTransactions.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Преводи", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(120, 169, 203))); // NOI18N
-        pnlTransactions.setOpaque(false);
-
-        lblChooseAcc2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblChooseAcc2.setText("Избери сметка");
-
-        cboxTransactions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "988979879", "987769898", "789798790", " " }));
-
-        tblTransactions.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tblTransactions.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"988979879", "Разплащателна", "345.24", "BGN"}
-            },
-            new String [] {
-                "Номер на сметка", "Вид сметка", "Разполагема сума", "Валута"
-            }
-        ));
-        scrollTransactions.setViewportView(tblTransactions);
-
-        lblTrAddressee.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTrAddressee.setText("Получател");
-        lblTrAddressee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblTrAddressee.setInheritsPopupMenu(false);
-
-        lblTrIBAN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTrIBAN.setText("IBAN");
-        lblTrIBAN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblTrBank.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTrBank.setText("Банка");
-
-        lblTrPaymentReason.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTrPaymentReason.setText("Основание ");
-
-        lblTrAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTrAmount.setText("Сума");
-
-        btnTrMakeTrans.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnTrMakeTrans.setText("Направи превод");
-
-        javax.swing.GroupLayout pnlTransactionsLayout = new javax.swing.GroupLayout(pnlTransactions);
-        pnlTransactions.setLayout(pnlTransactionsLayout);
-        pnlTransactionsLayout.setHorizontalGroup(
-            pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lblChooseAcc2)
-                        .addGap(27, 27, 27)
-                        .addComponent(cboxTransactions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollTransactions, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                                .addComponent(lblTrIBAN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfieldTrIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                                .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTrAddressee)
-                                    .addComponent(lblTrBank)
-                                    .addComponent(lblTrPaymentReason)
-                                    .addComponent(lblTrAmount))
-                                .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(tfieldTrAddressee, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTransactionsLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfieldTrBank, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfieldTrPaymentReason, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfieldTrAmount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnTrMakeTrans, javax.swing.GroupLayout.Alignment.TRAILING))))))))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        pnlTransactionsLayout.setVerticalGroup(
-            pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTransactionsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlTransactionsLayout.createSequentialGroup()
-                        .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChooseAcc2)
-                            .addComponent(cboxTransactions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(scrollTransactions, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTrAddressee)
-                            .addComponent(tfieldTrAddressee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTrIBAN)
-                            .addComponent(tfieldTrIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfieldTrBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblTrBank))
-                .addGap(6, 6, 6)
-                .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTrPaymentReason)
-                    .addComponent(tfieldTrPaymentReason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(pnlTransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTrAmount)
-                    .addComponent(tfieldTrAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(btnTrMakeTrans)
-                .addContainerGap(348, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(pnlTransactions, "card6");
+        Background_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/partAbstrBackgr.jpg"))); // NOI18N
+        Background_lbl.setMaximumSize(new java.awt.Dimension(1024, 720));
+        Background_lbl.setMinimumSize(new java.awt.Dimension(1024, 720));
+        Background_lbl.setOpaque(true);
+        Background_lbl.setPreferredSize(new java.awt.Dimension(1024, 720));
 
         MenuPanel.setBackground(java.awt.SystemColor.window);
         MenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Меню", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 0, 18), new java.awt.Color(105, 169, 212))); // NOI18N
@@ -507,6 +381,7 @@ public class ClientFrame extends javax.swing.JFrame {
         MenuPanel.setMinimumSize(new java.awt.Dimension(204, 700));
         MenuPanel.setOpaque(false);
         MenuPanel.setPreferredSize(new java.awt.Dimension(204, 700));
+        MenuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAccBallance.setBackground(new java.awt.Color(235, 230, 230));
         btnAccBallance.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -526,6 +401,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnAccBallanceKeyPressed(evt);
             }
         });
+        MenuPanel.add(btnAccBallance, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 36, 180, 32));
 
         btnPayments.setBackground(new java.awt.Color(235, 230, 230));
         btnPayments.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -545,6 +421,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnPaymentsKeyPressed(evt);
             }
         });
+        MenuPanel.add(btnPayments, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 74, 180, 32));
 
         btnChangePass.setBackground(new java.awt.Color(235, 230, 230));
         btnChangePass.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -564,6 +441,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnChangePassKeyPressed(evt);
             }
         });
+        MenuPanel.add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 112, 180, 32));
 
         btnUserProfile.setBackground(new java.awt.Color(235, 230, 230));
         btnUserProfile.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -583,6 +461,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnUserProfileKeyPressed(evt);
             }
         });
+        MenuPanel.add(btnUserProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 150, 180, 32));
 
         btnLogout.setBackground(new java.awt.Color(235, 230, 230));
         btnLogout.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -602,6 +481,7 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnLogoutKeyPressed(evt);
             }
         });
+        MenuPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 640, 180, 32));
 
         btnTransactions.setBackground(new java.awt.Color(255, 255, 255));
         btnTransactions.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -619,84 +499,59 @@ public class ClientFrame extends javax.swing.JFrame {
                 btnTransactionsKeyPressed(evt);
             }
         });
+        MenuPanel.add(btnTransactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 188, 180, 32));
+
+        CurrencyPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        CurrencyPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        CurrencyPanel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        CurrencyPanel.setHorizontalScrollBar(null);
+        CurrencyPanel.setMaximumSize(new java.awt.Dimension(180, 76));
+        CurrencyPanel.setMinimumSize(new java.awt.Dimension(180, 76));
+        CurrencyPanel.setPreferredSize(new java.awt.Dimension(180, 76));
 
         CurrencyTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"EUR", "1.94", "1.96"},
-                {"USD", "1.44", "1.49"},
-                {"GBP", "2.31", "2.36"}
+
             },
             new String [] {
                 "Валута", "Купува", "Продава"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        CurrencyTable4.setAlignmentX(0.0F);
         CurrencyTable4.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        CurrencyTable4.setAutoscrolls(false);
+        CurrencyTable4.setDoubleBuffered(true);
+        CurrencyTable4.setPreferredSize(new java.awt.Dimension(174, 0));
+        CurrencyTable4.setRowMargin(0);
+        CurrencyTable4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        CurrencyTable4.getTableHeader().setResizingAllowed(false);
         CurrencyTable4.getTableHeader().setReorderingAllowed(false);
+        CurrencyTable4.getTableHeader().setFont(new java.awt.Font( "Tahoma" , 0, 9));
         CurrencyPanel.setViewportView(CurrencyTable4);
         if (CurrencyTable4.getColumnModel().getColumnCount() > 0) {
             CurrencyTable4.getColumnModel().getColumn(0).setResizable(false);
-            CurrencyTable4.getColumnModel().getColumn(0).setPreferredWidth(50);
+            CurrencyTable4.getColumnModel().getColumn(0).setPreferredWidth(10);
             CurrencyTable4.getColumnModel().getColumn(1).setResizable(false);
-            CurrencyTable4.getColumnModel().getColumn(1).setPreferredWidth(61);
+            CurrencyTable4.getColumnModel().getColumn(1).setPreferredWidth(10);
             CurrencyTable4.getColumnModel().getColumn(2).setResizable(false);
-            CurrencyTable4.getColumnModel().getColumn(2).setPreferredWidth(61);
+            CurrencyTable4.getColumnModel().getColumn(2).setPreferredWidth(10);
         }
 
-        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
-        MenuPanel.setLayout(MenuPanelLayout);
-        MenuPanelLayout.setHorizontalGroup(
-            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnTransactions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAccBallance, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(btnChangePass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPayments, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CurrencyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        MenuPanelLayout.setVerticalGroup(
-            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAccBallance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(btnPayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(btnChangePass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(btnUserProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTransactions, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CurrencyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-
-        Background_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
-        Background_lbl.setText("jLabel1");
-        Background_lbl.setMaximumSize(new java.awt.Dimension(1024, 720));
-        Background_lbl.setMinimumSize(new java.awt.Dimension(1024, 720));
-        Background_lbl.setPreferredSize(new java.awt.Dimension(1024, 720));
+        MenuPanel.add(CurrencyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 500, 180, 76));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -716,7 +571,7 @@ public class ClientFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Background_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -724,36 +579,6 @@ public class ClientFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAccBallanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccBallanceActionPerformed
-        changePanel("card2");
-    }//GEN-LAST:event_btnAccBallanceActionPerformed
-
-    private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
-        changePanel("card4");
-    }//GEN-LAST:event_btnChangePassActionPerformed
-
-    private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
-        changePanel("card3");
-    }//GEN-LAST:event_btnPaymentsActionPerformed
-
-    private void btnUserProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserProfileActionPerformed
-        changePanel("card5");
-    }//GEN-LAST:event_btnUserProfileActionPerformed
-
-    private void btnTransactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionsActionPerformed
-        changePanel("card6");
-    }//GEN-LAST:event_btnTransactionsActionPerformed
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LoginFrame().setVisible(true);
-            }
-        });
-        dispose();
-    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSavePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePassActionPerformed
         // Check if old password field is empty.
@@ -805,38 +630,44 @@ public class ClientFrame extends javax.swing.JFrame {
         pfieldNewPassConfirm.setText(null);
     }//GEN-LAST:event_btnSavePassActionPerformed
 
-    private void btnAccBallanceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAccBallanceKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnPayments.doClick();
-            btnPayments.grabFocus();
-        }
-    }//GEN-LAST:event_btnAccBallanceKeyPressed
+    private void btnSaveCh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCh1ActionPerformed
+        updUserInfo();
+    }//GEN-LAST:event_btnSaveCh1ActionPerformed
 
-    private void btnPaymentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPaymentsKeyPressed
+    private void btnTransactionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTransactionsKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             btnLogout.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnAccBallance.doClick();
-            btnAccBallance.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnChangePass.doClick();
-            btnChangePass.grabFocus();
-        }
-    }//GEN-LAST:event_btnPaymentsKeyPressed
-
-    private void btnChangePassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnChangePassKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnPayments.doClick();
-            btnPayments.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             btnUserProfile.doClick();
             btnUserProfile.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            btnLogout.grabFocus();
         }
-    }//GEN-LAST:event_btnChangePassKeyPressed
+    }//GEN-LAST:event_btnTransactionsKeyPressed
+
+    private void btnTransactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionsActionPerformed
+        changePanel("card6");
+    }//GEN-LAST:event_btnTransactionsActionPerformed
+
+    private void btnLogoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLogoutKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE
+            || evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnLogout.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            btnTransactions.doClick();
+            btnTransactions.grabFocus();
+        }
+    }//GEN-LAST:event_btnLogoutKeyPressed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new LoginFrame().setVisible(true);
+            }
+        });
+        dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnUserProfileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnUserProfileKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -850,30 +681,54 @@ public class ClientFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUserProfileKeyPressed
 
-    private void btnTransactionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTransactionsKeyPressed
+    private void btnUserProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserProfileActionPerformed
+        changePanel("card5");
+    }//GEN-LAST:event_btnUserProfileActionPerformed
+
+    private void btnChangePassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnChangePassKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             btnLogout.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            btnPayments.doClick();
+            btnPayments.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             btnUserProfile.doClick();
             btnUserProfile.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnLogout.grabFocus();
         }
-    }//GEN-LAST:event_btnTransactionsKeyPressed
+    }//GEN-LAST:event_btnChangePassKeyPressed
 
-    private void btnLogoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLogoutKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE
-                || evt.getKeyCode() == KeyEvent.VK_ENTER) {
+    private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
+        changePanel("card4");
+    }//GEN-LAST:event_btnChangePassActionPerformed
+
+    private void btnPaymentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPaymentsKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             btnLogout.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnTransactions.doClick();
-            btnTransactions.grabFocus();
+            btnAccBallance.doClick();
+            btnAccBallance.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            btnChangePass.doClick();
+            btnChangePass.grabFocus();
         }
-    }//GEN-LAST:event_btnLogoutKeyPressed
+    }//GEN-LAST:event_btnPaymentsKeyPressed
 
-    private void btnSaveCh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCh1ActionPerformed
-        updUserInfo();
-    }//GEN-LAST:event_btnSaveCh1ActionPerformed
+    private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
+        changePanel("card3");
+    }//GEN-LAST:event_btnPaymentsActionPerformed
+
+    private void btnAccBallanceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAccBallanceKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            btnLogout.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            btnPayments.doClick();
+            btnPayments.grabFocus();
+        }
+    }//GEN-LAST:event_btnAccBallanceKeyPressed
+
+    private void btnAccBallanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccBallanceActionPerformed
+        changePanel("card2");
+    }//GEN-LAST:event_btnAccBallanceActionPerformed
 
     /**
      * Shows the given panel in the main panel.
@@ -913,7 +768,7 @@ public class ClientFrame extends javax.swing.JFrame {
         }
         else {
             // Revert to old values.
-            loadUserInfo();
+            updUIState();
             JOptionPane.showMessageDialog(this, "Грешка при запазване на промените: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -922,34 +777,39 @@ public class ClientFrame extends javax.swing.JFrame {
      * Updates user interface elements with current user information.
      * Updates currency pane information.
      */
-    private void loadUserInfo() {
+    private void updUIState() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
         lblHolderName.setText("Имена на титуляра: " + name + " " + familyname);
         tfieldPhone.setText(currentUser.getPhone());
         tfieldAddress.setText(currentUser.getAddress());
         tfieldMail.setText(currentUser.getEmail());
-
+        
+        // Pass current user accounts to the transactions compoment.
+        transactionsPanel.setAccountsList(currentUser.getAccounts());
+        transactionsPanel.updateUiState();
+        
+        System.out.println(currencyData.allCurrencies[0].toString());
         
         // Следващто е само пробва, после ще трябва да змисля някакъв алгоритъм
         // за да сложим USD, EUR..
-        model = (DefaultTableModel) CurrencyTable4.getModel();
-        model.setColumnIdentifiers(new Object[]{"Валута", "Купува", "Продава"});
-
-        String code = currencyData.allCurrencies[0].getCode();
-        String bRate = currencyData.allCurrencies[0].getRate();
-        String sRate = currencyData.allCurrencies[0].getRate();
-        model.insertRow(0, new Object[]{code, bRate, sRate});
-
-        code = currencyData.allCurrencies[1].getCode();
-        bRate = currencyData.allCurrencies[1].getRate();
-        sRate = currencyData.allCurrencies[1].getRate();
-        model.insertRow(1, new Object[]{code, bRate, sRate});
-
-        code = currencyData.allCurrencies[2].getCode();
-        bRate = currencyData.allCurrencies[2].getRate();
-        sRate = currencyData.allCurrencies[2].getRate();
-        model.insertRow(2, new Object[]{code, bRate, sRate});
+//        model = (DefaultTableModel) CurrencyTable4.getModel();
+//        model.setColumnIdentifiers(new Object[]{"Валута", "Купува", "Продава"});
+//
+//        String code = currencyData.allCurrencies[0].getCode();
+//        String bRate = currencyData.allCurrencies[0].getRate();
+//        String sRate = currencyData.allCurrencies[0].getRate();
+//        model.insertRow(0, new Object[]{code, bRate, sRate});
+//
+//        code = currencyData.allCurrencies[1].getCode();
+//        bRate = currencyData.allCurrencies[1].getRate();
+//        sRate = currencyData.allCurrencies[1].getRate();
+//        model.insertRow(1, new Object[]{code, bRate, sRate});
+//
+//        code = currencyData.allCurrencies[2].getCode();
+//        bRate = currencyData.allCurrencies[2].getRate();
+//        sRate = currencyData.allCurrencies[2].getRate();
+//        model.insertRow(2, new Object[]{code, bRate, sRate});
     }
 
     private DefaultTableModel model;
@@ -971,14 +831,11 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveCh3;
     private javax.swing.JButton btnSaveCh4;
     private javax.swing.JButton btnSavePass;
-    private javax.swing.JButton btnTrMakeTrans;
     private javax.swing.JButton btnTransactions;
     private javax.swing.JButton btnUserProfile;
     private javax.swing.JComboBox cBoxPayments;
-    private javax.swing.JComboBox cboxTransactions;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblChooseAcc;
-    private javax.swing.JLabel lblChooseAcc2;
     private javax.swing.JLabel lblGSM;
     private javax.swing.JLabel lblHolderName;
     private javax.swing.JLabel lblMail;
@@ -986,33 +843,21 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblNewPassConfirm;
     private javax.swing.JLabel lblOldPass;
     private javax.swing.JLabel lblPhone;
-    private javax.swing.JLabel lblTrAddressee;
-    private javax.swing.JLabel lblTrAmount;
-    private javax.swing.JLabel lblTrBank;
-    private javax.swing.JLabel lblTrIBAN;
-    private javax.swing.JLabel lblTrPaymentReason;
     private javax.swing.JPasswordField pfieldNewPass;
     private javax.swing.JPasswordField pfieldNewPassConfirm;
     private javax.swing.JPasswordField pfieldOldPass;
     private javax.swing.JPanel pnlAccBallance;
     private javax.swing.JPanel pnlChangePass;
     private javax.swing.JPanel pnlPayments;
-    private javax.swing.JPanel pnlTransactions;
     private javax.swing.JPanel pnlUserProfile;
     private javax.swing.JScrollPane scrollAccBallance;
     private javax.swing.JScrollPane scrollPayments;
-    private javax.swing.JScrollPane scrollTransactions;
     private javax.swing.JTable tblAccBallance;
     private javax.swing.JTable tblPayments;
-    private javax.swing.JTable tblTransactions;
     private javax.swing.JTextField tfieldAddress;
     private javax.swing.JTextField tfieldGSM;
     private javax.swing.JTextField tfieldMail;
     private javax.swing.JTextField tfieldPhone;
-    private javax.swing.JTextField tfieldTrAddressee;
-    private javax.swing.JTextField tfieldTrAmount;
-    private javax.swing.JTextField tfieldTrBank;
-    private javax.swing.JTextField tfieldTrIBAN;
-    private javax.swing.JTextField tfieldTrPaymentReason;
+    private TransactionsPanel transactionsPanel;
     // End of variables declaration//GEN-END:variables
 }

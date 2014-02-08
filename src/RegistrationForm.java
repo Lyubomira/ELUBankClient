@@ -1,12 +1,10 @@
 
 import java.awt.CardLayout;
 import java.awt.Font;
-import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import javax.swing.table.*;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -863,7 +861,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         SecondName_deleteAccount_lbl.setText(newUser.getSurname());
         LastName_deleteAccount_lbl.setText(newUser.getFamilyname());
 
-        for (Accounts currentAccout : newUser.currnetUserAccounts) {
+        for (Accounts currentAccout : newUser.getAccounts()) {
             int i = 0;
             modelTable.insertRow(i++, new Object[]{currentAccout.getIBAN(),
                 currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
