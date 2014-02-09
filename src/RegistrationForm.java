@@ -21,7 +21,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     /**
      * Creates new form SetNewClient
      */
-    DefaultTableModel modelTable;
+    DefaultTableModel modelTable, DeleteModel;
 
     public RegistrationForm() {
 
@@ -36,6 +36,20 @@ public class RegistrationForm extends javax.swing.JFrame {
             "IBAN ", "N на сметка", "Тип на сметка", "Сума", "Валута"});
         for (int i = 0; i < 21; i++) {
             modelTable.insertRow(i, new Object[]{"", "", "", ""});
+
+        }
+        
+        
+        
+        for (int count = 0; count < 21; count++) {
+            allClientsTable.setRowHeight(count, 25);
+            allClientsTable.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        }
+        DeleteModel= (DefaultTableModel) allClientsTable.getModel();
+        DeleteModel.setColumnIdentifiers(new Object[]{
+            "Име ", "Презиме", "Фамилия", "ЕГН", "Град", "Адрес", "Телефон"});
+        for (int i = 0; i < 21; i++) {
+            DeleteModel.insertRow(i, new Object[]{"", "", "", ""});
 
         }
     }
@@ -56,36 +70,36 @@ public class RegistrationForm extends javax.swing.JFrame {
         CreateNewClientButton = new javax.swing.JButton();
         CreateNewAccountButton = new javax.swing.JButton();
         DeleteBankingAccount = new javax.swing.JButton();
-        delete_client_btn = new javax.swing.JButton();
+        DeleteClient = new javax.swing.JButton();
         exit_btn = new javax.swing.JButton();
         CentralCardLayoutPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         Welcome_lbl = new javax.swing.JLabel();
         RegistrationPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        name_lbl = new javax.swing.JLabel();
+        secondname_lbl = new javax.swing.JLabel();
+        familyname_lbl = new javax.swing.JLabel();
+        egn_lbl = new javax.swing.JLabel();
+        address_lbl = new javax.swing.JLabel();
         Nme_registr = new javax.swing.JTextField();
         secondName_resitr = new javax.swing.JTextField();
         surNme_registr = new javax.swing.JTextField();
         PIN_registr = new javax.swing.JTextField();
         address_registr = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        country_lbl = new javax.swing.JLabel();
         comboBoxCountry = new javax.swing.JComboBox();
-        jLabel8 = new javax.swing.JLabel();
+        city_lbl = new javax.swing.JLabel();
         city_registr = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        telephone_lbl = new javax.swing.JLabel();
+        email_lbl = new javax.swing.JLabel();
         phone_restr = new javax.swing.JTextField();
         mail_registr = new javax.swing.JTextField();
         ConfirmButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        username_lbl = new javax.swing.JLabel();
         userName_txt = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        idtype_lbl = new javax.swing.JLabel();
         CancelButton = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
+        dateOfBirth_lbl = new javax.swing.JLabel();
         comboBoxDateOfBirth = new javax.swing.JComboBox();
         comboBoxMonthOfBirth = new javax.swing.JComboBox();
         comboBoxYearOfBirth = new javax.swing.JComboBox();
@@ -94,10 +108,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         Fname_lbl = new javax.swing.JLabel();
         Sname_lbl = new javax.swing.JLabel();
         Lname_lbl = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        Egn_lbl = new javax.swing.JLabel();
         egn_txt = new javax.swing.JTextField();
         typeOfaccount_comboBox = new javax.swing.JComboBox();
-        jLabel16 = new javax.swing.JLabel();
+        accountType_lbl = new javax.swing.JLabel();
         serach = new javax.swing.JButton();
         separator = new javax.swing.JLabel();
         currency_lbl = new javax.swing.JLabel();
@@ -105,10 +119,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         BGN_checkbox = new javax.swing.JCheckBox();
         EUR_checkbox = new javax.swing.JCheckBox();
         USD_checkbox = new javax.swing.JCheckBox();
-        jLabel11 = new javax.swing.JLabel();
+        initialAmount_lbl = new javax.swing.JLabel();
         InitialAmount_txt = new javax.swing.JTextField();
         Create_createAccount_btn = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        iban_lbl = new javax.swing.JLabel();
         IBAN_txt = new javax.swing.JTextField();
         FirstName_lbl = new javax.swing.JLabel();
         SecondName_lbl = new javax.swing.JLabel();
@@ -119,14 +133,20 @@ public class RegistrationForm extends javax.swing.JFrame {
         search_deleteAccount_btn = new javax.swing.JButton();
         Fname_deleteAccount_lbl = new javax.swing.JLabel();
         FirstName_deleteAccount_lbl = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        secondnme_lbl = new javax.swing.JLabel();
         SecondName_deleteAccount_lbl = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lastnme_lbl = new javax.swing.JLabel();
         LastName_deleteAccount_lbl = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        table_ScrollPane = new javax.swing.JScrollPane();
         Accounts_table = new javax.swing.JTable();
         Delete_deleteAccount_btn = new javax.swing.JButton();
         Cancel_deleteAccount_btn = new javax.swing.JButton();
+        DeleteClientPanel = new javax.swing.JPanel();
+        clientEgn_lbl = new javax.swing.JLabel();
+        clientEgn_txt = new javax.swing.JTextField();
+        serachClient_btn = new javax.swing.JButton();
+        TableScrollPane1 = new javax.swing.JScrollPane();
+        allClientsTable = new javax.swing.JTable();
         BackgroundLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,6 +177,11 @@ public class RegistrationForm extends javax.swing.JFrame {
                 CreateNewClientButtonActionPerformed(evt);
             }
         });
+        CreateNewClientButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CreateNewClientButtonKeyPressed(evt);
+            }
+        });
 
         CreateNewAccountButton.setBackground(new java.awt.Color(168, 199, 200));
         CreateNewAccountButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -164,6 +189,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         CreateNewAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreateNewAccountButtonActionPerformed(evt);
+            }
+        });
+        CreateNewAccountButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CreateNewAccountButtonKeyPressed(evt);
             }
         });
 
@@ -175,10 +205,25 @@ public class RegistrationForm extends javax.swing.JFrame {
                 DeleteBankingAccountActionPerformed(evt);
             }
         });
+        DeleteBankingAccount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DeleteBankingAccountKeyPressed(evt);
+            }
+        });
 
-        delete_client_btn.setBackground(new java.awt.Color(168, 199, 200));
-        delete_client_btn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        delete_client_btn.setText("Закриване на потребител");
+        DeleteClient.setBackground(new java.awt.Color(168, 199, 200));
+        DeleteClient.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        DeleteClient.setText("Закриване на потребител");
+        DeleteClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteClientActionPerformed(evt);
+            }
+        });
+        DeleteClient.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DeleteClientKeyPressed(evt);
+            }
+        });
 
         exit_btn.setBackground(new java.awt.Color(168, 199, 200));
         exit_btn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -188,16 +233,21 @@ public class RegistrationForm extends javax.swing.JFrame {
                 exit_btnActionPerformed(evt);
             }
         });
+        exit_btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exit_btnKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ManagementPanelLayout = new javax.swing.GroupLayout(ManagementPanel);
         ManagementPanel.setLayout(ManagementPanelLayout);
         ManagementPanelLayout.setHorizontalGroup(
             ManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagementPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(ManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(exit_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(delete_client_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeleteClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DeleteBankingAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CreateNewAccountButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CreateNewClientButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -213,8 +263,8 @@ public class RegistrationForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(DeleteBankingAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(delete_client_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addComponent(DeleteClient, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -247,58 +297,58 @@ public class RegistrationForm extends javax.swing.JFrame {
         RegistrationPanel.setPreferredSize(new java.awt.Dimension(804, 680));
         RegistrationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Име");
-        RegistrationPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
+        name_lbl.setText("Име");
+        RegistrationPanel.add(name_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
 
-        jLabel3.setText("Презиме");
-        RegistrationPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+        secondname_lbl.setText("Презиме");
+        RegistrationPanel.add(secondname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
 
-        jLabel4.setText("Фамилия");
-        RegistrationPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+        familyname_lbl.setText("Фамилия");
+        RegistrationPanel.add(familyname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
-        jLabel5.setText("ЕГН");
-        RegistrationPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+        egn_lbl.setText("ЕГН");
+        RegistrationPanel.add(egn_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
-        jLabel6.setText("Адрес:  обл./.........ул./........№/....етl./....ап./.... ");
-        RegistrationPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+        address_lbl.setText("Адрес:  обл./.........ул./........№/....етl./....ап./.... ");
+        RegistrationPanel.add(address_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, -1, -1));
 
         Nme_registr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Nme_registrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(Nme_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 122, -1));
+        RegistrationPanel.add(Nme_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 160, -1));
 
         secondName_resitr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 secondName_resitrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(secondName_resitr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 156, -1));
+        RegistrationPanel.add(secondName_resitr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 160, -1));
 
         surNme_registr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 surNme_registrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(surNme_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 156, -1));
+        RegistrationPanel.add(surNme_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 160, -1));
 
         PIN_registr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PIN_registrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(PIN_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 125, -1));
+        RegistrationPanel.add(PIN_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 160, -1));
 
         address_registr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 address_registrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(address_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 437, -1));
+        RegistrationPanel.add(address_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 380, -1));
 
-        jLabel7.setText("Държава");
-        RegistrationPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
+        country_lbl.setText("Държава");
+        RegistrationPanel.add(country_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         comboBoxCountry.setBackground(new java.awt.Color(160, 199, 200));
         comboBoxCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете държава", "Австралия", "Австрия", "Азербайджан", "Албания", "Алжир", "Ангола", "Андора", "Аржентина", "Армения", "Афганистан", "Бангладеш", "Барбадос", "Бахамски острови", "Бахрейн", "Беларус", "Белгия", "Боливия", "Босна и Херцеговина", "Бразилия", "Бруней", "България", "Венецуела", "Виетнам", "Габон", "Гамбия", "Гана", "Гватемала", "Гвинея", "Гърция", "Дания", "Египет", "Еквадор", "Израел", "Ирак", "Иран", "Ирландия", "Исландия", "Испания", "Италия", "Канада", "Катар", "Кения", "Кипър", "Куба", " " }));
@@ -307,37 +357,37 @@ public class RegistrationForm extends javax.swing.JFrame {
                 comboBoxCountryKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(comboBoxCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 145, -1));
+        RegistrationPanel.add(comboBoxCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 160, -1));
 
-        jLabel8.setText("Град");
-        RegistrationPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 27, -1));
+        city_lbl.setText("Град");
+        RegistrationPanel.add(city_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 30, -1));
 
         city_registr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 city_registrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(city_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 113, -1));
+        RegistrationPanel.add(city_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 160, -1));
 
-        jLabel9.setText("Телефонен номер");
-        RegistrationPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
+        telephone_lbl.setText("Телефонен номер");
+        RegistrationPanel.add(telephone_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
 
-        jLabel10.setText("E-mail ");
-        RegistrationPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
+        email_lbl.setText("E-mail ");
+        RegistrationPanel.add(email_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
 
         phone_restr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 phone_restrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(phone_restr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 116, -1));
+        RegistrationPanel.add(phone_restr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 160, -1));
 
         mail_registr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 mail_registrKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(mail_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 200, -1));
+        RegistrationPanel.add(mail_registr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 160, -1));
 
         ConfirmButton.setBackground(new java.awt.Color(168, 199, 200));
         ConfirmButton.setText("Потвърди");
@@ -346,20 +396,20 @@ public class RegistrationForm extends javax.swing.JFrame {
                 ConfirmButtonActionPerformed(evt);
             }
         });
-        RegistrationPanel.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 503, 100, 30));
+        RegistrationPanel.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 90, 30));
 
-        jLabel1.setText("Потребителско име");
-        RegistrationPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        username_lbl.setText("Потребителско име");
+        RegistrationPanel.add(username_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
         userName_txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 userName_txtKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(userName_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 122, -1));
+        RegistrationPanel.add(userName_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 160, -1));
 
-        jLabel17.setText("Ниво на достъп");
-        RegistrationPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
+        idtype_lbl.setText("Ниво на достъп");
+        RegistrationPanel.add(idtype_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
 
         CancelButton.setBackground(new java.awt.Color(168, 199, 200));
         CancelButton.setText("Откажи");
@@ -368,10 +418,10 @@ public class RegistrationForm extends javax.swing.JFrame {
                 CancelButtonActionPerformed(evt);
             }
         });
-        RegistrationPanel.add(CancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 503, 90, 30));
+        RegistrationPanel.add(CancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 90, 30));
 
-        jLabel20.setText("Дата на раждане");
-        RegistrationPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+        dateOfBirth_lbl.setText("Дата на раждане");
+        RegistrationPanel.add(dateOfBirth_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         comboBoxDateOfBirth.setBackground(new java.awt.Color(168, 199, 200));
         comboBoxDateOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Ден]", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "" }));
@@ -381,17 +431,17 @@ public class RegistrationForm extends javax.swing.JFrame {
                 comboBoxDateOfBirthKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(comboBoxDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 70, -1));
+        RegistrationPanel.add(comboBoxDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 70, -1));
 
         comboBoxMonthOfBirth.setBackground(new java.awt.Color(168, 199, 200));
         comboBoxMonthOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Месец]", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         comboBoxMonthOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
-        RegistrationPanel.add(comboBoxMonthOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 70, -1));
+        RegistrationPanel.add(comboBoxMonthOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 70, -1));
 
         comboBoxYearOfBirth.setBackground(new java.awt.Color(168, 199, 200));
         comboBoxYearOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Година]", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "", "" }));
         comboBoxYearOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
-        RegistrationPanel.add(comboBoxYearOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 70, -1));
+        RegistrationPanel.add(comboBoxYearOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 70, -1));
 
         comboBoxUserType.setBackground(new java.awt.Color(160, 199, 200));
         comboBoxUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете тип на потребителя", "Банков служител", "Депозиращ Клиент", "Клиент" }));
@@ -400,7 +450,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                 comboBoxUserTypeKeyPressed(evt);
             }
         });
-        RegistrationPanel.add(comboBoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 190, -1));
+        RegistrationPanel.add(comboBoxUserType, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 160, -1));
 
         CentralCardLayoutPanel.add(RegistrationPanel, "RegistrationCard");
         RegistrationPanel.getAccessibleContext().setAccessibleParent(CentralCardLayoutPanel);
@@ -424,9 +474,15 @@ public class RegistrationForm extends javax.swing.JFrame {
         Lname_lbl.setText("Фамилия");
         NewAccountPanel.add(Lname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, 20));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel14.setText("Единен Граждански Номер (ЕГН)");
-        NewAccountPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        Egn_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Egn_lbl.setText("Единен Граждански Номер (ЕГН)");
+        NewAccountPanel.add(Egn_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+
+        egn_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                egn_txtKeyPressed(evt);
+            }
+        });
         NewAccountPanel.add(egn_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 130, -1));
 
         typeOfaccount_comboBox.setBackground(new java.awt.Color(160, 199, 200));
@@ -436,11 +492,16 @@ public class RegistrationForm extends javax.swing.JFrame {
                 typeOfaccount_comboBoxActionPerformed(evt);
             }
         });
+        typeOfaccount_comboBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                typeOfaccount_comboBoxKeyPressed(evt);
+            }
+        });
         NewAccountPanel.add(typeOfaccount_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 180, -1));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel16.setText("Вид на сметката");
-        NewAccountPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
+        accountType_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accountType_lbl.setText("Вид на сметката");
+        NewAccountPanel.add(accountType_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
         serach.setBackground(new java.awt.Color(168, 199, 200));
         serach.setText("Търси");
@@ -497,9 +558,15 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         NewAccountPanel.add(CheckBox_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 190, 40));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel11.setText("Първоначална сума");
-        NewAccountPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
+        initialAmount_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        initialAmount_lbl.setText("Първоначална сума");
+        NewAccountPanel.add(initialAmount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
+
+        InitialAmount_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                InitialAmount_txtKeyPressed(evt);
+            }
+        });
         NewAccountPanel.add(InitialAmount_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 180, -1));
 
         Create_createAccount_btn.setBackground(new java.awt.Color(168, 199, 200));
@@ -511,9 +578,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
         NewAccountPanel.add(Create_createAccount_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel12.setText("Вашата нова сметка е с IBAN ");
-        NewAccountPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
+        iban_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        iban_lbl.setText("Вашата нова сметка е с IBAN ");
+        NewAccountPanel.add(iban_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
         NewAccountPanel.add(IBAN_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 530, 310, -1));
         NewAccountPanel.add(FirstName_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
         NewAccountPanel.add(SecondName_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
@@ -550,14 +617,14 @@ public class RegistrationForm extends javax.swing.JFrame {
         DeleteAccountPanel.add(Fname_deleteAccount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
         DeleteAccountPanel.add(FirstName_deleteAccount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel13.setText("Презиме");
-        DeleteAccountPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
+        secondnme_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        secondnme_lbl.setText("Презиме");
+        DeleteAccountPanel.add(secondnme_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
         DeleteAccountPanel.add(SecondName_deleteAccount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel15.setText("Фамилия");
-        DeleteAccountPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
+        lastnme_lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lastnme_lbl.setText("Фамилия");
+        DeleteAccountPanel.add(lastnme_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
         DeleteAccountPanel.add(LastName_deleteAccount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
 
         Accounts_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -570,7 +637,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         ));
         Accounts_table.setColumnSelectionAllowed(true);
         Accounts_table.setOpaque(false);
-        jScrollPane1.setViewportView(Accounts_table);
+        table_ScrollPane.setViewportView(Accounts_table);
         Accounts_table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         if (Accounts_table.getColumnModel().getColumnCount() > 0) {
             Accounts_table.getColumnModel().getColumn(2).setMinWidth(100);
@@ -584,7 +651,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             Accounts_table.getColumnModel().getColumn(4).setMaxWidth(50);
         }
 
-        DeleteAccountPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 590, 320));
+        DeleteAccountPanel.add(table_ScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 590, 320));
 
         Delete_deleteAccount_btn.setBackground(new java.awt.Color(168, 199, 200));
         Delete_deleteAccount_btn.setText("Изтрий");
@@ -597,9 +664,54 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         Cancel_deleteAccount_btn.setBackground(new java.awt.Color(168, 199, 200));
         Cancel_deleteAccount_btn.setText("Откажи");
+        Cancel_deleteAccount_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cancel_deleteAccount_btnActionPerformed(evt);
+            }
+        });
         DeleteAccountPanel.add(Cancel_deleteAccount_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, 90, -1));
 
         CentralCardLayoutPanel.add(DeleteAccountPanel, "DeleteAcntCard");
+
+        DeleteClientPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Закриване на поребител", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 14), new java.awt.Color(0, 153, 153))); // NOI18N
+        DeleteClientPanel.setOpaque(false);
+        DeleteClientPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        clientEgn_lbl.setText("Единен граждански номер");
+        DeleteClientPanel.add(clientEgn_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+
+        clientEgn_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                clientEgn_txtKeyPressed(evt);
+            }
+        });
+        DeleteClientPanel.add(clientEgn_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 150, -1));
+
+        serachClient_btn.setText("Търси");
+        serachClient_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serachClient_btnActionPerformed(evt);
+            }
+        });
+        DeleteClientPanel.add(serachClient_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
+
+        allClientsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        allClientsTable.setOpaque(false);
+        TableScrollPane1.setViewportView(allClientsTable);
+
+        DeleteClientPanel.add(TableScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 590, 410));
+
+        CentralCardLayoutPanel.add(DeleteClientPanel, "DeleteClientCard");
 
         getContentPane().add(CentralCardLayoutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 610, 590));
 
@@ -612,7 +724,8 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void DeleteBankingAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBankingAccountActionPerformed
         CardLayout deleteAccount = (CardLayout) (CentralCardLayoutPanel.getLayout());
-        deleteAccount.show(CentralCardLayoutPanel, "DeleteAcntCard");        // TODO add your handling code here:
+        deleteAccount.show(CentralCardLayoutPanel, "DeleteAcntCard");       
+        EGN_deleteAccount_txt.grabFocus();
     }//GEN-LAST:event_DeleteBankingAccountActionPerformed
 
     private void CreateNewClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateNewClientButtonActionPerformed
@@ -625,6 +738,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         CardLayout accoutPanel = (CardLayout) (CentralCardLayoutPanel.getLayout());
         accoutPanel.show(CentralCardLayoutPanel, "createAccountCard");
+        egn_txt.grabFocus();
     }//GEN-LAST:event_CreateNewAccountButtonActionPerformed
 
     private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
@@ -790,7 +904,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                     + "IBAN: " + IBAN_txt.getText());
 
         }
-        clearRegistrationForm();
+        clearNewAccountForm();
 
 
     }//GEN-LAST:event_Create_createAccount_btnActionPerformed
@@ -848,9 +962,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
 
-        /**
-         * Checking if the PIN exists in the database
-         */
+        
         if (newUser.getResponse() != null) {
             if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
                 JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
@@ -858,9 +970,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         }
 
-        /**
-         * linking information about user from db with label fields
-         */
+       
         FirstName_deleteAccount_lbl.setText(newUser.getName());
         SecondName_deleteAccount_lbl.setText(newUser.getSurname());
         LastName_deleteAccount_lbl.setText(newUser.getFamilyname());
@@ -876,7 +986,10 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_search_deleteAccount_btnActionPerformed
 
     private void Delete_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_deleteAccount_btnActionPerformed
-
+       
+        int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате да изтриете избраната сметка?", "Изтриване",JOptionPane.YES_NO_OPTION);
+        
+        if(answer == 0){
         int row = Accounts_table.getSelectedRow();
         String iban = Accounts_table.getValueAt(row, 0).toString();
         accounts.setIBAN(iban);
@@ -884,6 +997,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         accounts = (Accounts) client.runClient(accounts);
 
         modelTable.removeRow(Accounts_table.getSelectedRow());
+        }
     }//GEN-LAST:event_Delete_deleteAccount_btnActionPerformed
 
     private void userName_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userName_txtKeyPressed
@@ -893,6 +1007,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             userName_txt.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             Nme_registr.grabFocus();
+        }else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_userName_txtKeyPressed
 
@@ -903,6 +1019,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             userName_txt.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             secondName_resitr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_Nme_registrKeyPressed
 
@@ -914,6 +1032,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             secondName_resitr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             comboBoxDateOfBirth.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_surNme_registrKeyPressed
 
@@ -925,6 +1045,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             surNme_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             PIN_registr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_comboBoxDateOfBirthKeyPressed
 
@@ -936,6 +1058,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             comboBoxDateOfBirth.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             comboBoxCountry.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_PIN_registrKeyPressed
 
@@ -946,6 +1070,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             comboBoxCountry.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             address_registr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_city_registrKeyPressed
 
@@ -956,6 +1082,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             Nme_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             surNme_registr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
 
     }//GEN-LAST:event_secondName_resitrKeyPressed
@@ -967,6 +1095,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             city_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             phone_restr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_address_registrKeyPressed
 
@@ -977,6 +1107,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             address_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             mail_registr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_phone_restrKeyPressed
 
@@ -987,6 +1119,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             mail_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             comboBoxUserType.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_comboBoxUserTypeKeyPressed
 
@@ -997,6 +1131,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             phone_restr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             comboBoxUserType.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_mail_registrKeyPressed
 
@@ -1007,14 +1143,149 @@ public class RegistrationForm extends javax.swing.JFrame {
             PIN_registr.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             city_registr.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_comboBoxCountryKeyPressed
 
     private void EGN_deleteAccount_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EGN_deleteAccount_txtKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             search_deleteAccount_btn.doClick();
+        }else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            DeleteBankingAccount.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_EGN_deleteAccount_txtKeyPressed
+
+    private void DeleteClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteClientActionPerformed
+
+        CardLayout DeleteClient = (CardLayout) (CentralCardLayoutPanel.getLayout());
+        DeleteClient.show(CentralCardLayoutPanel, "DeleteClientCard");
+        EGN_deleteAccount_txt.grabFocus();
+        
+         
+        
+    }//GEN-LAST:event_DeleteClientActionPerformed
+
+    private void serachClient_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serachClient_btnActionPerformed
+       
+       
+
+        pin = clientEgn_txt.getText();
+        String request = "searchByEGN";
+        /**
+         * check EGN field for 10 digits
+         */
+        Pattern egn_val = Pattern.compile("\\d{10,10}");
+        Matcher m_val = egn_val.matcher(pin);
+        if (!m_val.find()) {
+            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
+            return;
+        }
+        
+        
+    }//GEN-LAST:event_serachClient_btnActionPerformed
+
+    private void Cancel_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_deleteAccount_btnActionPerformed
+        clearDeleteAccountForm();
+    }//GEN-LAST:event_Cancel_deleteAccount_btnActionPerformed
+
+    private void egn_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_egn_txtKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            serach.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewAccountButton.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            typeOfaccount_comboBox.grabFocus();
+        }
+        
+        
+    }//GEN-LAST:event_egn_txtKeyPressed
+
+    private void InitialAmount_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InitialAmount_txtKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Create_createAccount_btn.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewAccountButton.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            egn_txt.grabFocus();
+        }
+    }//GEN-LAST:event_InitialAmount_txtKeyPressed
+
+    private void typeOfaccount_comboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeOfaccount_comboBoxKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            CreateNewAccountButton.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            EUR_checkbox.grabFocus();
+        }
+        
+    }//GEN-LAST:event_typeOfaccount_comboBoxKeyPressed
+
+    private void clientEgn_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clientEgn_txtKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            DeleteClient.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            EUR_checkbox.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            serachClient_btn.doClick();
+        }
+    }//GEN-LAST:event_clientEgn_txtKeyPressed
+
+    private void CreateNewClientButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CreateNewClientButtonKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            CreateNewClientButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            userName_txt.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            CreateNewAccountButton.grabFocus();
+        }
+        
+    }//GEN-LAST:event_CreateNewClientButtonKeyPressed
+
+    private void CreateNewAccountButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CreateNewAccountButtonKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            CreateNewAccountButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            egn_txt.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            DeleteBankingAccount.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            CreateNewClientButton.grabFocus();
+        }
+    }//GEN-LAST:event_CreateNewAccountButtonKeyPressed
+
+    private void DeleteBankingAccountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DeleteBankingAccountKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DeleteBankingAccount.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            EGN_deleteAccount_txt.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            DeleteClient.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            CreateNewAccountButton.grabFocus();
+        }
+    }//GEN-LAST:event_DeleteBankingAccountKeyPressed
+
+    private void DeleteClientKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DeleteClientKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DeleteClient.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            clientEgn_txt.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            exit_btn.grabFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            DeleteBankingAccount.grabFocus();
+        }
+    }//GEN-LAST:event_DeleteClientKeyPressed
+
+    private void exit_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_exit_btnKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            exit_btn.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            DeleteClient.grabFocus();
+        }
+    }//GEN-LAST:event_exit_btnKeyPressed
     /**
      * creates method for clearing out the form
      */
@@ -1035,7 +1306,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         phone_restr.setText("");
         mail_registr.setText("");
         comboBoxUserType.setSelectedIndex(0);
+    }
 
+      private void clearNewAccountForm(){  
         egn_txt.setText("");
         IBAN_txt.setText("");
         FirstName_lbl.setText("");
@@ -1044,11 +1317,20 @@ public class RegistrationForm extends javax.swing.JFrame {
         BGN_checkbox.setSelected(true);
         InitialAmount_txt.setText("");
         typeOfaccount_comboBox.setSelectedIndex(0);
+      }
 
+       private void  clearDeleteAccountForm(){
         EGN_deleteAccount_txt.setText("");
         FirstName_deleteAccount_lbl.setText("");
         SecondName_deleteAccount_lbl.setText("");
         LastName_deleteAccount_lbl.setText("");
+         while (modelTable.getRowCount() > 0) {
+            modelTable.removeRow(0);
+        }
+        for (int i = 0; i < 21; i++) {
+            modelTable.insertRow(i, new Object[]{"", "", "", ""});
+        }
+        
     }
 
     public String generateIBAN() {
@@ -1087,10 +1369,13 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JButton Create_createAccount_btn;
     private javax.swing.JPanel DeleteAccountPanel;
     private javax.swing.JButton DeleteBankingAccount;
+    private javax.swing.JButton DeleteClient;
+    private javax.swing.JPanel DeleteClientPanel;
     private javax.swing.JButton Delete_deleteAccount_btn;
     private javax.swing.JTextField EGN_deleteAccount_txt;
     private javax.swing.JLabel ELUBank_lbl;
     private javax.swing.JCheckBox EUR_checkbox;
+    private javax.swing.JLabel Egn_lbl;
     private javax.swing.JLabel FamilyName_lbl;
     private javax.swing.JLabel FirstName_deleteAccount_lbl;
     private javax.swing.JLabel FirstName_lbl;
@@ -1109,49 +1394,52 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel SecondName_deleteAccount_lbl;
     private javax.swing.JLabel SecondName_lbl;
     private javax.swing.JLabel Sname_lbl;
+    private javax.swing.JScrollPane TableScrollPane1;
     private javax.swing.JCheckBox USD_checkbox;
     private javax.swing.JPanel WelcomePanel;
     private javax.swing.JLabel Welcome_lbl;
+    private javax.swing.JLabel accountType_lbl;
+    private javax.swing.JLabel address_lbl;
     private javax.swing.JTextField address_registr;
+    private javax.swing.JTable allClientsTable;
+    private javax.swing.JLabel city_lbl;
     private javax.swing.JTextField city_registr;
+    private javax.swing.JLabel clientEgn_lbl;
+    private javax.swing.JTextField clientEgn_txt;
     private javax.swing.JComboBox comboBoxCountry;
     private javax.swing.JComboBox comboBoxDateOfBirth;
     private javax.swing.JComboBox comboBoxMonthOfBirth;
     private javax.swing.JComboBox comboBoxUserType;
     private javax.swing.JComboBox comboBoxYearOfBirth;
+    private javax.swing.JLabel country_lbl;
     private javax.swing.ButtonGroup currencyTypeBtnGrp;
     private javax.swing.JLabel currency_lbl;
-    private javax.swing.JButton delete_client_btn;
+    private javax.swing.JLabel dateOfBirth_lbl;
     private javax.swing.JLabel egn_deleteAccount_lbl;
+    private javax.swing.JLabel egn_lbl;
     private javax.swing.JTextField egn_txt;
+    private javax.swing.JLabel email_lbl;
     private javax.swing.JButton exit_btn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel familyname_lbl;
+    private javax.swing.JLabel iban_lbl;
+    private javax.swing.JLabel idtype_lbl;
+    private javax.swing.JLabel initialAmount_lbl;
+    private javax.swing.JLabel lastnme_lbl;
     private javax.swing.JTextField mail_registr;
+    private javax.swing.JLabel name_lbl;
     private javax.swing.JTextField phone_restr;
     private javax.swing.JButton search_deleteAccount_btn;
     private javax.swing.JTextField secondName_resitr;
+    private javax.swing.JLabel secondname_lbl;
+    private javax.swing.JLabel secondnme_lbl;
     private javax.swing.JLabel separator;
     private javax.swing.JButton serach;
+    private javax.swing.JButton serachClient_btn;
     private javax.swing.JTextField surNme_registr;
+    private javax.swing.JScrollPane table_ScrollPane;
+    private javax.swing.JLabel telephone_lbl;
     private javax.swing.JComboBox typeOfaccount_comboBox;
     private javax.swing.JTextField userName_txt;
+    private javax.swing.JLabel username_lbl;
     // End of variables declaration//GEN-END:variables
 }
