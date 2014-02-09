@@ -2,9 +2,7 @@
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +13,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TransactionsPanel extends javax.swing.JPanel implements PropertyChangeListener {
 
-    private ArrayList<Accounts> accountList = new ArrayList<Accounts>();
+    /**
+     * Reference to the main frame.
+     */
+    private ClientFrame mainFrame;
+    
+    /**
+     * Contains user's checking accounts (if any).
+     */
+    private final ArrayList<Accounts> accountList = new ArrayList<>();
 
     public TransactionsPanel() {
         initComponents();
@@ -26,8 +32,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
             @Override
             public void ancestorAdded(AncestorEvent event) {
                 if (((TransactionsPanel) event.getAncestor()).getAccountsList().length == 0) {
-                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(event.getAncestor());
-                    JOptionPane.showMessageDialog(frame, "Потребителят няма открити разплащателни сметки.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(mainFrame, "Потребителят няма открити разплащателни сметки.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
                 }
             }
 
@@ -59,6 +64,9 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
+            // Set the reference to the main frame.
+            mainFrame = (ClientFrame) pce.getSource();
+            
             // Set accounts list.
             setAccountsList(((User) pce.getNewValue()).getAccounts());
 
@@ -135,7 +143,10 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         btnMakeTransaction = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Преводи", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(120, 169, 203))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(804, 688));
+        setMinimumSize(new java.awt.Dimension(804, 688));
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(804, 688));
 
         lblChooseAcc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblChooseAcc.setText("Избери сметка");
@@ -262,7 +273,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
                         .addComponent(lblChooseAcc)
                         .addGap(27, 27, 27)
                         .addComponent(comboChooseAcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +307,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
                     .addComponent(fieldAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(btnMakeTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

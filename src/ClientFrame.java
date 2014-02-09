@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author madd
+ * @author Elena Koevska & Julia Protich
  */
 public class ClientFrame extends javax.swing.JFrame {
 
@@ -15,35 +15,44 @@ public class ClientFrame extends javax.swing.JFrame {
      * Creates new form ClientFrame
      *
      * @param user - Current user instance.
-     * @param currencyData - Current currency instance.
+     * @param currency - Current currency instance.
      * @param client - Current SSL client instance.
      */
-    public ClientFrame(User user, Currency currencyData, SSLClient client) {
-        // Init private fields from the constructor params.
-        this.currentUser = user;
-        this.currencyData = currencyData;
-        this.client = client;
-        
+    public ClientFrame(User user, Currency currency, SSLClient client) {
         // Set background image.
         try {
             this.setContentPane(new BackgroundImage(ImageIO.read(new File("client_frame_bg.jpg"))));
         } catch (java.io.IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
         // Init components.
         initComponents();
-        
-        // Add all required components as listeners of the ClientFraeme.
-        this.addPropertyChangeListener(transactionsPanel);
-        this.addPropertyChangeListener(currencyPanel);
-        
+
+        // Add all required components as listeners of the ClientFrame.
+        addPropertyChangeListener(transactionsPanel);
+        addPropertyChangeListener(currencyPanel);
+        addPropertyChangeListener(userProfilePanel);
+
         // Fire property change events so the listeners can update their UI state.
-        this.firePropertyChange("currentUser", new User(), this.currentUser);
-        this.firePropertyChange("currencyData", new Currency(), this.currencyData);
-        
+        firePropertyChange("currentUser", currentUser, user);
+        firePropertyChange("currencyData", currencyData, currency);
+
+        // Init private fields from the constructor params.
+        this.currentUser = user;
+        this.currencyData = currency;
+        this.client = client;
+
         // TODO: This method will be removed when we convert all panels to separate beans.
         updUIState();
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public SSLClient getClient() {
+        return client;
     }
 
     /**
@@ -73,19 +82,7 @@ public class ClientFrame extends javax.swing.JFrame {
         pfieldOldPass = new javax.swing.JPasswordField();
         pfieldNewPass = new javax.swing.JPasswordField();
         pfieldNewPassConfirm = new javax.swing.JPasswordField();
-        pnlUserProfile = new javax.swing.JPanel();
-        lblPhone = new javax.swing.JLabel();
-        lblGSM = new javax.swing.JLabel();
-        lblAddress = new javax.swing.JLabel();
-        lblMail = new javax.swing.JLabel();
-        tfieldPhone = new javax.swing.JTextField();
-        tfieldGSM = new javax.swing.JTextField();
-        tfieldAddress = new javax.swing.JTextField();
-        tfieldMail = new javax.swing.JTextField();
-        btnSaveCh1 = new javax.swing.JButton();
-        btnSaveCh2 = new javax.swing.JButton();
-        btnSaveCh3 = new javax.swing.JButton();
-        btnSaveCh4 = new javax.swing.JButton();
+        userProfilePanel = new UserProfilePanel();
         transactionsPanel = new TransactionsPanel();
         MenuPanel = new javax.swing.JPanel();
         btnAccBallance = new javax.swing.JButton();
@@ -105,10 +102,10 @@ public class ClientFrame extends javax.swing.JFrame {
         setResizable(false);
 
         MainPanel.setBackground(new java.awt.Color(102, 255, 255));
-        MainPanel.setMaximumSize(new java.awt.Dimension(804, 680));
-        MainPanel.setMinimumSize(new java.awt.Dimension(804, 680));
+        MainPanel.setMaximumSize(new java.awt.Dimension(804, 688));
+        MainPanel.setMinimumSize(new java.awt.Dimension(804, 688));
         MainPanel.setOpaque(false);
-        MainPanel.setPreferredSize(new java.awt.Dimension(804, 680));
+        MainPanel.setPreferredSize(new java.awt.Dimension(804, 688));
         MainPanel.setLayout(new java.awt.CardLayout());
 
         pnlAccBallance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Наличност по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(134, 174, 213))); // NOI18N
@@ -291,98 +288,7 @@ public class ClientFrame extends javax.swing.JFrame {
         );
 
         MainPanel.add(pnlChangePass, "card4");
-
-        pnlUserProfile.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Моят профил", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(107, 158, 209))); // NOI18N
-        pnlUserProfile.setMaximumSize(new java.awt.Dimension(804, 680));
-        pnlUserProfile.setMinimumSize(new java.awt.Dimension(804, 680));
-        pnlUserProfile.setOpaque(false);
-        pnlUserProfile.setPreferredSize(new java.awt.Dimension(804, 680));
-
-        lblPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblPhone.setText("Телефон");
-
-        lblGSM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblGSM.setText("GSM");
-
-        lblAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblAddress.setText("Адрес");
-
-        lblMail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblMail.setText("E-mail");
-
-        btnSaveCh1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSaveCh1.setText("Запази промяната");
-        btnSaveCh1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveCh1ActionPerformed(evt);
-            }
-        });
-
-        btnSaveCh2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSaveCh2.setText("Запази промяната");
-
-        btnSaveCh3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSaveCh3.setText("Запази промяната");
-
-        btnSaveCh4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSaveCh4.setText("Запази промяната");
-
-        javax.swing.GroupLayout pnlUserProfileLayout = new javax.swing.GroupLayout(pnlUserProfile);
-        pnlUserProfile.setLayout(pnlUserProfileLayout);
-        pnlUserProfileLayout.setHorizontalGroup(
-            pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUserProfileLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserProfileLayout.createSequentialGroup()
-                        .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPhone)
-                            .addComponent(lblGSM)
-                            .addComponent(lblAddress))
-                        .addGap(72, 72, 72))
-                    .addGroup(pnlUserProfileLayout.createSequentialGroup()
-                        .addComponent(lblMail)
-                        .addGap(92, 92, 92)))
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfieldPhone)
-                    .addComponent(tfieldGSM)
-                    .addComponent(tfieldAddress)
-                    .addComponent(tfieldMail, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSaveCh1)
-                    .addComponent(btnSaveCh2)
-                    .addComponent(btnSaveCh3)
-                    .addComponent(btnSaveCh4))
-                .addGap(59, 59, 59))
-        );
-        pnlUserProfileLayout.setVerticalGroup(
-            pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUserProfileLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPhone)
-                    .addComponent(tfieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveCh1))
-                .addGap(15, 15, 15)
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGSM)
-                    .addComponent(tfieldGSM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveCh2))
-                .addGap(15, 15, 15)
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAddress)
-                    .addComponent(tfieldAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveCh3))
-                .addGap(15, 15, 15)
-                .addGroup(pnlUserProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMail)
-                    .addComponent(tfieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveCh4))
-                .addContainerGap(526, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(pnlUserProfile, "card5");
+        MainPanel.add(userProfilePanel, "card5");
         MainPanel.add(transactionsPanel, "card6");
 
         MenuPanel.setBackground(java.awt.SystemColor.window);
@@ -530,7 +436,7 @@ public class ClientFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
 
@@ -584,10 +490,6 @@ public class ClientFrame extends javax.swing.JFrame {
         pfieldNewPass.setText(null);
         pfieldNewPassConfirm.setText(null);
     }//GEN-LAST:event_btnSavePassActionPerformed
-
-    private void btnSaveCh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCh1ActionPerformed
-        updUserInfo();
-    }//GEN-LAST:event_btnSaveCh1ActionPerformed
 
     private void btnTransactionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTransactionsKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -696,57 +598,13 @@ public class ClientFrame extends javax.swing.JFrame {
     }
 
     /**
-     * @deprecated Updates user profile information. It's going down soon...
-     */
-    private void updUserInfo() {
-        if (tfieldPhone.getText().isEmpty() || tfieldAddress.getText().isEmpty() || tfieldMail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Полетата не може да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Get the new info from the text fields.
-        currentUser.setPhone(tfieldPhone.getText());
-        currentUser.setAddress(tfieldAddress.getText());
-        currentUser.setEmail(tfieldMail.getText());
-
-        // Set request name.
-        currentUser.setRequest("update");
-
-        // Make the request and get the response.
-        User response = (User) client.runClient(currentUser);
-
-        if (response.getResponse() == null) {
-            // Update current user instance.
-            // TODO: This way we are overwriting loggedIn status.
-            // Check if this will have impact on the application.
-            currentUser = response;
-            JOptionPane.showMessageDialog(this, "Промените са запазени успешно.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            // Revert to old values.
-            updUIState();
-            JOptionPane.showMessageDialog(this, "Грешка при запазване на промените: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    /**
-     * @deprecated Updates user interface elements with current user information.
-     * Updates currency pane information. It will be removed soon.
+     * @deprecated Updates user interface elements with current user
+     * information. Updates currency pane information. It will be removed soon.
      */
     private void updUIState() {
         String name = currentUser.getName();
         String familyname = currentUser.getFamilyname();
         lblHolderName.setText("Имена на титуляра: " + name + " " + familyname);
-        tfieldPhone.setText(currentUser.getPhone());
-        tfieldAddress.setText(currentUser.getAddress());
-        tfieldMail.setText(currentUser.getEmail());
-
-        // Pass current user accounts to the transactions compoment.
-        // transactionsPanel.setAccountsList(currentUser.getAccounts());
-        // transactionsPanel.updateUiState();
-
-        // Pass currency data to currency component.
-        // currencyPanel.setCurrencies(currencyData.getAllCurrencies());
-        // currencyPanel.updateUiState();
     }
 
     private User currentUser;
@@ -760,39 +618,27 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnChangePass;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPayments;
-    private javax.swing.JButton btnSaveCh1;
-    private javax.swing.JButton btnSaveCh2;
-    private javax.swing.JButton btnSaveCh3;
-    private javax.swing.JButton btnSaveCh4;
     private javax.swing.JButton btnSavePass;
     private javax.swing.JButton btnTransactions;
     private javax.swing.JButton btnUserProfile;
     private javax.swing.JComboBox cBoxPayments;
     private CurrencyPanel currencyPanel;
-    private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblChooseAcc;
-    private javax.swing.JLabel lblGSM;
     private javax.swing.JLabel lblHolderName;
-    private javax.swing.JLabel lblMail;
     private javax.swing.JLabel lblNewPass;
     private javax.swing.JLabel lblNewPassConfirm;
     private javax.swing.JLabel lblOldPass;
-    private javax.swing.JLabel lblPhone;
     private javax.swing.JPasswordField pfieldNewPass;
     private javax.swing.JPasswordField pfieldNewPassConfirm;
     private javax.swing.JPasswordField pfieldOldPass;
     private javax.swing.JPanel pnlAccBallance;
     private javax.swing.JPanel pnlChangePass;
     private javax.swing.JPanel pnlPayments;
-    private javax.swing.JPanel pnlUserProfile;
     private javax.swing.JScrollPane scrollAccBallance;
     private javax.swing.JScrollPane scrollPayments;
     private javax.swing.JTable tblAccBallance;
     private javax.swing.JTable tblPayments;
-    private javax.swing.JTextField tfieldAddress;
-    private javax.swing.JTextField tfieldGSM;
-    private javax.swing.JTextField tfieldMail;
-    private javax.swing.JTextField tfieldPhone;
     private TransactionsPanel transactionsPanel;
+    private UserProfilePanel userProfilePanel;
     // End of variables declaration//GEN-END:variables
 }
