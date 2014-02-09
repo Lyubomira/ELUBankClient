@@ -760,15 +760,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         String access = comboBoxUserType.getSelectedIndex() + "";
         String request = "create";
 
-        /**
-         * check EGN field for 10 digits
-         */
-        Pattern egn_val = Pattern.compile("\\d{10,10}");
-        Matcher m_val = egn_val.matcher(pin);
-        if (!m_val.find()) {
-            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
-            return;
-        }
+       
+        
         /**
          * Check if all required fields are filled in
          */
@@ -783,7 +776,21 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, поълнете всички полета!");
             return;
         }
-
+        
+         /**
+         * check EGN field for 10 digits
+         */
+        Pattern egn_val = Pattern.compile("\\d{10,10}");
+        Matcher m_val = egn_val.matcher(pin);
+        if (!m_val.find()) {
+            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
+            return;
+        } else if ( !m_val.find()&& pin.length() > 10 ){
+            JOptionPane.showMessageDialog(null, "ЕГН съдържа твърде много символи! ");
+            return;
+        }
+        
+        
         newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
                 country, city, address, phone, email, access);
         newUser.setRequest(request);
@@ -809,7 +816,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void serachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serachActionPerformed
 
         pin = egn_txt.getText();
-        String request = "searchByEGN";
+        String request = "search";
         /**
          * check EGN field for 10 digits
          */
@@ -818,6 +825,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
+            return;
+        }
+        else if ( !m_val.find()&& pin.length() > 10 ){
+            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
             return;
         }
         /**
@@ -931,7 +942,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         }
 
         pin = EGN_deleteAccount_txt.getText();
-        String request = "searchByEGN";
+        String request = "search";
         /**
          * check EGN field for 10 digits
          */
@@ -939,6 +950,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
+            return;
+        }else if ( !m_val.find()&& pin.length() > 10 ){
+            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
             return;
         }
 
@@ -1173,7 +1187,7 @@ public class RegistrationForm extends javax.swing.JFrame {
        
 
         pin = clientEgn_txt.getText();
-        String request = "searchByEGN";
+        String request = "search";
         /**
          * check EGN field for 10 digits
          */
