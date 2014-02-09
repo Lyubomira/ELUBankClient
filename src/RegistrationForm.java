@@ -1196,10 +1196,15 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         // select that row in the table in which contains the pin searched 
         for (int i = 0; i < DeleteModel.getRowCount(); i++) {
+            if (DeleteModel.getValueAt(i, 3) == null) {
+                continue;
+            }
             if (pin.equalsIgnoreCase(DeleteModel.getValueAt(i, 3).toString())) {
                 allClientsTable.setRowSelectionInterval(i, i);
+                return;
             }
         }
+        JOptionPane.showMessageDialog(null, "Не е намерен потребител с такъв ЕГН!");
     }//GEN-LAST:event_searchClient_btnActionPerformed
 
     private void Cancel_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_deleteAccount_btnActionPerformed
