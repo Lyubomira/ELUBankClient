@@ -29,27 +29,25 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         for (int count = 0; count < 21; count++) {
             Accounts_table.setRowHeight(count, 25);
-            Accounts_table.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+            Accounts_table.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         }
         modelTable = (DefaultTableModel) Accounts_table.getModel();
         modelTable.setColumnIdentifiers(new Object[]{
             "IBAN ", "N на сметка", "Тип на сметка", "Сума", "Валута"});
         for (int i = 0; i < 21; i++) {
-            modelTable.insertRow(i, new Object[]{"", "", "", ""});
+            modelTable.insertRow(i, new Object[]{});
 
         }
-        
-        
-        
+
         for (int count = 0; count < 21; count++) {
             allClientsTable.setRowHeight(count, 25);
-            allClientsTable.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+            allClientsTable.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         }
-        DeleteModel= (DefaultTableModel) allClientsTable.getModel();
+        DeleteModel = (DefaultTableModel) allClientsTable.getModel();
         DeleteModel.setColumnIdentifiers(new Object[]{
             "Име ", "Презиме", "Фамилия", "ЕГН", "Град", "Адрес", "Телефон"});
         for (int i = 0; i < 21; i++) {
-            DeleteModel.insertRow(i, new Object[]{"", "", "", ""});
+            DeleteModel.insertRow(i, new Object[]{});
 
         }
     }
@@ -144,7 +142,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         DeleteClientPanel = new javax.swing.JPanel();
         clientEgn_lbl = new javax.swing.JLabel();
         clientEgn_txt = new javax.swing.JTextField();
-        serachClient_btn = new javax.swing.JButton();
+        searchClient_btn = new javax.swing.JButton();
         TableScrollPane1 = new javax.swing.JScrollPane();
         allClientsTable = new javax.swing.JTable();
         BackgroundLbl = new javax.swing.JLabel();
@@ -687,13 +685,13 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
         DeleteClientPanel.add(clientEgn_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 150, -1));
 
-        serachClient_btn.setText("Търси");
-        serachClient_btn.addActionListener(new java.awt.event.ActionListener() {
+        searchClient_btn.setText("Търси");
+        searchClient_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                serachClient_btnActionPerformed(evt);
+                searchClient_btnActionPerformed(evt);
             }
         });
-        DeleteClientPanel.add(serachClient_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
+        DeleteClientPanel.add(searchClient_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
 
         allClientsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -724,7 +722,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void DeleteBankingAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBankingAccountActionPerformed
         CardLayout deleteAccount = (CardLayout) (CentralCardLayoutPanel.getLayout());
-        deleteAccount.show(CentralCardLayoutPanel, "DeleteAcntCard");       
+        deleteAccount.show(CentralCardLayoutPanel, "DeleteAcntCard");
         EGN_deleteAccount_txt.grabFocus();
     }//GEN-LAST:event_DeleteBankingAccountActionPerformed
 
@@ -760,8 +758,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         String access = comboBoxUserType.getSelectedIndex() + "";
         String request = "create";
 
-       
-        
         /**
          * Check if all required fields are filled in
          */
@@ -776,8 +772,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, поълнете всички полета!");
             return;
         }
-        
-         /**
+
+        /**
          * check EGN field for 10 digits
          */
         Pattern egn_val = Pattern.compile("\\d{10,10}");
@@ -785,12 +781,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
-        } else if ( !m_val.find()&& pin.length() > 10 ){
+        } else if (!m_val.find() && pin.length() > 10) {
             JOptionPane.showMessageDialog(null, "ЕГН съдържа твърде много символи! ");
             return;
         }
-        
-        
+
         newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
                 country, city, address, phone, email, access);
         newUser.setRequest(request);
@@ -826,8 +821,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
-        }
-        else if ( !m_val.find()&& pin.length() > 10 ){
+        } else if (!m_val.find() && pin.length() > 10) {
             JOptionPane.showMessageDialog(null, "Твърде много символи! ");
             return;
         }
@@ -951,21 +945,14 @@ public class RegistrationForm extends javax.swing.JFrame {
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
-        }else if ( !m_val.find()&& pin.length() > 10 ){
+        } else if (!m_val.find() && pin.length() > 10) {
             JOptionPane.showMessageDialog(null, "Твърде много символи! ");
             return;
         }
 
-        //зануляваме потребителската информацията и връщаме таблицата в начално състояние
-        FirstName_deleteAccount_lbl.setText("");
-        SecondName_deleteAccount_lbl.setText("");
-        LastName_deleteAccount_lbl.setText("");
-        while (modelTable.getRowCount() > 0) {
-            modelTable.removeRow(0);
-        }
-        for (int i = 0; i < 21; i++) {
-            modelTable.insertRow(i, new Object[]{"", "", "", ""});
-        }
+        //зануляваме потребителската информацията 
+        //и връщаме таблицата в начално състояние
+        clearDeleteAccountForm();
 
         /**
          * creates new User object
@@ -976,7 +963,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
 
-        
         if (newUser.getResponse() != null) {
             if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
                 JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
@@ -984,7 +970,6 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         }
 
-       
         FirstName_deleteAccount_lbl.setText(newUser.getName());
         SecondName_deleteAccount_lbl.setText(newUser.getSurname());
         LastName_deleteAccount_lbl.setText(newUser.getFamilyname());
@@ -1000,17 +985,17 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_search_deleteAccount_btnActionPerformed
 
     private void Delete_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_deleteAccount_btnActionPerformed
-       
-        int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате да изтриете избраната сметка?", "Изтриване",JOptionPane.YES_NO_OPTION);
-        
-        if(answer == 0){
-        int row = Accounts_table.getSelectedRow();
-        String iban = Accounts_table.getValueAt(row, 0).toString();
-        accounts.setIBAN(iban);
-        accounts.setRequest("delete");
-        accounts = (Accounts) client.runClient(accounts);
 
-        modelTable.removeRow(Accounts_table.getSelectedRow());
+        int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате да изтриете избраната сметка?", "Изтриване", JOptionPane.YES_NO_OPTION);
+
+        if (answer == 0) {
+            int row = Accounts_table.getSelectedRow();
+            String iban = Accounts_table.getValueAt(row, 0).toString();
+            accounts.setIBAN(iban);
+            accounts.setRequest("delete");
+            accounts = (Accounts) client.runClient(accounts);
+
+            modelTable.removeRow(Accounts_table.getSelectedRow());
         }
     }//GEN-LAST:event_Delete_deleteAccount_btnActionPerformed
 
@@ -1021,7 +1006,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             userName_txt.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             Nme_registr.grabFocus();
-        }else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             CreateNewClientButton.grabFocus();
         }
     }//GEN-LAST:event_userName_txtKeyPressed
@@ -1165,7 +1150,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void EGN_deleteAccount_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EGN_deleteAccount_txtKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             search_deleteAccount_btn.doClick();
-        }else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             DeleteBankingAccount.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             CreateNewClientButton.grabFocus();
@@ -1177,14 +1162,25 @@ public class RegistrationForm extends javax.swing.JFrame {
         CardLayout DeleteClient = (CardLayout) (CentralCardLayoutPanel.getLayout());
         DeleteClient.show(CentralCardLayoutPanel, "DeleteClientCard");
         EGN_deleteAccount_txt.grabFocus();
-        
-         
-        
+
+        User allUsers = new User();
+        allUsers.setRequest("getAll");
+        allUsers = (User) client.runClient(allUsers);
+
+        clearDeleteModelTable();
+
+        if (allUsers.getAllUser() != null) {
+            for (User currentUser : allUsers.getAllUser()) {
+                int i = 0;
+                DeleteModel.insertRow(i++, new Object[]{currentUser.getName(),
+                    currentUser.getSurname(), currentUser.getFamilyname(),
+                    currentUser.getEgn(), currentUser.getCity(),
+                    currentUser.getAddress(), currentUser.getPhone()});
+            }
+        }
     }//GEN-LAST:event_DeleteClientActionPerformed
 
-    private void serachClient_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serachClient_btnActionPerformed
-       
-       
+    private void searchClient_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClient_btnActionPerformed
 
         pin = clientEgn_txt.getText();
         String request = "search";
@@ -1197,9 +1193,14 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
         }
-        
-        
-    }//GEN-LAST:event_serachClient_btnActionPerformed
+
+        // select that row in the table in which contains the pin searched 
+        for (int i = 0; i < DeleteModel.getRowCount(); i++) {
+            if (pin.equalsIgnoreCase(DeleteModel.getValueAt(i, 3).toString())) {
+                allClientsTable.setRowSelectionInterval(i, i);
+            }
+        }
+    }//GEN-LAST:event_searchClient_btnActionPerformed
 
     private void Cancel_deleteAccount_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_deleteAccount_btnActionPerformed
         clearDeleteAccountForm();
@@ -1213,12 +1214,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             typeOfaccount_comboBox.grabFocus();
         }
-        
-        
     }//GEN-LAST:event_egn_txtKeyPressed
 
     private void InitialAmount_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InitialAmount_txtKeyPressed
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Create_createAccount_btn.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             CreateNewAccountButton.grabFocus();
@@ -1233,7 +1232,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             EUR_checkbox.grabFocus();
         }
-        
     }//GEN-LAST:event_typeOfaccount_comboBoxKeyPressed
 
     private void clientEgn_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clientEgn_txtKeyPressed
@@ -1242,19 +1240,19 @@ public class RegistrationForm extends javax.swing.JFrame {
         } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             EUR_checkbox.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            serachClient_btn.doClick();
+            searchClient_btn.doClick();
         }
     }//GEN-LAST:event_clientEgn_txtKeyPressed
 
     private void CreateNewClientButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CreateNewClientButtonKeyPressed
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             CreateNewClientButton.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
             userName_txt.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             CreateNewAccountButton.grabFocus();
         }
-        
+
     }//GEN-LAST:event_CreateNewClientButtonKeyPressed
 
     private void CreateNewAccountButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CreateNewAccountButtonKeyPressed
@@ -1322,7 +1320,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         comboBoxUserType.setSelectedIndex(0);
     }
 
-      private void clearNewAccountForm(){  
+    private void clearNewAccountForm() {
         egn_txt.setText("");
         IBAN_txt.setText("");
         FirstName_lbl.setText("");
@@ -1331,20 +1329,27 @@ public class RegistrationForm extends javax.swing.JFrame {
         BGN_checkbox.setSelected(true);
         InitialAmount_txt.setText("");
         typeOfaccount_comboBox.setSelectedIndex(0);
-      }
+    }
 
-       private void  clearDeleteAccountForm(){
-        EGN_deleteAccount_txt.setText("");
+    private void clearDeleteAccountForm() {
         FirstName_deleteAccount_lbl.setText("");
         SecondName_deleteAccount_lbl.setText("");
         LastName_deleteAccount_lbl.setText("");
-         while (modelTable.getRowCount() > 0) {
+        while (modelTable.getRowCount() > 0) {
             modelTable.removeRow(0);
         }
         for (int i = 0; i < 21; i++) {
-            modelTable.insertRow(i, new Object[]{"", "", "", ""});
+            modelTable.insertRow(i, new Object[]{});
         }
-        
+    }
+
+    private void clearDeleteModelTable() {
+        while (DeleteModel.getRowCount() > 0) {
+            DeleteModel.removeRow(0);
+        }
+        for (int i = 0; i < 21; i++) {
+            DeleteModel.insertRow(i, new Object[]{});
+        }
     }
 
     public String generateIBAN() {
@@ -1442,13 +1447,13 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField mail_registr;
     private javax.swing.JLabel name_lbl;
     private javax.swing.JTextField phone_restr;
+    private javax.swing.JButton searchClient_btn;
     private javax.swing.JButton search_deleteAccount_btn;
     private javax.swing.JTextField secondName_resitr;
     private javax.swing.JLabel secondname_lbl;
     private javax.swing.JLabel secondnme_lbl;
     private javax.swing.JLabel separator;
     private javax.swing.JButton serach;
-    private javax.swing.JButton serachClient_btn;
     private javax.swing.JTextField surNme_registr;
     private javax.swing.JScrollPane table_ScrollPane;
     private javax.swing.JLabel telephone_lbl;
