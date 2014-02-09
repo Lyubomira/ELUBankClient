@@ -33,6 +33,7 @@ public class ClientFrame extends javax.swing.JFrame {
         addPropertyChangeListener(transactionsPanel);
         addPropertyChangeListener(currencyPanel);
         addPropertyChangeListener(userProfilePanel);
+        addPropertyChangeListener(accountBalancePanel);
 
         // Fire property change events so the listeners can update their UI state.
         firePropertyChange("currentUser", currentUser, user);
@@ -42,9 +43,6 @@ public class ClientFrame extends javax.swing.JFrame {
         this.currentUser = user;
         this.currencyData = currency;
         this.client = client;
-
-        // TODO: This method will be removed when we convert all panels to separate beans.
-        updUIState();
     }
 
     public User getCurrentUser() {
@@ -65,10 +63,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         MainPanel = new javax.swing.JPanel();
-        pnlAccBallance = new javax.swing.JPanel();
-        scrollAccBallance = new javax.swing.JScrollPane();
-        tblAccBallance = new javax.swing.JTable();
-        lblHolderName = new javax.swing.JLabel();
+        accountBalancePanel = new AccountBalancePanel();
         pnlPayments = new javax.swing.JPanel();
         cBoxPayments = new javax.swing.JComboBox();
         lblChooseAcc = new javax.swing.JLabel();
@@ -107,38 +102,7 @@ public class ClientFrame extends javax.swing.JFrame {
         MainPanel.setOpaque(false);
         MainPanel.setPreferredSize(new java.awt.Dimension(804, 688));
         MainPanel.setLayout(new java.awt.CardLayout());
-
-        pnlAccBallance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Наличност по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(134, 174, 213))); // NOI18N
-        pnlAccBallance.setMaximumSize(new java.awt.Dimension(790, 680));
-        pnlAccBallance.setMinimumSize(new java.awt.Dimension(790, 680));
-        pnlAccBallance.setOpaque(false);
-        pnlAccBallance.setPreferredSize(new java.awt.Dimension(804, 680));
-        pnlAccBallance.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        scrollAccBallance.setPreferredSize(new java.awt.Dimension(452, 400));
-
-        tblAccBallance.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"разплащателна", "7467657", "EUR", "576"},
-                {"депозитна", "757788", "BGN", "165"}
-            },
-            new String [] {
-                "Вид сметка", "IBAN", "Валута", "Сума салдо"
-            }
-        ));
-        tblAccBallance.setGridColor(new java.awt.Color(0, 153, 153));
-        tblAccBallance.setMaximumSize(new java.awt.Dimension(790, 630));
-        tblAccBallance.setMinimumSize(new java.awt.Dimension(790, 630));
-        tblAccBallance.setPreferredSize(new java.awt.Dimension(790, 32));
-        scrollAccBallance.setViewportView(tblAccBallance);
-
-        pnlAccBallance.add(scrollAccBallance, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 780, 580));
-
-        lblHolderName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblHolderName.setText("Имена на титуляра");
-        pnlAccBallance.add(lblHolderName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
-
-        MainPanel.add(pnlAccBallance, "card2");
+        MainPanel.add(accountBalancePanel, "card2");
 
         pnlPayments.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Движение по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(133, 174, 215))); // NOI18N
         pnlPayments.setMaximumSize(new java.awt.Dimension(804, 680));
@@ -596,17 +560,7 @@ public class ClientFrame extends javax.swing.JFrame {
         CardLayout mainPanelLayout = (CardLayout) (MainPanel.getLayout());
         mainPanelLayout.show(MainPanel, panelName);
     }
-
-    /**
-     * @deprecated Updates user interface elements with current user
-     * information. Updates currency pane information. It will be removed soon.
-     */
-    private void updUIState() {
-        String name = currentUser.getName();
-        String familyname = currentUser.getFamilyname();
-        lblHolderName.setText("Имена на титуляра: " + name + " " + familyname);
-    }
-
+    
     private User currentUser;
     private Currency currencyData;
     private SSLClient client;
@@ -614,6 +568,7 @@ public class ClientFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuPanel;
+    private AccountBalancePanel accountBalancePanel;
     private javax.swing.JButton btnAccBallance;
     private javax.swing.JButton btnChangePass;
     private javax.swing.JButton btnLogout;
@@ -624,19 +579,15 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox cBoxPayments;
     private CurrencyPanel currencyPanel;
     private javax.swing.JLabel lblChooseAcc;
-    private javax.swing.JLabel lblHolderName;
     private javax.swing.JLabel lblNewPass;
     private javax.swing.JLabel lblNewPassConfirm;
     private javax.swing.JLabel lblOldPass;
     private javax.swing.JPasswordField pfieldNewPass;
     private javax.swing.JPasswordField pfieldNewPassConfirm;
     private javax.swing.JPasswordField pfieldOldPass;
-    private javax.swing.JPanel pnlAccBallance;
     private javax.swing.JPanel pnlChangePass;
     private javax.swing.JPanel pnlPayments;
-    private javax.swing.JScrollPane scrollAccBallance;
     private javax.swing.JScrollPane scrollPayments;
-    private javax.swing.JTable tblAccBallance;
     private javax.swing.JTable tblPayments;
     private TransactionsPanel transactionsPanel;
     private UserProfilePanel userProfilePanel;
