@@ -1163,7 +1163,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         DeleteClient.show(CentralCardLayoutPanel, "DeleteClientCard");
         EGN_deleteAccount_txt.grabFocus();
 
-        User allUsers = new User();
+        // populate all user data into the table
+        allUsers = new User();
         allUsers.setRequest("getAll");
         allUsers = (User) client.runClient(allUsers);
 
@@ -1183,7 +1184,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void searchClient_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClient_btnActionPerformed
 
         pin = clientEgn_txt.getText();
-        String request = "search";
         /**
          * check EGN field for 10 digits
          */
@@ -1374,9 +1374,35 @@ public class RegistrationForm extends javax.swing.JFrame {
         return IBAN;
     }
 
+// Ей това би трябвало да изтрива потребителски акаунти:
+//
+//        int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате"
+//                + " да изтриете потребителския акаунт?", "Изтриване", JOptionPane.YES_NO_OPTION);
+//
+//        if (answer == 0) {
+//            int row = allClientsTable.getSelectedRow();
+//            pin = allClientsTable.getValueAt(row, 3).toString();
+//
+//            for (User userToBeDeleted : allUsers) {
+//                if (userToBeDeleted.getEgn().equalsIgnoreCase(pin)) {
+//                    userToBeDeleted.setRequest("delete");
+//                    userToBeDeleted = (User) client.runClient(userToBeDeleted);
+//                }
+//            }
+//            // DeleteModel е променлива и не е лошо да е с малка буква, :)
+//            // а може и да е някакво по-интуитивно (е момента са modelTable, DeleteModel)
+//            // като и 2те са DefaultTableModel пр:
+//            // modelTable -> accountsDefTblModel
+//            // DeleteModel -> allUsersDefTblModel
+//            // или нещо от сорта. ;)
+//            DeleteModel.removeRow(allClientsTable.getSelectedRow());
+//        }
+  
+
     private final SSLClient client = new SSLClient();
     private Accounts accounts = new Accounts();
     private User newUser;
+    private User allUsers;
     private String pin = null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
