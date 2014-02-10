@@ -23,7 +23,7 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
     /**
      * Bid rate will be multiplied by this coefficient to get the ask rate.
      */
-    private float askRateCoefficient = 1.05f;
+    private float askRateCoefficient = 1.03f;
 
     /**
      * Creates new form CurrencyPanel
@@ -69,7 +69,7 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
      * Used to update component's UI state when the main frame fires a property
      * change event.
      *
-     * @param pce the change event's instance
+     * @param pce event's instance
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
@@ -83,6 +83,7 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
             // If we are not setting currencies for the first time first delete all.
             if (model.getRowCount() > 0) {
                 model.getDataVector().removeAllElements();
+                model.fireTableDataChanged();
             }
 
             // Populate table model.

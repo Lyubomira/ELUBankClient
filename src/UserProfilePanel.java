@@ -97,7 +97,7 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
 
             JOptionPane.showMessageDialog(mainFrame, "Промените са запазени успешно.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            // Some error occured in the server application.
+            // Some error occurred in the server application.
             // Revert UI elements to the old values.
             updateUIState();
 

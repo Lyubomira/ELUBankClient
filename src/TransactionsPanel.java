@@ -17,7 +17,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
      * Reference to the main frame.
      */
     private ClientFrame mainFrame;
-    
+
     /**
      * Contains user's checking accounts (if any).
      */
@@ -28,8 +28,8 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
      */
     public TransactionsPanel() {
         initComponents();
-        
-        // Detect when the panel is shown and show alert if current user
+
+        // Detect when the panel is shown and display alert if current user
         // does not have checking accounts.
         addAncestorListener(new AncestorListener() {
             @Override
@@ -41,18 +41,17 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
 
             @Override
             public void ancestorRemoved(AncestorEvent event) {
-                // Component removed from container
             }
 
             @Override
             public void ancestorMoved(AncestorEvent event) {
-                // Component container moved
             }
         });
     }
 
     /**
      * Returns the account list as array.
+     *
      * @return array with Accounts
      */
     public Accounts[] getAccountList() {
@@ -61,6 +60,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
 
     /**
      * Populates the internal ArrayList with checking accounts only.
+     *
      * @param accList array with Accounts
      */
     public void setAccountList(Accounts[] accList) {
@@ -73,15 +73,17 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property change event.
-     * @param pce the change event's instance
+     * Used to update component's UI state when the main frame fires a property
+     * change event.
+     *
+     * @param pce event's instance
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
             // Set the reference to the main frame.
             mainFrame = (ClientFrame) pce.getSource();
-            
+
             // Set accounts list.
             setAccountList(((User) pce.getNewValue()).getAccounts());
 
@@ -110,7 +112,8 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
 
     /**
      * Updates the account info table.
-     * @param accIndex - Accounts object index in @{link #accountList}
+     *
+     * @param accIndex Accounts object index in current account list.
      */
     private void updateAccTable(int accIndex) {
         Accounts selAccount = accountList.get(accIndex);
@@ -120,6 +123,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         // We are always replacing the current row.
         if (model.getRowCount() > 0) {
             model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
         }
 
         model.addRow(new Object[]{
@@ -145,12 +149,10 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         tblAccList = new javax.swing.JTable();
         fieldAddressee = new javax.swing.JTextField();
         fieldIBAN = new javax.swing.JTextField();
-        fieldBank = new javax.swing.JTextField();
         fieldPaymentReason = new javax.swing.JTextField();
         fieldAmount = new javax.swing.JTextField();
         lblAddressee = new javax.swing.JLabel();
         lblIBAN = new javax.swing.JLabel();
-        lblBank = new javax.swing.JLabel();
         lblPaymentReason = new javax.swing.JLabel();
         lblAmount = new javax.swing.JLabel();
         btnMakeTransaction = new javax.swing.JButton();
@@ -164,17 +166,30 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         lblChooseAcc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblChooseAcc.setText("Избери сметка");
 
+        comboChooseAcc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboChooseAcc.setToolTipText("");
         comboChooseAcc.setEnabled(false);
-        comboChooseAcc.setMaximumSize(new java.awt.Dimension(200, 24));
-        comboChooseAcc.setMinimumSize(new java.awt.Dimension(200, 24));
-        comboChooseAcc.setPreferredSize(new java.awt.Dimension(200, 24));
+        comboChooseAcc.setMaximumSize(new java.awt.Dimension(200, 25));
+        comboChooseAcc.setMinimumSize(new java.awt.Dimension(200, 25));
+        comboChooseAcc.setPreferredSize(new java.awt.Dimension(200, 25));
         comboChooseAcc.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboChooseAccItemStateChanged(evt);
             }
         });
 
+        spaneAccList.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        spaneAccList.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        spaneAccList.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        spaneAccList.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        spaneAccList.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        spaneAccList.setHorizontalScrollBar(null);
+        spaneAccList.setMaximumSize(new java.awt.Dimension(700, 48));
+        spaneAccList.setMinimumSize(new java.awt.Dimension(700, 48));
+        spaneAccList.setOpaque(false);
+        spaneAccList.setPreferredSize(new java.awt.Dimension(700, 48));
+
+        tblAccList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tblAccList.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblAccList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,7 +207,12 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
                 return canEdit [columnIndex];
             }
         });
-        tblAccList.setRowHeight(22);
+        tblAccList.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblAccList.setMaximumSize(new java.awt.Dimension(700, 24));
+        tblAccList.setMinimumSize(new java.awt.Dimension(700, 24));
+        tblAccList.setPreferredSize(new java.awt.Dimension(700, 24));
+        tblAccList.setRowHeight(24);
+        tblAccList.setRowSelectionAllowed(false);
         spaneAccList.setViewportView(tblAccList);
         if (tblAccList.getColumnModel().getColumnCount() > 0) {
             tblAccList.getColumnModel().getColumn(0).setResizable(false);
@@ -201,26 +221,25 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
             tblAccList.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        fieldAddressee.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldAddressee.setEnabled(false);
         fieldAddressee.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldAddressee.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldAddressee.setPreferredSize(new java.awt.Dimension(300, 24));
 
+        fieldIBAN.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldIBAN.setEnabled(false);
         fieldIBAN.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldIBAN.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldIBAN.setPreferredSize(new java.awt.Dimension(300, 24));
 
-        fieldBank.setEnabled(false);
-        fieldBank.setMaximumSize(new java.awt.Dimension(300, 24));
-        fieldBank.setMinimumSize(new java.awt.Dimension(300, 24));
-        fieldBank.setPreferredSize(new java.awt.Dimension(300, 24));
-
+        fieldPaymentReason.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldPaymentReason.setEnabled(false);
         fieldPaymentReason.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldPaymentReason.setMinimumSize(new java.awt.Dimension(300, 24));
         fieldPaymentReason.setPreferredSize(new java.awt.Dimension(300, 24));
 
+        fieldAmount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldAmount.setEnabled(false);
         fieldAmount.setMaximumSize(new java.awt.Dimension(300, 24));
         fieldAmount.setMinimumSize(new java.awt.Dimension(300, 24));
@@ -234,9 +253,6 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         lblIBAN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIBAN.setText("IBAN");
         lblIBAN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblBank.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblBank.setText("Банка");
 
         lblPaymentReason.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPaymentReason.setText("Основание ");
@@ -256,20 +272,17 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spaneAccList, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spaneAccList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblIBAN)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(fieldIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblAddressee)
-                                .addComponent(lblBank)
-                                .addComponent(lblPaymentReason)
-                                .addComponent(lblAmount))
+                            .addComponent(lblAddressee)
+                            .addGap(3, 3, 3)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(50, 50, 50)
@@ -277,53 +290,57 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
                                     .addGap(0, 0, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(fieldBank, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(fieldPaymentReason, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(fieldAmount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnMakeTransaction, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(btnMakeTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPaymentReason)
+                                .addComponent(lblAmount))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(fieldPaymentReason, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fieldAmount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblChooseAcc)
                         .addGap(27, 27, 27)
                         .addComponent(comboChooseAcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblChooseAcc)
                     .addComponent(comboChooseAcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(spaneAccList, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spaneAccList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblAddressee)
-                            .addComponent(fieldAddressee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblIBAN)
-                            .addComponent(fieldIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldBank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblBank, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblAddressee)
+                    .addComponent(fieldAddressee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblIBAN)
+                    .addComponent(fieldIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPaymentReason)
                     .addComponent(fieldPaymentReason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAmount)
                     .addComponent(fieldAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(btnMakeTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Choose account combo box event handler.
+     *
+     * @param evt event's instance
+     */
     private void comboChooseAccItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboChooseAccItemStateChanged
         updateAccTable(comboChooseAcc.getSelectedIndex());
     }//GEN-LAST:event_comboChooseAccItemStateChanged
@@ -334,12 +351,10 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     private javax.swing.JComboBox comboChooseAcc;
     private javax.swing.JTextField fieldAddressee;
     private javax.swing.JTextField fieldAmount;
-    private javax.swing.JTextField fieldBank;
     private javax.swing.JTextField fieldIBAN;
     private javax.swing.JTextField fieldPaymentReason;
     private javax.swing.JLabel lblAddressee;
     private javax.swing.JLabel lblAmount;
-    private javax.swing.JLabel lblBank;
     private javax.swing.JLabel lblChooseAcc;
     private javax.swing.JLabel lblIBAN;
     private javax.swing.JLabel lblPaymentReason;
