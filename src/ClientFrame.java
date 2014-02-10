@@ -34,6 +34,7 @@ public class ClientFrame extends javax.swing.JFrame {
         addPropertyChangeListener(currencyPanel);
         addPropertyChangeListener(userProfilePanel);
         addPropertyChangeListener(accountBalancePanel);
+        addPropertyChangeListener(transactionsInfoPanel);
 
         // Fire property change events so the listeners can update their UI state.
         firePropertyChange("currentUser", currentUser, user);
@@ -44,11 +45,11 @@ public class ClientFrame extends javax.swing.JFrame {
         this.currencyData = currency;
         this.client = client;
     }
-
+    
     public User getCurrentUser() {
         return currentUser;
     }
-
+    
     public SSLClient getClient() {
         return client;
     }
@@ -64,11 +65,7 @@ public class ClientFrame extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         accountBalancePanel = new AccountBalancePanel();
-        pnlPayments = new javax.swing.JPanel();
-        cBoxPayments = new javax.swing.JComboBox();
-        lblChooseAcc = new javax.swing.JLabel();
-        scrollPayments = new javax.swing.JScrollPane();
-        tblPayments = new javax.swing.JTable();
+        transactionsInfoPanel = new TransactionsInfoPanel();
         pnlChangePass = new javax.swing.JPanel();
         lblOldPass = new javax.swing.JLabel();
         lblNewPass = new javax.swing.JLabel();
@@ -103,77 +100,7 @@ public class ClientFrame extends javax.swing.JFrame {
         MainPanel.setPreferredSize(new java.awt.Dimension(804, 688));
         MainPanel.setLayout(new java.awt.CardLayout());
         MainPanel.add(accountBalancePanel, "card2");
-
-        pnlPayments.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Движение по сметки", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(133, 174, 215))); // NOI18N
-        pnlPayments.setMaximumSize(new java.awt.Dimension(804, 680));
-        pnlPayments.setMinimumSize(new java.awt.Dimension(804, 680));
-        pnlPayments.setOpaque(false);
-        pnlPayments.setPreferredSize(new java.awt.Dimension(804, 680));
-
-        cBoxPayments.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "9867986986", "9869867989", "9089456085" }));
-
-        lblChooseAcc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblChooseAcc.setText("Избери сметка");
-
-        tblPayments.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"2013-11-20",  new Float(400.0), "Захранване на сметка", "Иван Иванов"},
-                {"2013-11-21",  new Float(200.0), "АлаБала1CDF", "Bank of America"}
-            },
-            new String [] {
-                "Дата", "Сума", "Основание", "Наредител/Получател"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        scrollPayments.setViewportView(tblPayments);
-        if (tblPayments.getColumnModel().getColumnCount() > 0) {
-            tblPayments.getColumnModel().getColumn(0).setResizable(false);
-            tblPayments.getColumnModel().getColumn(1).setResizable(false);
-            tblPayments.getColumnModel().getColumn(2).setResizable(false);
-            tblPayments.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        javax.swing.GroupLayout pnlPaymentsLayout = new javax.swing.GroupLayout(pnlPayments);
-        pnlPayments.setLayout(pnlPaymentsLayout);
-        pnlPaymentsLayout.setHorizontalGroup(
-            pnlPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPaymentsLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblChooseAcc)
-                .addGap(18, 18, 18)
-                .addComponent(cBoxPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlPaymentsLayout.createSequentialGroup()
-                .addComponent(scrollPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
-        pnlPaymentsLayout.setVerticalGroup(
-            pnlPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPaymentsLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(pnlPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblChooseAcc)
-                    .addComponent(cBoxPayments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPayments, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        MainPanel.add(pnlPayments, "card3");
+        MainPanel.add(transactionsInfoPanel, "card3");
 
         pnlChangePass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Смяна на парола", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(96, 151, 205))); // NOI18N
         pnlChangePass.setMaximumSize(new java.awt.Dimension(804, 680));
@@ -576,9 +503,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnSavePass;
     private javax.swing.JButton btnTransactions;
     private javax.swing.JButton btnUserProfile;
-    private javax.swing.JComboBox cBoxPayments;
     private CurrencyPanel currencyPanel;
-    private javax.swing.JLabel lblChooseAcc;
     private javax.swing.JLabel lblNewPass;
     private javax.swing.JLabel lblNewPassConfirm;
     private javax.swing.JLabel lblOldPass;
@@ -586,9 +511,7 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfieldNewPassConfirm;
     private javax.swing.JPasswordField pfieldOldPass;
     private javax.swing.JPanel pnlChangePass;
-    private javax.swing.JPanel pnlPayments;
-    private javax.swing.JScrollPane scrollPayments;
-    private javax.swing.JTable tblPayments;
+    private TransactionsInfoPanel transactionsInfoPanel;
     private TransactionsPanel transactionsPanel;
     private UserProfilePanel userProfilePanel;
     // End of variables declaration//GEN-END:variables
