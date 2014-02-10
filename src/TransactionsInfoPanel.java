@@ -1,4 +1,5 @@
 
+import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
@@ -30,10 +31,11 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
     public TransactionsInfoPanel() {
         initComponents();
     }
-    
+
     /**
      * Converts a given Accounts array to ArrayList for internal use.
      * Initializes the transactions map.
+     *
      * @param accList Accounts array
      */
     public void setAccountsList(Accounts[] accList) {
@@ -47,9 +49,10 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             }
         }
     }
-    
+
     /**
      * Splits transactions by account for internal use.
+     *
      * @param trList Transactions array
      */
     public void setTransactionsMap(Transactions[] trList) {
@@ -61,9 +64,11 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             }
         }
     }
-    
+
     /**
-     * Used to update component's UI state when the main frame fires a property change event.
+     * Used to update component's UI state when the main frame fires a property
+     * change event.
+     *
      * @param pce the change event's instance
      */
     @Override
@@ -92,6 +97,7 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
 
     /**
      * Populates transactions table with transactions for given account.
+     *
      * @param accIBAN IBAN of the account
      */
     private void populateTrInfoTable(String accIBAN) {
@@ -102,6 +108,7 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             model.getDataVector().removeAllElements();
         }
 
+        int i = 0;
         for (Transactions tr : transactionsMap.get(accIBAN)) {
             // Parse UNIX timestamp.
             long timestamp = Integer.parseInt(tr.getTimestamp());
@@ -118,6 +125,13 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
                 tr.getSubject(),
                 tr.getReceiver()
             });
+        }
+
+        // If more than one accounts, update table's vertical size.
+        if (i > 1) {
+            Dimension curSize = tblTransactionsInfo.getSize();
+            curSize.height *= i;
+            tblTransactionsInfo.setPreferredSize(curSize);
         }
     }
 
@@ -144,23 +158,25 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         lblChooseAccount.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblChooseAccount.setText("Изберете сметка");
 
+        comboChooseAccount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboChooseAccount.setEnabled(false);
-        comboChooseAccount.setMaximumSize(new java.awt.Dimension(200, 24));
-        comboChooseAccount.setMinimumSize(new java.awt.Dimension(200, 24));
-        comboChooseAccount.setPreferredSize(new java.awt.Dimension(200, 24));
+        comboChooseAccount.setMaximumSize(new java.awt.Dimension(200, 25));
+        comboChooseAccount.setMinimumSize(new java.awt.Dimension(200, 25));
+        comboChooseAccount.setPreferredSize(new java.awt.Dimension(200, 25));
 
         scrollTransactionsInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         scrollTransactionsInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollTransactionsInfo.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollTransactionsInfo.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         scrollTransactionsInfo.setHorizontalScrollBar(null);
-        scrollTransactionsInfo.setMaximumSize(new java.awt.Dimension(760, 480));
-        scrollTransactionsInfo.setMinimumSize(new java.awt.Dimension(760, 480));
+        scrollTransactionsInfo.setMaximumSize(new java.awt.Dimension(700, 480));
+        scrollTransactionsInfo.setMinimumSize(new java.awt.Dimension(700, 480));
         scrollTransactionsInfo.setOpaque(false);
         scrollTransactionsInfo.getViewport().setOpaque(false);
-        scrollTransactionsInfo.setPreferredSize(new java.awt.Dimension(760, 480));
+        scrollTransactionsInfo.setPreferredSize(new java.awt.Dimension(700, 480));
 
         tblTransactionsInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblTransactionsInfo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblTransactionsInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -177,50 +193,54 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
                 return canEdit [columnIndex];
             }
         });
-        tblTransactionsInfo.setToolTipText("Информация за банкови сметки");
+        tblTransactionsInfo.setToolTipText("Информация за движение по сметка");
         tblTransactionsInfo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblTransactionsInfo.setGridColor(new java.awt.Color(0, 153, 153));
-        tblTransactionsInfo.setMaximumSize(new java.awt.Dimension(760, 480));
-        tblTransactionsInfo.setMinimumSize(new java.awt.Dimension(760, 0));
-        tblTransactionsInfo.setPreferredSize(new java.awt.Dimension(760, 24));
+        tblTransactionsInfo.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblTransactionsInfo.setMaximumSize(new java.awt.Dimension(700, 480));
+        tblTransactionsInfo.setMinimumSize(new java.awt.Dimension(700, 0));
+        tblTransactionsInfo.setPreferredSize(new java.awt.Dimension(700, 24));
         tblTransactionsInfo.setRowHeight(24);
+        tblTransactionsInfo.setRowSelectionAllowed(false);
         tblTransactionsInfo.getTableHeader().setResizingAllowed(false);
         tblTransactionsInfo.getTableHeader().setReorderingAllowed(false);
+        tblTransactionsInfo.getTableHeader().setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         scrollTransactionsInfo.setViewportView(tblTransactionsInfo);
         if (tblTransactionsInfo.getColumnModel().getColumnCount() > 0) {
             tblTransactionsInfo.getColumnModel().getColumn(0).setResizable(false);
+            tblTransactionsInfo.getColumnModel().getColumn(0).setPreferredWidth(100);
             tblTransactionsInfo.getColumnModel().getColumn(1).setResizable(false);
+            tblTransactionsInfo.getColumnModel().getColumn(1).setPreferredWidth(75);
             tblTransactionsInfo.getColumnModel().getColumn(2).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(2).setPreferredWidth(30);
+            tblTransactionsInfo.getColumnModel().getColumn(2).setPreferredWidth(75);
             tblTransactionsInfo.getColumnModel().getColumn(3).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(3).setPreferredWidth(250);
+            tblTransactionsInfo.getColumnModel().getColumn(3).setPreferredWidth(280);
             tblTransactionsInfo.getColumnModel().getColumn(4).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(4).setPreferredWidth(110);
+            tblTransactionsInfo.getColumnModel().getColumn(4).setPreferredWidth(170);
         }
+        tblTransactionsInfo.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTransactionsInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addComponent(lblChooseAccount)
                         .addGap(18, 18, 18)
-                        .addComponent(comboChooseAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6))
+                        .addComponent(comboChooseAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollTransactionsInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblChooseAccount)
                     .addComponent(comboChooseAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(scrollTransactionsInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(127, Short.MAX_VALUE))
         );
