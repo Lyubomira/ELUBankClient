@@ -105,11 +105,18 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         // Get table model.
         DefaultTableModel model = (DefaultTableModel) tblTransactionsInfo.getModel();
 
-        // Remove all rows.
+        // Remove all rows (if any).
         if (model.getRowCount() > 0) {
             model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
         }
 
+        // Reset preffered height to one row.
+        Dimension tblSize = tblTransactionsInfo.getSize();
+        tblSize.height = tblTransactionsInfo.getRowHeight();
+        tblTransactionsInfo.setPreferredSize(tblSize);
+
+        // Fill the table.
         int i = 0;
         for (Transactions tr : transactionsMap.get(accIBAN)) {
             // Parse UNIX timestamp.
@@ -141,16 +148,16 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             i++;
         }
 
-        // If more than one row, update table's vertical size.
+        // If more than one row, update table's height.
         if (i > 1) {
-            // Get current size (preffered size is set to one row by default).
-            Dimension curSize = tblTransactionsInfo.getSize();
+            // Get current size (default height is set to one row).
+            tblSize = tblTransactionsInfo.getSize();
 
-            // Multiply by the number of rows (e.g. 24 * 2).
-            curSize.height *= i;
+            // Multiply default table height by the number of rows
+            tblSize.height *= i;
 
-            // Set new size.
-            tblTransactionsInfo.setPreferredSize(curSize);
+            // Set the new size.
+            tblTransactionsInfo.setPreferredSize(tblSize);
         }
     }
 
@@ -192,6 +199,8 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         scrollTransactionsInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollTransactionsInfo.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollTransactionsInfo.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        scrollTransactionsInfo.setAutoscrolls(true);
+        scrollTransactionsInfo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         scrollTransactionsInfo.setHorizontalScrollBar(null);
         scrollTransactionsInfo.setMaximumSize(new java.awt.Dimension(700, 480));
         scrollTransactionsInfo.setMinimumSize(new java.awt.Dimension(700, 480));
@@ -220,9 +229,9 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         tblTransactionsInfo.setToolTipText("Информация за движение по сметка");
         tblTransactionsInfo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblTransactionsInfo.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        tblTransactionsInfo.setMaximumSize(new java.awt.Dimension(700, 480));
-        tblTransactionsInfo.setMinimumSize(new java.awt.Dimension(700, 0));
-        tblTransactionsInfo.setPreferredSize(new java.awt.Dimension(700, 24));
+        tblTransactionsInfo.setMaximumSize(new java.awt.Dimension(696, 480));
+        tblTransactionsInfo.setMinimumSize(new java.awt.Dimension(696, 0));
+        tblTransactionsInfo.setPreferredSize(new java.awt.Dimension(696, 24));
         tblTransactionsInfo.setRowHeight(24);
         tblTransactionsInfo.setRowSelectionAllowed(false);
         tblTransactionsInfo.getTableHeader().setResizingAllowed(false);
@@ -239,7 +248,7 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             tblTransactionsInfo.getColumnModel().getColumn(3).setResizable(false);
             tblTransactionsInfo.getColumnModel().getColumn(3).setPreferredWidth(280);
             tblTransactionsInfo.getColumnModel().getColumn(4).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(4).setPreferredWidth(170);
+            tblTransactionsInfo.getColumnModel().getColumn(4).setPreferredWidth(176);
         }
         tblTransactionsInfo.getAccessibleContext().setAccessibleDescription("");
 

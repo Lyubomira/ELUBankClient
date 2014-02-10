@@ -58,9 +58,9 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
                 i++;
             }
 
-            // If more than one row, update table's vertical size.
+            // If more than one row, update table's height.
             if (i > 1) {
-                // Get current size (preffered size is set to one row by default).
+                // Get current size (preffered height is one row by default).
                 Dimension curSize = tblAccBallance.getSize();
 
                 // Multiply by the number of rows (e.g. 24 * 2).
@@ -95,6 +95,7 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
         scrollAccBallance.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollAccBallance.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollAccBallance.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        scrollAccBallance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         scrollAccBallance.setHorizontalScrollBar(null);
         scrollAccBallance.setMaximumSize(new java.awt.Dimension(700, 480));
         scrollAccBallance.setMinimumSize(new java.awt.Dimension(700, 480));
