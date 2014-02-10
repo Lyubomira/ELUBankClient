@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.TimeZone;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,14 +15,14 @@ import javax.swing.table.DefaultTableModel;
 public class TransactionsInfoPanel extends javax.swing.JPanel implements PropertyChangeListener {
 
     /**
-     * Contains user's accounts.
+     * List containing user accounts.
      */
     private final ArrayList<Accounts> accountList = new ArrayList<>();
 
     /**
      * Contains user's transactions, grouped by account number.
      */
-    private Map<String, ArrayList<Transactions>> transactionsMap = new HashMap<>();
+    private HashMap<String, ArrayList<Transactions>> transactionsMap = new HashMap<>();
 
     /**
      * Creates new form TransactionsInfoPanel
@@ -31,11 +30,12 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
     public TransactionsInfoPanel() {
         initComponents();
     }
-
-    public Accounts[] getAccountsList() {
-        return accountList.toArray(new Accounts[accountList.size()]);
-    }
-
+    
+    /**
+     * Converts a given Accounts array to ArrayList for internal use.
+     * Initializes the transactions map.
+     * @param accList Accounts array
+     */
     public void setAccountsList(Accounts[] accList) {
         for (Accounts acc : accList) {
             // Add account to internal accounts list.
@@ -47,7 +47,11 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             }
         }
     }
-
+    
+    /**
+     * Splits transactions by account for internal use.
+     * @param trList Transactions array
+     */
     public void setTransactionsMap(Transactions[] trList) {
         for (String accIBAN : transactionsMap.keySet()) {
             for (Transactions tr : trList) {
@@ -57,7 +61,11 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             }
         }
     }
-
+    
+    /**
+     * Used to update component's UI state when the main frame fires a property change event.
+     * @param pce the change event's instance
+     */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
@@ -82,6 +90,10 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         }
     }
 
+    /**
+     * Populates transactions table with transactions for given account.
+     * @param accIBAN IBAN of the account
+     */
     private void populateTrInfoTable(String accIBAN) {
         DefaultTableModel model = (DefaultTableModel) tblTransactionsInfo.getModel();
 

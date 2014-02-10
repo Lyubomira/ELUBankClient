@@ -23,6 +23,9 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
      */
     private final ArrayList<Accounts> accountList = new ArrayList<>();
 
+    /**
+     * Creates new form TransactionsPanel
+     */
     public TransactionsPanel() {
         initComponents();
         
@@ -31,7 +34,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         addAncestorListener(new AncestorListener() {
             @Override
             public void ancestorAdded(AncestorEvent event) {
-                if (((TransactionsPanel) event.getAncestor()).getAccountsList().length == 0) {
+                if (((TransactionsPanel) event.getAncestor()).getAccountList().length == 0) {
                     JOptionPane.showMessageDialog(mainFrame, "Потребителят няма открити разплащателни сметки.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
                 }
             }
@@ -48,11 +51,19 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         });
     }
 
-    public Accounts[] getAccountsList() {
+    /**
+     * Returns the account list as array.
+     * @return array with Accounts
+     */
+    public Accounts[] getAccountList() {
         return accountList.toArray(new Accounts[accountList.size()]);
     }
 
-    public void setAccountsList(Accounts[] accList) {
+    /**
+     * Populates the internal ArrayList with checking accounts only.
+     * @param accList array with Accounts
+     */
+    public void setAccountList(Accounts[] accList) {
         // Filter only checking accounts.
         for (Accounts account : accList) {
             if (account.getAccountType().equalsIgnoreCase("разплащателна сметка")) {
@@ -61,6 +72,10 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         }
     }
 
+    /**
+     * Used to update component's UI state when the main frame fires a property change event.
+     * @param pce the change event's instance
+     */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
@@ -68,7 +83,7 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
             mainFrame = (ClientFrame) pce.getSource();
             
             // Set accounts list.
-            setAccountsList(((User) pce.getNewValue()).getAccounts());
+            setAccountList(((User) pce.getNewValue()).getAccounts());
 
             if (!accountList.isEmpty()) {
                 // Populate and enable account combo box.
@@ -94,10 +109,8 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     }
 
     /**
-     * Updates the account info table
-     *
-     * @param accIndex - Accounts object index in @{link #accountList
-     * accountList}.
+     * Updates the account info table.
+     * @param accIndex - Accounts object index in @{link #accountList}
      */
     private void updateAccTable(int accIndex) {
         Accounts selAccount = accountList.get(accIndex);

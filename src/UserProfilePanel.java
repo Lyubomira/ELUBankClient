@@ -20,12 +20,16 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
     private User user;
 
     /**
-     * Creates new form UserProfilePanel.
+     * Creates new form UserProfilePanel
      */
     public UserProfilePanel() {
         initComponents();
     }
 
+    /**
+     * Used to update component's UI state when the main frame fires a property change event.
+     * @param pce the change event's instance
+     */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
@@ -45,7 +49,7 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
     }
 
     /**
-     * Updates user profile information server-side.
+     * Updates user profile information on server-side.
      */
     private void updateUserInfo() {
         if (fieldPhone.getText().isEmpty() || fieldAddress.getText().isEmpty() || fieldMail.getText().isEmpty()) {

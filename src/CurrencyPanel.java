@@ -9,7 +9,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeListener {
 
+    /**
+     * A map with currency data. The keys are currency codes.
+     */
     private HashMap<String, Currency> currencies = new HashMap();
+    
+    /**
+     * Which currencies to display.
+     */
     private String[] displayed = {"EUR", "USD", "GBP"};
     
     /**
@@ -20,8 +27,8 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
     }
     
     /**
-     * Transforms currencies array to a HasMap for easier access.
-     * @param currencies - array containing all currencies.
+     * Transforms currencies array to a HasMap for easier internal access.
+     * @param currencies array containing all currency data
      */
     public void setCurrencies(Currency[] currencies) {
         if (currencies != null && currencies.length > 0) {
@@ -33,12 +40,16 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
     
     /**
      * Sets which currencies should be displayed.
-     * @param codes - array with currency codes e.g. "USD"
+     * @param codes array with currency codes e.g. "USD", "EUR"
      */
     public void setDisplayed(String[] codes) {
         this.displayed = codes;
     }
     
+    /**
+     * Used to update component's UI state when the main frame fires a property change event.
+     * @param pce the change event's instance
+     */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currencyData")) {

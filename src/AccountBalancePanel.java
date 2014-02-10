@@ -16,6 +16,10 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
         initComponents();
     }
 
+    /**
+     * Used to update component's UI state when the main frame fires a property change event.
+     * @param pce the change event's instance
+     */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
