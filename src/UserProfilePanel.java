@@ -15,7 +15,7 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
     private ClientFrame mainFrame;
 
     /**
-     * Reference to currently logged-in user.
+     * Reference to the currently logged-in user.
      */
     private User user;
 
@@ -27,19 +27,28 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property change event.
-     * @param pce the change event's instance
+     * Used to update component's UI state when the main frame fires a property
+     * change event.
+     *
+     * @param pce event's instance
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
+            // Get current user from the event object.
             user = (User) pce.getNewValue();
+
+            // Get current ClientFrame instance from the event object.
             mainFrame = (ClientFrame) pce.getSource();
         }
 
+        // Update all required UI elements.
         updateUIState();
     }
 
+    /**
+     * Updates UI elements values.
+     */
     private void updateUIState() {
         fieldMail.setText(user.getEmail());
         fieldPhone.setText(user.getPhone());
@@ -52,6 +61,7 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
      * Updates user profile information on server-side.
      */
     private void updateUserInfo() {
+        // Basic validation - ensure that the fields are not empty.
         if (fieldPhone.getText().isEmpty() || fieldAddress.getText().isEmpty() || fieldMail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(mainFrame, "Полетата не може да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
@@ -59,17 +69,17 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
 
         // Make new request object.
         User request = new User();
-        
-        // Fill new info.
+
+        // Fill it with the new information from the UI elements.
         request.setEmail(fieldMail.getText());
         request.setPhone(fieldPhone.getText());
         request.setAddress(fieldAddress.getText());
         request.setCity(fieldCity.getText());
         request.setCountry((String) comboCountry.getSelectedItem());
-        
+
         // Add user PIN so it can be identified server-side.
         request.setEgn(user.getEgn());
-        
+
         // Set request type.
         request.setRequest("update");
 
@@ -77,16 +87,20 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
         User response = (User) mainFrame.getClient().runClient(request);
 
         if (response.getResponse() == null) {
-            // Update current user with the new info.
+            // Operation was successful.
+            // Update current user instance with the new information.
             user.setEmail(response.getEmail());
             user.setPhone(response.getPhone());
             user.setAddress(response.getAddress());
             user.setCity(response.getCity());
             user.setCountry(response.getCountry());
+
             JOptionPane.showMessageDialog(mainFrame, "Промените са запазени успешно.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            // Revert to old values.
+            // Some error occured in the server application.
+            // Revert UI elements to the old values.
             updateUIState();
+
             JOptionPane.showMessageDialog(mainFrame, "Грешка при запазване на промените: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -222,6 +236,11 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Save changes button event handler.
+     *
+     * @param evt event's instance
+     */
     private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
         updateUserInfo();
     }//GEN-LAST:event_btnSaveChangesActionPerformed

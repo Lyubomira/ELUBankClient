@@ -18,15 +18,18 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property change event.
-     * @param pce the change event's instance
+     * Used to update component's UI state when the main frame fires a property
+     * change event.
+     *
+     * @param pce event's instance
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
+            // Get current user from the event object.
             User user = (User) pce.getNewValue();
 
-            // Set holder's name.
+            // Set holder's name (current value + first name + last name.
             StringBuilder sb = new StringBuilder(lblHolderName.getText());
             sb.append(" ");
             sb.append(user.getName());
@@ -34,10 +37,13 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
             sb.append(user.getFamilyname());
             lblHolderName.setText(sb.toString());
 
-            // Fill accounts table.
+            // Get all user accounts.
             Accounts[] accounts = user.getAccounts();
+
+            // Get table model instance.
             DefaultTableModel model = (DefaultTableModel) tblAccBallance.getModel();
-            
+
+            // Populate the table.
             int i = 0;
             for (Accounts acc : accounts) {
                 model.addRow(new Object[]{
@@ -47,14 +53,20 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
                     acc.getAmount()
 
                 });
-                
+
+                // Increment row counter.
                 i++;
             }
-            
-            // If more than one accounts, update table's vertical size.
+
+            // If more than one row, update table's vertical size.
             if (i > 1) {
+                // Get current size (preffered size is set to one row by default).
                 Dimension curSize = tblAccBallance.getSize();
+
+                // Multiply by the number of rows (e.g. 24 * 2).
                 curSize.height *= i;
+
+                // Set new size.
                 tblAccBallance.setPreferredSize(curSize);
             }
         }

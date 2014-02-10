@@ -43,7 +43,7 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             // Add account to internal accounts list.
             accountList.add(acc);
 
-            // Initialze an empty transactions list for this account.
+            // Initialize an empty transactions list for this account.
             if (!transactionsMap.containsKey(acc.getIBAN())) {
                 transactionsMap.put(acc.getIBAN(), new ArrayList<Transactions>());
             }
@@ -69,11 +69,12 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
      * Used to update component's UI state when the main frame fires a property
      * change event.
      *
-     * @param pce the change event's instance
+     * @param pce event's instance
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if (pce.getPropertyName().equals("currentUser")) {
+            // Get current user from the event object.
             User user = (User) pce.getNewValue();
 
             // Set accounts list.
@@ -101,6 +102,7 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
      * @param accIBAN IBAN of the account
      */
     private void populateTrInfoTable(String accIBAN) {
+        // Get table model.
         DefaultTableModel model = (DefaultTableModel) tblTransactionsInfo.getModel();
 
         // Remove all rows.
@@ -112,9 +114,18 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         for (Transactions tr : transactionsMap.get(accIBAN)) {
             // Parse UNIX timestamp.
             long timestamp = Integer.parseInt(tr.getTimestamp());
+
+            // Create new date from the timestamp.
+            // Multiply by 1000 because Date's constructor expects milliseconds.
             Date date = new Date(timestamp * 1000L);
+
+            // Create new SimpleDateFormat object.
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            // Set the right timezone.
             sdf.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+
+            // Get formatted date as sting.
             String formattedDate = sdf.format(date);
 
             // Add row.
@@ -125,12 +136,20 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
                 tr.getSubject(),
                 tr.getReceiver()
             });
+
+            // Increment row counter.
+            i++;
         }
 
-        // If more than one accounts, update table's vertical size.
+        // If more than one row, update table's vertical size.
         if (i > 1) {
+            // Get current size (preffered size is set to one row by default).
             Dimension curSize = tblTransactionsInfo.getSize();
+
+            // Multiply by the number of rows (e.g. 24 * 2).
             curSize.height *= i;
+
+            // Set new size.
             tblTransactionsInfo.setPreferredSize(curSize);
         }
     }
@@ -163,6 +182,11 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         comboChooseAccount.setMaximumSize(new java.awt.Dimension(200, 25));
         comboChooseAccount.setMinimumSize(new java.awt.Dimension(200, 25));
         comboChooseAccount.setPreferredSize(new java.awt.Dimension(200, 25));
+        comboChooseAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboChooseAccountActionPerformed(evt);
+            }
+        });
 
         scrollTransactionsInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         scrollTransactionsInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -245,6 +269,15 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
                 .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * Choose account combo box event handler.
+     *
+     * @param evt event's instance
+     */
+    private void comboChooseAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboChooseAccountActionPerformed
+        populateTrInfoTable((String) comboChooseAccount.getSelectedItem());
+    }//GEN-LAST:event_comboChooseAccountActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
