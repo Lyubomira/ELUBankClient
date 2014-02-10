@@ -3,7 +3,6 @@ import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,9 +13,9 @@ public class ClientFrame extends javax.swing.JFrame {
     /**
      * Creates new form ClientFrame
      *
-     * @param user - Current user instance.
-     * @param currency - Current currency instance.
-     * @param client - Current SSL client instance.
+     * @param user Current user instance.
+     * @param currency Current currency instance.
+     * @param client Current SSL client instance.
      */
     public ClientFrame(User user, Currency currency, SSLClient client) {
         // Set background image.
@@ -30,11 +29,12 @@ public class ClientFrame extends javax.swing.JFrame {
         initComponents();
 
         // Add all required components as listeners of the ClientFrame.
-        addPropertyChangeListener(transactionsPanel);
         addPropertyChangeListener(currencyPanel);
-        addPropertyChangeListener(userProfilePanel);
         addPropertyChangeListener(accountBalancePanel);
         addPropertyChangeListener(transactionsInfoPanel);
+        addPropertyChangeListener(changePassPanel);
+        addPropertyChangeListener(userProfilePanel);
+        addPropertyChangeListener(transactionsPanel);
 
         // Fire property change events so the listeners can update their UI state.
         firePropertyChange("currentUser", currentUser, user);
@@ -45,11 +45,21 @@ public class ClientFrame extends javax.swing.JFrame {
         this.currencyData = currency;
         this.client = client;
     }
-    
+
+    /**
+     * Returns current user instance.
+     *
+     * @return User object
+     */
     public User getCurrentUser() {
         return currentUser;
     }
-    
+
+    /**
+     * Returns current SSL client instance
+     *
+     * @return SSLClient object
+     */
     public SSLClient getClient() {
         return client;
     }
@@ -66,14 +76,7 @@ public class ClientFrame extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         accountBalancePanel = new AccountBalancePanel();
         transactionsInfoPanel = new TransactionsInfoPanel();
-        pnlChangePass = new javax.swing.JPanel();
-        lblOldPass = new javax.swing.JLabel();
-        lblNewPass = new javax.swing.JLabel();
-        lblNewPassConfirm = new javax.swing.JLabel();
-        btnSavePass = new javax.swing.JButton();
-        pfieldOldPass = new javax.swing.JPasswordField();
-        pfieldNewPass = new javax.swing.JPasswordField();
-        pfieldNewPassConfirm = new javax.swing.JPasswordField();
+        changePassPanel = new ChangePassPanel();
         userProfilePanel = new UserProfilePanel();
         transactionsPanel = new TransactionsPanel();
         MenuPanel = new javax.swing.JPanel();
@@ -101,84 +104,7 @@ public class ClientFrame extends javax.swing.JFrame {
         MainPanel.setLayout(new java.awt.CardLayout());
         MainPanel.add(accountBalancePanel, "card2");
         MainPanel.add(transactionsInfoPanel, "card3");
-
-        pnlChangePass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Смяна на парола", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(96, 151, 205))); // NOI18N
-        pnlChangePass.setMaximumSize(new java.awt.Dimension(804, 680));
-        pnlChangePass.setMinimumSize(new java.awt.Dimension(804, 680));
-        pnlChangePass.setOpaque(false);
-        pnlChangePass.setPreferredSize(new java.awt.Dimension(804, 680));
-
-        lblOldPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblOldPass.setText("Стара парола");
-
-        lblNewPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblNewPass.setText("Нова парола");
-
-        lblNewPassConfirm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblNewPassConfirm.setText("Потвърди нова парола");
-
-        btnSavePass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSavePass.setText("Промени");
-        btnSavePass.setMaximumSize(new java.awt.Dimension(140, 32));
-        btnSavePass.setMinimumSize(new java.awt.Dimension(140, 32));
-        btnSavePass.setPreferredSize(new java.awt.Dimension(140, 32));
-        btnSavePass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSavePassActionPerformed(evt);
-            }
-        });
-
-        pfieldOldPass.setMaximumSize(new java.awt.Dimension(140, 24));
-        pfieldOldPass.setMinimumSize(new java.awt.Dimension(140, 24));
-        pfieldOldPass.setPreferredSize(new java.awt.Dimension(140, 24));
-
-        pfieldNewPass.setMaximumSize(new java.awt.Dimension(140, 24));
-        pfieldNewPass.setMinimumSize(new java.awt.Dimension(140, 24));
-        pfieldNewPass.setPreferredSize(new java.awt.Dimension(140, 24));
-
-        pfieldNewPassConfirm.setMaximumSize(new java.awt.Dimension(140, 24));
-        pfieldNewPassConfirm.setMinimumSize(new java.awt.Dimension(140, 24));
-        pfieldNewPassConfirm.setPreferredSize(new java.awt.Dimension(140, 24));
-
-        javax.swing.GroupLayout pnlChangePassLayout = new javax.swing.GroupLayout(pnlChangePass);
-        pnlChangePass.setLayout(pnlChangePassLayout);
-        pnlChangePassLayout.setHorizontalGroup(
-            pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlChangePassLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblOldPass)
-                    .addComponent(lblNewPass)
-                    .addComponent(lblNewPassConfirm))
-                .addGap(18, 18, 18)
-                .addGroup(pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(pfieldNewPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pfieldNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pfieldOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSavePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(434, Short.MAX_VALUE))
-        );
-        pnlChangePassLayout.setVerticalGroup(
-            pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlChangePassLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblOldPass)
-                    .addComponent(pfieldOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNewPass)
-                    .addComponent(pfieldNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(pnlChangePassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNewPassConfirm)
-                    .addComponent(pfieldNewPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btnSavePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(486, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(pnlChangePass, "card4");
+        MainPanel.add(changePassPanel, "card4");
         MainPanel.add(userProfilePanel, "card5");
         MainPanel.add(transactionsPanel, "card6");
 
@@ -334,54 +260,6 @@ public class ClientFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSavePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePassActionPerformed
-        // Check if old password field is empty.
-        if (pfieldOldPass.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(this, "Полето 'Стара парола' не може да бъде празно!", "Грешка", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Check if old password is valid.
-        User request = new User();
-        request.setRequest("login");
-        request.setUsername(currentUser.getUsername());
-        request.setPassword(String.valueOf(pfieldOldPass.getPassword()));
-        User response = (User) client.runClient(request);
-        if (!response.getLoggedIn()) {
-            JOptionPane.showMessageDialog(this, "Моля, въведете валидна текуща парола!", "Грешка", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Ensure new pass and confirm new pass are not empty.
-        if (pfieldNewPass.getPassword().length == 0 || pfieldNewPassConfirm.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(this, "Полетата 'Нова парола' и 'Потвърди нова парола' не трябва да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Ensure new pass and confirm new pass match.
-        if (!String.valueOf(pfieldNewPass.getPassword()).equals(String.valueOf(pfieldNewPassConfirm.getPassword()))) {
-            JOptionPane.showMessageDialog(this, "Данните в полетата 'Нова парола' и 'Потвърди нова парола' трябва да съвпадат!", "Грешка", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // TODO: Password requirments (e.g. mininum length etc.)?
-        // At last, we are ready to go!
-        request.setRequest("updatePass");
-        request.setUsername(currentUser.getUsername());
-        request.setPassword(String.valueOf(pfieldNewPass.getPassword()));
-        response = (User) client.runClient(request);
-        if (response.getResponse() == null) {
-            JOptionPane.showMessageDialog(this, "Промяната на паролата беше успешна.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Грешка при опит за промяна на парола: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
-        }
-
-        // Clear field values.
-        pfieldOldPass.setText(null);
-        pfieldNewPass.setText(null);
-        pfieldNewPassConfirm.setText(null);
-    }//GEN-LAST:event_btnSavePassActionPerformed
-
     private void btnTransactionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTransactionsKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             btnLogout.doClick();
@@ -481,13 +359,13 @@ public class ClientFrame extends javax.swing.JFrame {
     /**
      * Shows the given panel in the main panel.
      *
-     * @param panelName - Panel name as set in CardName property.
+     * @param panelName Panel name as set in CardName property.
      */
     private void changePanel(String panelName) {
         CardLayout mainPanelLayout = (CardLayout) (MainPanel.getLayout());
         mainPanelLayout.show(MainPanel, panelName);
     }
-    
+
     private User currentUser;
     private Currency currencyData;
     private SSLClient client;
@@ -500,17 +378,10 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnChangePass;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPayments;
-    private javax.swing.JButton btnSavePass;
     private javax.swing.JButton btnTransactions;
     private javax.swing.JButton btnUserProfile;
+    private ChangePassPanel changePassPanel;
     private CurrencyPanel currencyPanel;
-    private javax.swing.JLabel lblNewPass;
-    private javax.swing.JLabel lblNewPassConfirm;
-    private javax.swing.JLabel lblOldPass;
-    private javax.swing.JPasswordField pfieldNewPass;
-    private javax.swing.JPasswordField pfieldNewPassConfirm;
-    private javax.swing.JPasswordField pfieldOldPass;
-    private javax.swing.JPanel pnlChangePass;
     private TransactionsInfoPanel transactionsInfoPanel;
     private TransactionsPanel transactionsPanel;
     private UserProfilePanel userProfilePanel;
