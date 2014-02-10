@@ -1,4 +1,5 @@
 
+import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +37,8 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
             // Fill accounts table.
             Accounts[] accounts = user.getAccounts();
             DefaultTableModel model = (DefaultTableModel) tblAccBallance.getModel();
-
+            
+            int i = 0;
             for (Accounts acc : accounts) {
                 model.addRow(new Object[]{
                     acc.getAccountType(),
@@ -45,6 +47,15 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
                     acc.getAmount()
 
                 });
+                
+                i++;
+            }
+            
+            // If more than one accounts, update table's vertical size.
+            if (i > 1) {
+                Dimension curSize = tblAccBallance.getSize();
+                curSize.height *= i;
+                tblAccBallance.setPreferredSize(curSize);
             }
         }
     }
@@ -80,6 +91,7 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
         scrollAccBallance.setPreferredSize(new java.awt.Dimension(700, 480));
 
         tblAccBallance.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblAccBallance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblAccBallance.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -97,14 +109,15 @@ public class AccountBalancePanel extends javax.swing.JPanel implements PropertyC
             }
         });
         tblAccBallance.setToolTipText("Информация за банкови сметки");
-        tblAccBallance.setGridColor(new java.awt.Color(0, 153, 153));
-        tblAccBallance.setIntercellSpacing(new java.awt.Dimension(1, 1));
+        tblAccBallance.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblAccBallance.setMaximumSize(new java.awt.Dimension(700, 480));
         tblAccBallance.setMinimumSize(new java.awt.Dimension(700, 0));
         tblAccBallance.setPreferredSize(new java.awt.Dimension(700, 24));
         tblAccBallance.setRowHeight(24);
+        tblAccBallance.setRowSelectionAllowed(false);
         tblAccBallance.getTableHeader().setResizingAllowed(false);
         tblAccBallance.getTableHeader().setReorderingAllowed(false);
+        tblAccBallance.getTableHeader().setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         scrollAccBallance.setViewportView(tblAccBallance);
         if (tblAccBallance.getColumnModel().getColumnCount() > 0) {
             tblAccBallance.getColumnModel().getColumn(0).setResizable(false);

@@ -100,6 +100,9 @@
                 <BevelBorder/>
               </Border>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="&#x412;&#x438;&#x434; &#x441;&#x43c;&#x435;&#x442;&#x43a;&#x430;" type="java.lang.Object"/>
@@ -133,11 +136,8 @@
                 </Column>
               </TableColumnModel>
             </Property>
-            <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="0" type="rgb"/>
-            </Property>
             <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[1, 1]"/>
+              <Dimension value="[0, 0]"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[700, 480]"/>
@@ -149,10 +149,14 @@
               <Dimension value="[700, 24]"/>
             </Property>
             <Property name="rowHeight" type="int" value="24"/>
+            <Property name="rowSelectionAllowed" type="boolean" value="false"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="tblAccBallance.getTableHeader().setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 12)); // NOI18N"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
