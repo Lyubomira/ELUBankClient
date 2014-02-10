@@ -1,3 +1,4 @@
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -13,41 +14,61 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
      * A map with currency data. The keys are currency codes.
      */
     private HashMap<String, Currency> currencies = new HashMap();
-    
+
     /**
      * Which currencies to display.
      */
     private String[] displayed = {"EUR", "USD", "GBP"};
-    
+
+    /**
+     * Bid rate will be multiplied by this coefficient to get the ask rate.
+     */
+    private float askRateCoefficient = 1.05f;
+
     /**
      * Creates new form CurrencyPanel
      */
     public CurrencyPanel() {
         initComponents();
     }
-    
+
     /**
      * Transforms currencies array to a HasMap for easier internal access.
+     *
      * @param currencies array containing all currency data
      */
     public void setCurrencies(Currency[] currencies) {
         if (currencies != null && currencies.length > 0) {
-            for (Currency currency: currencies) {
+            for (Currency currency : currencies) {
                 this.currencies.put(currency.getCode(), currency);
             }
         }
     }
-    
+
     /**
      * Sets which currencies should be displayed.
+     *
      * @param codes array with currency codes e.g. "USD", "EUR"
      */
     public void setDisplayed(String[] codes) {
         this.displayed = codes;
     }
-    
+
     /**
-     * Used to update component's UI state when the main frame fires a property change event.
+     * Sets the value of the ask rate coefficient
+     *
+     * @param newCoefficient new coefficient value
+     */
+    public void setAskRateCoefficient(float newCoefficient) {
+        if (newCoefficient > 0) {
+            askRateCoefficient = newCoefficient;
+        }
+    }
+
+    /**
+     * Used to update component's UI state when the main frame fires a property
+     * change event.
+     *
      * @param pce the change event's instance
      */
     @Override
@@ -55,7 +76,7 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
         if (pce.getPropertyName().equals("currencyData")) {
             // Set currencies list.
             setCurrencies(((Currency) pce.getNewValue()).getAllCurrencies());
-            
+
             // Get currencies table model.
             DefaultTableModel model = (DefaultTableModel) currencyTable.getModel();
 
@@ -66,17 +87,20 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
 
             // Populate table model.
             Currency current;
+            int i = 0;
             for (String currencyCode : displayed) {
                 current = this.currencies.get(currencyCode);
+
+                // Add row.
                 model.addRow(new Object[]{
                     current.getCode(),
                     current.getRate(),
-                    current.getReverserate()
+                    (Float.parseFloat(current.getRate()) * askRateCoefficient)
                 });
             }
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
