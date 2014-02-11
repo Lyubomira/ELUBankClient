@@ -87,22 +87,23 @@ public class TransactionsPanel extends ClientFramePanel {
         setAccountList(user.getAccounts());
 
         if (!accountList.isEmpty()) {
-            // Ensure there are no listeners attached to account info combo box
-            // because removeAllItems() will trigger an action event.
+            // Ensure there are no listeners attached to choose account combo
+            // box because removeAllItems() will trigger an action event.
             for (ActionListener al: comboChooseAcc.getActionListeners()) {
                 comboChooseAcc.removeActionListener(al);
             }
             
-            // Remove all elements (if any) from account info combo box.
+            // Remove all elements (if any) from choose account combo box.
             comboChooseAcc.removeAllItems();
             
-            // Populate account info combo box with account IBANs.
+            // Populate choose account combo box with account IBANs.
             for (Accounts acc : accountList) {
                 comboChooseAcc.addItem(acc.getIBAN());
             }
             
             // Attach the action listener.
             comboChooseAcc.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent evt) {
                     comboChooseAccActionPerformed(evt);
                 }
