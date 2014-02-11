@@ -1,19 +1,17 @@
 
 import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.TimeZone;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Julia Protich
  */
-public class TransactionsInfoPanel extends javax.swing.JPanel implements PropertyChangeListener {
+public class TransactionsInfoPanel extends ClientFramePanel {
 
     /**
      * List containing user accounts.
@@ -66,33 +64,27 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property
-     * change event.
+     * Updates component state when main frame fires a property change event.
      *
-     * @param pce event's instance
+     * @param pce PropertyChangeEvent instance.
+     * @see ClientFramePanel#propertyChange
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
-        if (pce.getPropertyName().equals("currentUser")) {
-            // Get current user from the event object.
-            User user = (User) pce.getNewValue();
+        // Call parent class implementation.
+        super.propertyChange(pce);
 
-            // Set accounts list.
-            setAccountsList(user.getAccounts());
+        setAccountsList(user.getAccounts());
 
-            // Set transactions list.
-            setTransactionsMap(user.getTransactions());
+        // Set transactions list.
+        setTransactionsMap(user.getTransactions());
 
-            if (!accountList.isEmpty()) {
-                // Populate account selection combo box.
-                for (Accounts acc : accountList) {
-                    comboChooseAccount.addItem(acc.getIBAN());
-                }
-                comboChooseAccount.setEnabled(true);
-
-                // Populate transactions info table.
-                populateTrInfoTable((String) comboChooseAccount.getSelectedItem());
+        if (!accountList.isEmpty()) {
+            // Populate account selection combo box.
+            for (Accounts acc : accountList) {
+                comboChooseAccount.addItem(acc.getIBAN());
             }
+            comboChooseAccount.setEnabled(true);
         }
     }
 
@@ -102,6 +94,8 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
      * @param accIBAN IBAN of the account
      */
     private void populateTrInfoTable(String accIBAN) {
+        System.out.println("called");
+
         // Get table model.
         DefaultTableModel model = (DefaultTableModel) tblTransactionsInfo.getModel();
 
@@ -119,25 +113,26 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         // Fill the table.
         int i = 0;
         for (Transactions tr : transactionsMap.get(accIBAN)) {
-            // Parse UNIX timestamp.
-            long timestamp = Integer.parseInt(tr.getTimestamp());
+            // Reformat date.
+            String dateStr;
+            try {
+                // Create new SimpleDateFormat object with our new format.
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-            // Create new date from the timestamp.
-            // Multiply by 1000 because Date's constructor expects milliseconds.
-            Date date = new Date(timestamp * 1000L);
+                // Create a date object using SimpleDateFormat.parse() method.
+                Date date = dateFormat.parse(tr.getTimestamp());
 
-            // Create new SimpleDateFormat object.
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                // Convert back to string using SimpleDateFormat.format().
+                dateStr = dateFormat.format(date);
 
-            // Set the right timezone.
-            sdf.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-
-            // Get formatted date as sting.
-            String formattedDate = sdf.format(date);
+            } catch (java.text.ParseException ex) {
+                // If parsing fails, use transaction date directly.
+                dateStr = tr.getTimestamp();
+            }
 
             // Add row.
             model.addRow(new Object[]{
-                formattedDate,
+                dateStr,
                 tr.getAmount(),
                 tr.getCurrency(),
                 tr.getSubject(),
@@ -153,8 +148,8 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
             // Get current size (default height is set to one row).
             tblSize = tblTransactionsInfo.getSize();
 
-            // Multiply default table height by the number of rows
-            tblSize.height *= i;
+            // Multiply default table height by the number of rows.
+            tblSize.height = tblTransactionsInfo.getRowHeight() * i;
 
             // Set the new size.
             tblTransactionsInfo.setPreferredSize(tblSize);
@@ -218,9 +213,16 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
                 "Дата", "Сума", "Валута", "Основание", "Наредител/Получател"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -240,15 +242,15 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         scrollTransactionsInfo.setViewportView(tblTransactionsInfo);
         if (tblTransactionsInfo.getColumnModel().getColumnCount() > 0) {
             tblTransactionsInfo.getColumnModel().getColumn(0).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblTransactionsInfo.getColumnModel().getColumn(0).setPreferredWidth(120);
             tblTransactionsInfo.getColumnModel().getColumn(1).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(1).setPreferredWidth(75);
+            tblTransactionsInfo.getColumnModel().getColumn(1).setPreferredWidth(70);
             tblTransactionsInfo.getColumnModel().getColumn(2).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(2).setPreferredWidth(75);
+            tblTransactionsInfo.getColumnModel().getColumn(2).setPreferredWidth(70);
             tblTransactionsInfo.getColumnModel().getColumn(3).setResizable(false);
             tblTransactionsInfo.getColumnModel().getColumn(3).setPreferredWidth(280);
             tblTransactionsInfo.getColumnModel().getColumn(4).setResizable(false);
-            tblTransactionsInfo.getColumnModel().getColumn(4).setPreferredWidth(176);
+            tblTransactionsInfo.getColumnModel().getColumn(4).setPreferredWidth(151);
         }
         tblTransactionsInfo.getAccessibleContext().setAccessibleDescription("");
 
@@ -279,11 +281,6 @@ public class TransactionsInfoPanel extends javax.swing.JPanel implements Propert
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Choose account combo box event handler.
-     *
-     * @param evt event's instance
-     */
     private void comboChooseAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboChooseAccountActionPerformed
         populateTrInfoTable((String) comboChooseAccount.getSelectedItem());
     }//GEN-LAST:event_comboChooseAccountActionPerformed

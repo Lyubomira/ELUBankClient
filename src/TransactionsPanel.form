@@ -370,6 +370,9 @@
           <Dimension value="[140, 32]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMakeTransactionActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

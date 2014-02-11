@@ -1,48 +1,32 @@
 
+import java.awt.Component;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Elena Koevska
  */
-public class UserProfilePanel extends javax.swing.JPanel implements PropertyChangeListener {
+public class UserProfilePanel extends ClientFramePanel {
 
     /**
-     * Reference to the main frame.
-     */
-    private ClientFrame mainFrame;
-
-    /**
-     * Reference to the currently logged-in user.
-     */
-    private User user;
-
-    /**
-     * Creates new form UserProfilePanel
+     * Creates new UserProfilePanel form.
      */
     public UserProfilePanel() {
         initComponents();
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property
-     * change event.
+     * Updates component state when main frame fires a property change event.
      *
-     * @param pce event's instance
+     * @param pce PropertyChangeEvent instance.
+     * @see ClientFramePanel#propertyChange
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
-        if (pce.getPropertyName().equals("currentUser")) {
-            // Get current user from the event object.
-            user = (User) pce.getNewValue();
-
-            // Get current ClientFrame instance from the event object.
-            mainFrame = (ClientFrame) pce.getSource();
-        }
-
-        // Update all required UI elements.
+        // Call parent class implementation.
+        super.propertyChange(pce);
+        
         updateUIState();
     }
 
@@ -62,9 +46,13 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
      */
     private void updateUserInfo() {
         // Basic validation - ensure that the fields are not empty.
-        if (fieldPhone.getText().isEmpty() || fieldAddress.getText().isEmpty() || fieldMail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(mainFrame, "Полетата не може да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
-            return;
+        for (Component c : getComponents()) {
+            if (c instanceof JTextField) {
+                if (((JTextField) c).getText().isEmpty()) {
+                    showErrMsg("Полетата не може да са празни!");
+                    return;
+                }
+            }
         }
 
         // Make new request object.
@@ -84,7 +72,7 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
         request.setRequest("update");
 
         // Make the request and get the response.
-        User response = (User) mainFrame.getClient().runClient(request);
+        User response = (User) main.getSSLClient().runClient(request);
 
         if (response.getResponse() == null) {
             // Operation was successful.
@@ -95,13 +83,13 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
             user.setCity(response.getCity());
             user.setCountry(response.getCountry());
 
-            JOptionPane.showMessageDialog(mainFrame, "Промените са запазени успешно.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
+            showInfoMsg("Промените са запазени успешно.");
         } else {
             // Some error occurred in the server application.
             // Revert UI elements to the old values.
             updateUIState();
 
-            JOptionPane.showMessageDialog(mainFrame, "Грешка при запазване на промените: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
+            showErrMsg("Грешка при запазване на промените: " + response.getResponse());
         }
     }
 
@@ -239,7 +227,7 @@ public class UserProfilePanel extends javax.swing.JPanel implements PropertyChan
     /**
      * Save changes button event handler.
      *
-     * @param evt event's instance
+     * @param evt ActionEvent instance.
      */
     private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
         updateUserInfo();

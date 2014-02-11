@@ -1,8 +1,8 @@
 
+import java.awt.Component;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
@@ -11,17 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Elena Koevska
  */
-public class TransactionsPanel extends javax.swing.JPanel implements PropertyChangeListener {
-
-    /**
-     * Reference to the main frame.
-     */
-    private ClientFrame mainFrame;
+public class TransactionsPanel extends ClientFramePanel {
 
     /**
      * Contains user's checking accounts (if any).
      */
-    private final ArrayList<Accounts> accountList = new ArrayList<>();
+    private ArrayList<Accounts> accountList = new ArrayList<>();
 
     /**
      * Creates new form TransactionsPanel
@@ -29,13 +24,13 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     public TransactionsPanel() {
         initComponents();
 
-        // Detect when the panel is shown and display alert if current user
-        // does not have checking accounts.
+        // When panel is shown, display alert if user doesn't have checking accounts.
         addAncestorListener(new AncestorListener() {
             @Override
-            public void ancestorAdded(AncestorEvent event) {
-                if (((TransactionsPanel) event.getAncestor()).getAccountList().length == 0) {
-                    JOptionPane.showMessageDialog(mainFrame, "Потребителят няма открити разплащателни сметки.", "Предупреждение", JOptionPane.WARNING_MESSAGE);
+            public void ancestorAdded(AncestorEvent evt) {
+                TransactionsPanel anc = (TransactionsPanel) evt.getAncestor();
+                if (anc.getAccountList().length == 0) {
+                    anc.showErrMsg("Потребителят няма разплащателни сметки.");
                 }
             }
 
@@ -73,47 +68,46 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property
-     * change event.
+     * Updates component state when the main frame fires a property change
+     * event.
      *
      * @param pce event's instance
+     * @see ClientFramePanel#propertyChange
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
-        if (pce.getPropertyName().equals("currentUser")) {
-            // Set the reference to the main frame.
-            mainFrame = (ClientFrame) pce.getSource();
+        // Call parent class implementation.
+        super.propertyChange(pce);
+        
+        // Set accounts list.
+        setAccountList(user.getAccounts());
 
-            // Set accounts list.
-            setAccountList(((User) pce.getNewValue()).getAccounts());
-
-            if (!accountList.isEmpty()) {
-                // Populate and enable account combo box.
-                for (Accounts acc : accountList) {
-                    comboChooseAcc.addItem(acc.getIBAN());
-                }
-                comboChooseAcc.setEnabled(true);
-
-                // Update account info table.
-                updateAccTable(0);
-
-                // Enable all text fields.
-                for (java.awt.Component c : getComponents()) {
-                    if (c instanceof javax.swing.JTextField) {
-                        c.setEnabled(true);
-                    }
-                }
-
-                // Enable make transaction button.
-                btnMakeTransaction.setEnabled(true);
+        if (!accountList.isEmpty()) {
+            // Populate and enable account combo box.
+            for (Accounts acc : accountList) {
+                comboChooseAcc.addItem(acc.getIBAN());
             }
+            comboChooseAcc.setEnabled(true);
+
+            // Update account info table.
+            updateAccTable(0);
+
+            // Enable all text fields.
+            for (Component c : getComponents()) {
+                if (c instanceof JTextField) {
+                    c.setEnabled(true);
+                }
+            }
+
+            // Enable make transaction button.
+            btnMakeTransaction.setEnabled(true);
         }
     }
 
     /**
      * Updates the account info table.
      *
-     * @param accIndex Accounts object index in current account list.
+     * @param accIndex account index in the account list.
      */
     private void updateAccTable(int accIndex) {
         Accounts selAccount = accountList.get(accIndex);
@@ -126,12 +120,82 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
             model.fireTableDataChanged();
         }
 
+        // Add row.
         model.addRow(new Object[]{
             selAccount.getIBAN(),
             selAccount.getAccountType(),
             selAccount.getAmount(),
             selAccount.getCurrency()
         });
+    }
+
+    private void makeTransaction() {
+        // Ensure that required fields are not empty.
+        for (Component c : getComponents()) {
+            if (c instanceof JTextField) {
+                if (((JTextField) c).getText().isEmpty()) {
+                    showErrMsg("Полетата не може да са празни!");
+                    return;
+                }
+            }
+        }
+
+        // Validate IBAN length.
+        if (fieldIBAN.getText().length() < 5 || fieldIBAN.getText().length() > 34) {
+            showErrMsg("Невалидна дължина на полето IBAN!");
+            return;
+        }
+
+        // Validate IBAN characters.
+        if (!fieldIBAN.getText().matches("[A-Z0-9]+")) {
+            showErrMsg("Невалидни символи в полето IBAN!");
+            return;
+        }
+
+        // Get currently selected account.
+        Accounts selAccount = accountList.get(comboChooseAcc.getSelectedIndex());
+
+        // Create new transaction request object.
+        Transactions trReq = new Transactions();
+
+        // Set sender's info.
+        trReq.setIBAN(selAccount.getIBAN());
+        trReq.setUserEGN(selAccount.getUserEGN());
+        trReq.setCurrency(selAccount.getCurrency());
+
+        // Set reciever's info.
+        trReq.setReceiver(fieldAddressee.getText());
+        trReq.setToIBAN(fieldIBAN.getText());
+        trReq.setSubject(fieldPaymentReason.getText());
+        trReq.setAmount(fieldAmount.getText());
+
+        // Make the request.
+        trReq.setRequest("newTransaction");
+        Transactions trResp = (Transactions) main.getSSLClient().runClient(trReq);
+
+        // Check response.
+        if (trResp.getResponse() != null) {
+            showErrMsg("Грешка: " + trResp.getResponse());
+        } else {
+            showInfoMsg("Сумата е преведена успешно.");
+
+            // Clear text fields.
+            for (Component c : getComponents()) {
+                if (c instanceof JTextField) {
+                    ((JTextField) c).setText(null);
+                }
+            }
+
+            // Now, our user information is out of date.
+            // Get updated information from the server.
+            User uReq = new User();
+            uReq.setEgn(user.getEgn());
+            uReq.setRequest("search");
+            User uResp = (User) main.getSSLClient().runClient(uReq);
+
+            System.out.println(uResp.getResponse());
+            System.out.println(uResp.getAccounts()[1].getAmount());
+        }
     }
 
     /**
@@ -266,6 +330,11 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
         btnMakeTransaction.setMaximumSize(new java.awt.Dimension(140, 32));
         btnMakeTransaction.setMinimumSize(new java.awt.Dimension(140, 32));
         btnMakeTransaction.setPreferredSize(new java.awt.Dimension(140, 32));
+        btnMakeTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakeTransactionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -342,6 +411,10 @@ public class TransactionsPanel extends javax.swing.JPanel implements PropertyCha
     private void comboChooseAccItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboChooseAccItemStateChanged
         updateAccTable(comboChooseAcc.getSelectedIndex());
     }//GEN-LAST:event_comboChooseAccItemStateChanged
+
+    private void btnMakeTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeTransactionActionPerformed
+        makeTransaction();
+    }//GEN-LAST:event_btnMakeTransactionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,5 @@
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
@@ -8,12 +7,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Elena Koevska
  */
-public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeListener {
+public class CurrencyPanel extends ClientFramePanel {
 
     /**
-     * A map with currency data. The keys are currency codes.
+     * Currency data map with currency codes as keys.
      */
-    private HashMap<String, Currency> currencies = new HashMap();
+    protected HashMap<String, Currency> currencies = new HashMap();
 
     /**
      * Which currencies to display.
@@ -26,21 +25,21 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
     private float askRateCoefficient = 1.03f;
 
     /**
-     * Creates new form CurrencyPanel
+     * Creates new CurrencyPanel form.
      */
     public CurrencyPanel() {
         initComponents();
     }
 
     /**
-     * Transforms currencies array to a HasMap for easier internal access.
+     * Sets a currency map with currency codes for keys.
      *
-     * @param currencies array containing all currency data
+     * @param currencyArr currency data.
      */
-    public void setCurrencies(Currency[] currencies) {
-        if (currencies != null && currencies.length > 0) {
-            for (Currency currency : currencies) {
-                this.currencies.put(currency.getCode(), currency);
+    public void setCurrencies(Currency[] currencyArr) {
+        if (currencyArr != null && currencyArr.length > 0) {
+            for (Currency currency : currencyArr) {
+                currencies.put(currency.getCode(), currency);
             }
         }
     }
@@ -55,7 +54,7 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
     }
 
     /**
-     * Sets the value of the ask rate coefficient
+     * Sets the value of the ask rate coefficient.
      *
      * @param newCoefficient new coefficient value
      */
@@ -66,39 +65,38 @@ public class CurrencyPanel extends javax.swing.JPanel implements PropertyChangeL
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property
-     * change event.
+     * Updates component state when main frame fires a property change event.
      *
-     * @param pce event's instance
+     * @param pce PropertyChangeEvent instance.
+     * @see ClientFramePanel#propertyChange
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
-        if (pce.getPropertyName().equals("currencyData")) {
-            // Set currencies list.
-            setCurrencies(((Currency) pce.getNewValue()).getAllCurrencies());
+        // Call parent class implementation.
+        super.propertyChange(pce);
 
-            // Get currencies table model.
-            DefaultTableModel model = (DefaultTableModel) currencyTable.getModel();
+        setCurrencies(main.getCurrencyData().getAllCurrencies());
 
-            // If we are not setting currencies for the first time first delete all.
-            if (model.getRowCount() > 0) {
-                model.getDataVector().removeAllElements();
-                model.fireTableDataChanged();
-            }
+        // Get currencies table model.
+        DefaultTableModel model = (DefaultTableModel) currencyTable.getModel();
 
-            // Populate table model.
-            Currency current;
-            int i = 0;
-            for (String currencyCode : displayed) {
-                current = this.currencies.get(currencyCode);
+        // Remove all rows (if any).
+        if (model.getRowCount() > 0) {
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
+        }
 
-                // Add row.
-                model.addRow(new Object[]{
-                    current.getCode(),
-                    current.getRate(),
-                    (Float.parseFloat(current.getRate()) * askRateCoefficient)
-                });
-            }
+        // Populate table model.
+        Currency current;
+        for (String currencyCode : displayed) {
+            current = this.currencies.get(currencyCode);
+
+            // Add row.
+            model.addRow(new Object[]{
+                current.getCode(),
+                current.getRate(),
+                (Float.parseFloat(current.getRate()) * askRateCoefficient)
+            });
         }
     }
 

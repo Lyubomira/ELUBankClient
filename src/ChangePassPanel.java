@@ -1,56 +1,17 @@
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Elena Koevska
  */
-public class ChangePassPanel extends javax.swing.JPanel implements PropertyChangeListener {
+public class ChangePassPanel extends ClientFramePanel {
 
     /**
-     * Reference to the main frame.
-     */
-    private ClientFrame mainFrame;
-    
-    /**
-     * Username of currently logged-in user.
-     */
-    private String username;
-    
-    /**
-     * PIN of currently logged-in user.
-     */
-    private String egn;
-    
-    /**
-     * Creates new form ChangePassPanel
+     * Creates new ChangePassPanel form.
      */
     public ChangePassPanel() {
         initComponents();
     }
 
-    /**
-     * Used to update component's private fields when the main frame fires a property
-     * change event.
-     *
-     * @param pce event's instance
-     */
-    @Override
-    public void propertyChange(PropertyChangeEvent pce) {
-        if (pce.getPropertyName().equals("currentUser")) {
-            // Set the reference to the main frame.
-            mainFrame = (ClientFrame) pce.getSource();
-
-            // Set username.
-            username = ((User) pce.getNewValue()).getUsername();
-            
-            // Set PIN.
-            egn = ((User) pce.getNewValue()).getEgn();
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,45 +112,42 @@ public class ChangePassPanel extends javax.swing.JPanel implements PropertyChang
     private void btnSavePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePassActionPerformed
         // Check if old password field is empty.
         if (pfieldOldPass.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(mainFrame, "Полето 'Стара парола' не може да бъде празно!", "Грешка", JOptionPane.ERROR_MESSAGE);
+            showErrMsg("Полето 'Стара парола' не може да бъде празно!");
             return;
         }
 
         // Check if old password is valid.
         User request = new User();
         request.setRequest("login");
-        request.setUsername(username);
-        request.setEgn(egn);
+        request.setUsername(user.getUsername());
+        request.setEgn(user.getEgn());
         request.setPassword(String.valueOf(pfieldOldPass.getPassword()));
-        User response = (User) mainFrame.getClient().runClient(request);
+        User response = (User) main.getSSLClient().runClient(request);
         if (!response.getLoggedIn()) {
-            JOptionPane.showMessageDialog(mainFrame, "Моля, въведете валидна текуща парола!", "Грешка", JOptionPane.ERROR_MESSAGE);
+            showErrMsg("Моля, въведете валидна текуща парола!");
             return;
         }
 
         // Ensure new pass and confirm new pass are not empty.
         if (pfieldNewPass.getPassword().length == 0 || pfieldNewPassConfirm.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(mainFrame, "Полетата 'Нова парола' и 'Потвърди нова парола' не трябва да са празни!", "Грешка", JOptionPane.ERROR_MESSAGE);
+            showErrMsg("Полетата 'Нова парола' и 'Потвърди нова парола' не трябва да са празни!");
             return;
         }
 
         // Ensure new pass and confirm new pass match.
         if (!String.valueOf(pfieldNewPass.getPassword()).equals(String.valueOf(pfieldNewPassConfirm.getPassword()))) {
-            JOptionPane.showMessageDialog(mainFrame, "Данните в полетата 'Нова парола' и 'Потвърди нова парола' трябва да съвпадат!", "Грешка", JOptionPane.ERROR_MESSAGE);
+            showErrMsg("Данните в полетата 'Нова парола' и 'Потвърди нова парола' трябва да съвпадат!");
             return;
         }
 
-        // TODO: Password requirments (e.g. mininum length etc.)?
         // At last, we are ready to go!
         request.setRequest("updatePass");
-        request.setUsername(username);
-        request.setEgn(egn);
         request.setPassword(String.valueOf(pfieldNewPass.getPassword()));
-        response = (User) mainFrame.getClient().runClient(request);
+        response = (User) main.getSSLClient().runClient(request);
         if (response.getResponse() == null) {
-            JOptionPane.showMessageDialog(mainFrame, "Промяната на паролата беше успешна.", "Съобщение", JOptionPane.INFORMATION_MESSAGE);
+            showInfoMsg("Паролата е сменена успешно.");
         } else {
-            JOptionPane.showMessageDialog(mainFrame, "Грешка при опит за промяна на парола: " + response.getResponse(), "Грешка", JOptionPane.ERROR_MESSAGE);
+            showErrMsg("Грешка при опит за промяна на парола: " + response.getResponse());
         }
 
         // Clear field values.
