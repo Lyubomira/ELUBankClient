@@ -15,20 +15,27 @@ public class Currency implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String DELIMITER = "::";
 
+    /**
+     * Representing column name from the database table "currencies"
+     */
     private String name, rate, code, ratio, reverserate, date;
 
     /**
-     * @param request - client's request (ex: getAllCurrencyData)
-     * @param response - server response (used only for exceptional cases, if
-     * MySQL query fails for any reason)
+     * Client's request (ex: getAllCurrencyData)
      */
-    private String request = null, response = null;
+    private String request = null;
+
+    /**
+     * Server response is used only for exceptional cases (i.e. if MySQL query
+     * fails).
+     */
+    private String response = null;
 
     /**
      * Creates an array that can be filled with all currency related data from
      * the database
      *
-     * @param arraySize - the number of rolls in "currencies" table, in MySQL
+     * @param arraySize the number of rolls in "currencies" table, in MySQL
      */
     public void getAllCurrencyData(int arraySize) {
 
@@ -38,11 +45,11 @@ public class Currency implements Serializable {
             allCurrencies[ i] = new Currency();
         }
     }
-    
+
     public Currency[] getAllCurrencies() {
         return this.allCurrencies;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -106,7 +113,7 @@ public class Currency implements Serializable {
     public void setResponse(String response) {
         this.response = response;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -121,7 +128,7 @@ public class Currency implements Serializable {
         sb.append(reverserate);
         sb.append(DELIMITER);
         sb.append(date);
-        
+
         return sb.toString();
     }
 

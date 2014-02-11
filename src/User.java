@@ -18,6 +18,9 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String DELIMITER = "::";
 
+    /**
+     * Representing column name from the database table "users"
+     */
     private String username, password, name, surname, familyname,
             egn, dayOfBirth, monthOfBirth, yearOfBirth, country,
             city, address, phone, email, userType;
@@ -26,12 +29,13 @@ public class User implements Serializable {
      * Client's request (e.g. "login", "create").
      */
     private String request = null;
-    
+
     /**
-     * Server response is used only for exceptional cases (i.e. if MySQL query fails).
+     * Server response is used only for exceptional cases (i.e. if MySQL query
+     * fails).
      */
     private String response = null;
-    
+
     /**
      * Indicates whether current user is authenticated successfully.
      */
