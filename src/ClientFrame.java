@@ -1,8 +1,8 @@
 
 import java.awt.CardLayout;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 
 /**
  *
@@ -11,18 +11,34 @@ import javax.imageio.ImageIO;
 public class ClientFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form ClientFrame
+     * Current user instance.
+     */
+    private User currentUser;
+
+    /**
+     * Current currency instance.
+     */
+    private final Currency currencyData;
+
+    /**
+     * Current SSL client instance.
+     */
+    private final SSLClient sslClient;
+
+    /**
+     * Creates the client area frame.
      *
-     * @param user Current user instance.
-     * @param currency Current currency instance.
-     * @param client Current SSL client instance.
+     * @param user User instance.
+     * @param currency Currency instance.
+     * @param client SSLClient instance.
      */
     public ClientFrame(User user, Currency currency, SSLClient client) {
-        // Set background image.
+        // Try to set frame's background image.
         try {
-            this.setContentPane(new BackgroundImage(ImageIO.read(new File("client_frame_bg.jpg"))));
-        } catch (java.io.IOException e) {
-            System.out.println(e.getMessage());
+            String bg = "client_frame_bg.jpg";
+            setContentPane(new BackgroundImage(ImageIO.read(new File(bg))));
+        } catch (java.io.IOException ex) {
+            System.out.println(ex.getMessage());
         }
 
         // Init components.
@@ -36,32 +52,59 @@ public class ClientFrame extends javax.swing.JFrame {
         addPropertyChangeListener(userProfilePanel);
         addPropertyChangeListener(transactionsPanel);
 
-        // Fire property change events so the listeners can update their UI state.
-        firePropertyChange("currentUser", currentUser, user);
-        firePropertyChange("currencyData", currencyData, currency);
+        // Init private members.
+        currentUser = user;
+        currencyData = currency;
+        sslClient = client;
 
-        // Init private fields from the constructor params.
-        this.currentUser = user;
-        this.currencyData = currency;
-        this.client = client;
+        // Fire property change event so all listeners can update their state.
+        firePropertyChange("currentUser", null, currentUser);
     }
 
     /**
      * Returns current user instance.
      *
-     * @return User object
+     * @return User instance.
      */
     public User getCurrentUser() {
         return currentUser;
     }
 
     /**
-     * Returns current SSL client instance
+     * Returns current user instance.
      *
-     * @return SSLClient object
+     * @param user User instance.
      */
-    public SSLClient getClient() {
-        return client;
+    public void setCurrentUser(User user) {
+        currentUser = user;
+    }
+
+    /**
+     * Returns Currency object which can be used to retrieve all currency data.
+     *
+     * @return Currency instance.
+     */
+    public Currency getCurrencyData() {
+        return currencyData;
+    }
+
+    /**
+     * Returns current SSL client instance.
+     *
+     * @return SSLClient instance.
+     */
+    public SSLClient getSSLClient() {
+        return sslClient;
+    }
+
+    /**
+     * Shows the given component in the main panel.
+     *
+     * @param panelName Panel name as set in CardName property.
+     */
+    private void changePanel(String panelName) {
+        CardLayout mainPanelLayout = (CardLayout) (MainPanel.getLayout());
+        mainPanelLayout.show(MainPanel, panelName);
     }
 
     /**
@@ -102,11 +145,11 @@ public class ClientFrame extends javax.swing.JFrame {
         MainPanel.setOpaque(false);
         MainPanel.setPreferredSize(new java.awt.Dimension(804, 688));
         MainPanel.setLayout(new java.awt.CardLayout());
-        MainPanel.add(accountBalancePanel, "card2");
-        MainPanel.add(transactionsInfoPanel, "card3");
-        MainPanel.add(changePassPanel, "card4");
-        MainPanel.add(userProfilePanel, "card5");
-        MainPanel.add(transactionsPanel, "card6");
+        MainPanel.add(accountBalancePanel, "Наличност по сметки");
+        MainPanel.add(transactionsInfoPanel, "Движение по сметки");
+        MainPanel.add(changePassPanel, "Смяна на парола");
+        MainPanel.add(userProfilePanel, "Моят профил");
+        MainPanel.add(transactionsPanel, "Преводи");
 
         MenuPanel.setBackground(java.awt.SystemColor.window);
         MenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Меню", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 0, 18), new java.awt.Color(105, 169, 212))); // NOI18N
@@ -128,12 +171,7 @@ public class ClientFrame extends javax.swing.JFrame {
         btnAccBallance.setMinimumSize(new java.awt.Dimension(180, 33));
         btnAccBallance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAccBallanceActionPerformed(evt);
-            }
-        });
-        btnAccBallance.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnAccBallanceKeyPressed(evt);
+                menuButtonsActionPerformed(evt);
             }
         });
         MenuPanel.add(btnAccBallance, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 36, 180, 32));
@@ -148,12 +186,7 @@ public class ClientFrame extends javax.swing.JFrame {
         btnPayments.setMinimumSize(new java.awt.Dimension(180, 33));
         btnPayments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPaymentsActionPerformed(evt);
-            }
-        });
-        btnPayments.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnPaymentsKeyPressed(evt);
+                menuButtonsActionPerformed(evt);
             }
         });
         MenuPanel.add(btnPayments, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 74, 180, 32));
@@ -168,12 +201,7 @@ public class ClientFrame extends javax.swing.JFrame {
         btnChangePass.setMinimumSize(new java.awt.Dimension(180, 33));
         btnChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangePassActionPerformed(evt);
-            }
-        });
-        btnChangePass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnChangePassKeyPressed(evt);
+                menuButtonsActionPerformed(evt);
             }
         });
         MenuPanel.add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 112, 180, 32));
@@ -188,17 +216,12 @@ public class ClientFrame extends javax.swing.JFrame {
         btnUserProfile.setMinimumSize(new java.awt.Dimension(180, 33));
         btnUserProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserProfileActionPerformed(evt);
-            }
-        });
-        btnUserProfile.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnUserProfileKeyPressed(evt);
+                menuButtonsActionPerformed(evt);
             }
         });
         MenuPanel.add(btnUserProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 150, 180, 32));
 
-        btnTransactions.setBackground(new java.awt.Color(255, 255, 255));
+        btnTransactions.setBackground(new java.awt.Color(235, 230, 230));
         btnTransactions.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnTransactions.setText("Преводи");
         btnTransactions.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -206,12 +229,7 @@ public class ClientFrame extends javax.swing.JFrame {
         btnTransactions.setMargin(new java.awt.Insets(2, 4, 2, 4));
         btnTransactions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransactionsActionPerformed(evt);
-            }
-        });
-        btnTransactions.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnTransactionsKeyPressed(evt);
+                menuButtonsActionPerformed(evt);
             }
         });
         MenuPanel.add(btnTransactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 188, 180, 32));
@@ -226,12 +244,7 @@ public class ClientFrame extends javax.swing.JFrame {
         btnLogout.setMinimumSize(new java.awt.Dimension(180, 33));
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        btnLogout.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnLogoutKeyPressed(evt);
+                menuButtonsActionPerformed(evt);
             }
         });
         MenuPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 620, 180, 32));
@@ -260,115 +273,26 @@ public class ClientFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTransactionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTransactionsKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnUserProfile.doClick();
-            btnUserProfile.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnLogout.grabFocus();
-        }
-    }//GEN-LAST:event_btnTransactionsKeyPressed
-
-    private void btnTransactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionsActionPerformed
-        changePanel("card6");
-    }//GEN-LAST:event_btnTransactionsActionPerformed
-
-    private void btnLogoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLogoutKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE
-                || evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnTransactions.doClick();
-            btnTransactions.grabFocus();
-        }
-    }//GEN-LAST:event_btnLogoutKeyPressed
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LoginFrame().setVisible(true);
-            }
-        });
-        dispose();
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
-    private void btnUserProfileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnUserProfileKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnChangePass.doClick();
-            btnChangePass.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnTransactions.doClick();
-            btnTransactions.grabFocus();
-        }
-    }//GEN-LAST:event_btnUserProfileKeyPressed
-
-    private void btnUserProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserProfileActionPerformed
-        changePanel("card5");
-    }//GEN-LAST:event_btnUserProfileActionPerformed
-
-    private void btnChangePassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnChangePassKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnPayments.doClick();
-            btnPayments.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnUserProfile.doClick();
-            btnUserProfile.grabFocus();
-        }
-    }//GEN-LAST:event_btnChangePassKeyPressed
-
-    private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
-        changePanel("card4");
-    }//GEN-LAST:event_btnChangePassActionPerformed
-
-    private void btnPaymentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPaymentsKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnAccBallance.doClick();
-            btnAccBallance.grabFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnChangePass.doClick();
-            btnChangePass.grabFocus();
-        }
-    }//GEN-LAST:event_btnPaymentsKeyPressed
-
-    private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
-        changePanel("card3");
-    }//GEN-LAST:event_btnPaymentsActionPerformed
-
-    private void btnAccBallanceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAccBallanceKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            btnLogout.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            btnPayments.doClick();
-            btnPayments.grabFocus();
-        }
-    }//GEN-LAST:event_btnAccBallanceKeyPressed
-
-    private void btnAccBallanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccBallanceActionPerformed
-        changePanel("card2");
-    }//GEN-LAST:event_btnAccBallanceActionPerformed
-
     /**
-     * Shows the given panel in the main panel.
+     * Main menu buttons event handler.
      *
-     * @param panelName Panel name as set in CardName property.
+     * @param evt event's instance.
      */
-    private void changePanel(String panelName) {
-        CardLayout mainPanelLayout = (CardLayout) (MainPanel.getLayout());
-        mainPanelLayout.show(MainPanel, panelName);
-    }
-
-    private User currentUser;
-    private Currency currencyData;
-    private SSLClient client;
+    private void menuButtonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonsActionPerformed
+        if (evt.getSource().equals(btnLogout)) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new LoginFrame().setVisible(true);
+                }
+            });
+            dispose();
+        } else {
+            String panelName = ((JButton) evt.getSource()).getText();
+            System.out.println(panelName);
+            changePanel(panelName);
+        }
+    }//GEN-LAST:event_menuButtonsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
