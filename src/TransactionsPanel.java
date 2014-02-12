@@ -1,5 +1,7 @@
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import javax.swing.JTextField;
@@ -19,7 +21,7 @@ public class TransactionsPanel extends ClientFramePanel {
     private ArrayList<Accounts> accountList = new ArrayList<>();
 
     /**
-     * Creates new form TransactionsPanel
+     * Creates new TransactionsPanel form.
      */
     public TransactionsPanel() {
         initComponents();
@@ -59,6 +61,9 @@ public class TransactionsPanel extends ClientFramePanel {
      * @param accList array with Accounts
      */
     public void setAccountList(Accounts[] accList) {
+        // Reset internal ArrayList.
+        accountList.clear();
+        
         // Filter only checking accounts.
         for (Accounts account : accList) {
             if (account.getAccountType().equalsIgnoreCase("разплащателна сметка")) {
@@ -68,30 +73,48 @@ public class TransactionsPanel extends ClientFramePanel {
     }
 
     /**
-     * Updates component state when the main frame fires a property change
-     * event.
+     * Updates component state when main frame fires a property change event.
      *
-     * @param pce event's instance
+     * @param pce PropertyChangeEvent instance.
      * @see ClientFramePanel#propertyChange
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         // Call parent class implementation.
         super.propertyChange(pce);
-        
+
         // Set accounts list.
         setAccountList(user.getAccounts());
 
         if (!accountList.isEmpty()) {
-            // Populate and enable account combo box.
+            // Ensure there are no listeners attached to choose account combo
+            // box because removeAllItems() will trigger an action event.
+            for (ActionListener al: comboChooseAcc.getActionListeners()) {
+                comboChooseAcc.removeActionListener(al);
+            }
+            
+            // Remove all elements (if any) from choose account combo box.
+            comboChooseAcc.removeAllItems();
+            
+            // Populate choose account combo box with account IBANs.
             for (Accounts acc : accountList) {
                 comboChooseAcc.addItem(acc.getIBAN());
             }
+            
+            // Attach the action listener.
+            comboChooseAcc.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    comboChooseAccActionPerformed(evt);
+                }
+            });
+            
+            // Enable it.
             comboChooseAcc.setEnabled(true);
-
+            
             // Update account info table.
-            updateAccTable(0);
-
+            updateAccTable(comboChooseAcc.getSelectedIndex());
+            
             // Enable all text fields.
             for (Component c : getComponents()) {
                 if (c instanceof JTextField) {
@@ -110,6 +133,7 @@ public class TransactionsPanel extends ClientFramePanel {
      * @param accIndex account index in the account list.
      */
     private void updateAccTable(int accIndex) {
+        System.out.println("updateAccTable");
         Accounts selAccount = accountList.get(accIndex);
 
         DefaultTableModel model = (DefaultTableModel) tblAccList.getModel();
@@ -140,14 +164,16 @@ public class TransactionsPanel extends ClientFramePanel {
             }
         }
 
+        String iban = fieldIBAN.getText();
+
         // Validate IBAN length.
-        if (fieldIBAN.getText().length() < 5 || fieldIBAN.getText().length() > 34) {
+        if (iban.length() < 5 || iban.length() > 34) {
             showErrMsg("Невалидна дължина на полето IBAN!");
             return;
         }
 
         // Validate IBAN characters.
-        if (!fieldIBAN.getText().matches("[A-Z0-9]+")) {
+        if (!iban.matches("[A-Z0-9]+")) {
             showErrMsg("Невалидни символи в полето IBAN!");
             return;
         }
@@ -165,7 +191,7 @@ public class TransactionsPanel extends ClientFramePanel {
 
         // Set reciever's info.
         trReq.setReceiver(fieldAddressee.getText());
-        trReq.setToIBAN(fieldIBAN.getText());
+        trReq.setToIBAN(iban);
         trReq.setSubject(fieldPaymentReason.getText());
         trReq.setAmount(fieldAmount.getText());
 
@@ -193,11 +219,20 @@ public class TransactionsPanel extends ClientFramePanel {
             uReq.setRequest("search");
             User uResp = (User) main.getSSLClient().runClient(uReq);
 
-            System.out.println(uResp.getResponse());
-            System.out.println(uResp.getAccounts()[1].getAmount());
+            // Update user information. This will also fire property change.
+            main.setCurrentUser(uResp);
         }
     }
 
+    /**
+     * Choose account combo box event handler.
+     *
+     * @param evt ActionEvent instance.
+     */
+    private void comboChooseAccActionPerformed(ActionEvent evt) {                                                
+        updateAccTable(comboChooseAcc.getSelectedIndex());
+    } 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,11 +271,6 @@ public class TransactionsPanel extends ClientFramePanel {
         comboChooseAcc.setMaximumSize(new java.awt.Dimension(200, 25));
         comboChooseAcc.setMinimumSize(new java.awt.Dimension(200, 25));
         comboChooseAcc.setPreferredSize(new java.awt.Dimension(200, 25));
-        comboChooseAcc.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboChooseAccItemStateChanged(evt);
-            }
-        });
 
         spaneAccList.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         spaneAccList.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -402,15 +432,6 @@ public class TransactionsPanel extends ClientFramePanel {
                 .addContainerGap(326, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * Choose account combo box event handler.
-     *
-     * @param evt event's instance
-     */
-    private void comboChooseAccItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboChooseAccItemStateChanged
-        updateAccTable(comboChooseAcc.getSelectedIndex());
-    }//GEN-LAST:event_comboChooseAccItemStateChanged
 
     private void btnMakeTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeTransactionActionPerformed
         makeTransaction();

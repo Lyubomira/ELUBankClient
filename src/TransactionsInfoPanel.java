@@ -1,5 +1,7 @@
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +38,13 @@ public class TransactionsInfoPanel extends ClientFramePanel {
      *
      * @param accList Accounts array
      */
-    public void setAccountsList(Accounts[] accList) {
+    public void setAccountList(Accounts[] accList) {
+        // Reset account list.
+        accountList.clear();
+
+        // Reset transactions map.
+        transactionsMap.clear();
+
         for (Accounts acc : accList) {
             // Add account to internal accounts list.
             accountList.add(acc);
@@ -56,7 +64,7 @@ public class TransactionsInfoPanel extends ClientFramePanel {
     public void setTransactionsMap(Transactions[] trList) {
         for (String accIBAN : transactionsMap.keySet()) {
             for (Transactions tr : trList) {
-                if (tr.getIBAN().equalsIgnoreCase(accIBAN) || tr.getToIBAN().equalsIgnoreCase(accIBAN)) {
+                if (tr.getIBAN().equals(accIBAN) || tr.getToIBAN().equals(accIBAN)) {
                     transactionsMap.get(accIBAN).add(tr);
                 }
             }
@@ -74,17 +82,39 @@ public class TransactionsInfoPanel extends ClientFramePanel {
         // Call parent class implementation.
         super.propertyChange(pce);
 
-        setAccountsList(user.getAccounts());
+        setAccountList(user.getAccounts());
 
         // Set transactions list.
         setTransactionsMap(user.getTransactions());
 
         if (!accountList.isEmpty()) {
-            // Populate account selection combo box.
+            // Ensure there are no listeners attached to choose account combo
+            // box because removeAllItems() will trigger an action event.
+            for (ActionListener al: comboChooseAccount.getActionListeners()) {
+                comboChooseAccount.removeActionListener(al);
+            }
+            
+            // Remove all elements (if any) from choose account combo box.
+            comboChooseAccount.removeAllItems();
+            
+            // Populate choose account combo box with account IBANs.
             for (Accounts acc : accountList) {
                 comboChooseAccount.addItem(acc.getIBAN());
             }
+            
+            // Attach the action listener.
+            comboChooseAccount.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    comboChooseAccountActionPerformed(evt);
+                }
+            });
+            
+            // Enable combo box.
             comboChooseAccount.setEnabled(true);
+            
+            // Populate transactions table.
+            populateTrInfoTable((String) comboChooseAccount.getSelectedItem());
         }
     }
 
@@ -94,8 +124,6 @@ public class TransactionsInfoPanel extends ClientFramePanel {
      * @param accIBAN IBAN of the account
      */
     private void populateTrInfoTable(String accIBAN) {
-        System.out.println("called");
-
         // Get table model.
         DefaultTableModel model = (DefaultTableModel) tblTransactionsInfo.getModel();
 
@@ -156,6 +184,10 @@ public class TransactionsInfoPanel extends ClientFramePanel {
         }
     }
 
+    private void comboChooseAccountActionPerformed(ActionEvent evt) {                                                   
+        populateTrInfoTable((String) comboChooseAccount.getSelectedItem());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -184,11 +216,6 @@ public class TransactionsInfoPanel extends ClientFramePanel {
         comboChooseAccount.setMaximumSize(new java.awt.Dimension(200, 25));
         comboChooseAccount.setMinimumSize(new java.awt.Dimension(200, 25));
         comboChooseAccount.setPreferredSize(new java.awt.Dimension(200, 25));
-        comboChooseAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboChooseAccountActionPerformed(evt);
-            }
-        });
 
         scrollTransactionsInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         scrollTransactionsInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -280,11 +307,6 @@ public class TransactionsInfoPanel extends ClientFramePanel {
                 .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void comboChooseAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboChooseAccountActionPerformed
-        populateTrInfoTable((String) comboChooseAccount.getSelectedItem());
-    }//GEN-LAST:event_comboChooseAccountActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboChooseAccount;

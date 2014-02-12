@@ -59,6 +59,11 @@ public class ClientFrame extends javax.swing.JFrame {
 
         // Fire property change event so all listeners can update their state.
         firePropertyChange("currentUser", null, currentUser);
+        
+        // Disable transactions panel for user type 3.
+        if (Integer.parseInt(currentUser.getUserType()) == 3) {
+            btnTransactions.setEnabled(false);
+        }
     }
 
     /**
@@ -77,6 +82,7 @@ public class ClientFrame extends javax.swing.JFrame {
      */
     public void setCurrentUser(User user) {
         currentUser = user;
+        firePropertyChange("currentUser", null, currentUser);
     }
 
     /**
@@ -289,7 +295,6 @@ public class ClientFrame extends javax.swing.JFrame {
             dispose();
         } else {
             String panelName = ((JButton) evt.getSource()).getText();
-            System.out.println(panelName);
             changePanel(panelName);
         }
     }//GEN-LAST:event_menuButtonsActionPerformed

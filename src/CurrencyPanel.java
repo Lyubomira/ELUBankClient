@@ -47,7 +47,7 @@ public class CurrencyPanel extends ClientFramePanel {
     /**
      * Sets which currencies should be displayed.
      *
-     * @param codes array with currency codes e.g. "USD", "EUR"
+     * @param codes array with currency codes e.g. {"USD", "EUR"}.
      */
     public void setDisplayed(String[] codes) {
         this.displayed = codes;
@@ -56,7 +56,7 @@ public class CurrencyPanel extends ClientFramePanel {
     /**
      * Sets the value of the ask rate coefficient.
      *
-     * @param newCoefficient new coefficient value
+     * @param newCoefficient new coefficient value.
      */
     public void setAskRateCoefficient(float newCoefficient) {
         if (newCoefficient > 0) {
@@ -86,7 +86,7 @@ public class CurrencyPanel extends ClientFramePanel {
             model.fireTableDataChanged();
         }
 
-        // Populate table model.
+        // Populate the table.
         Currency current;
         for (String currencyCode : displayed) {
             current = this.currencies.get(currencyCode);
@@ -143,6 +143,7 @@ public class CurrencyPanel extends ClientFramePanel {
         currencyTable.setMaximumSize(new java.awt.Dimension(174, 70));
         currencyTable.setMinimumSize(new java.awt.Dimension(174, 70));
         currencyTable.setPreferredSize(new java.awt.Dimension(174, 70));
+        currencyTable.setRowSelectionAllowed(false);
         currencyTable.getTableHeader().setResizingAllowed(false);
         currencyTable.getTableHeader().setReorderingAllowed(false);
         currencyTable.getTableHeader().setFont(new java.awt.Font("Tahoma", 0, 10));
