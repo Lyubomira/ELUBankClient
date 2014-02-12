@@ -209,17 +209,14 @@ public class LoginFrame extends javax.swing.JFrame {
                     RegistrationForm bForm = new RegistrationForm();
                     bForm.setVisible(true);
                     dispose();
-                } // user type 2 = customer with all rights
-                else if (currentUser.getUserType().equalsIgnoreCase("2")) {
+                } // user type 2 and 3 = bank clients
+                else {
                     currencyInfo = new Currency();
                     currencyInfo.setRequest("getAllCurrencyData");
                     currencyInfo = (Currency) client.runClient(currencyInfo);
                     new ClientFrame(currentUser, currencyInfo, client).setVisible(true);
                     dispose();
-                } // user type 3 = customer with no transaction rights
-                else {
                 }
-
             } else {
                 JOptionPane.showMessageDialog(null, "Грешно потребителско име или парола.",
                         "Грешка", JOptionPane.ERROR_MESSAGE);
