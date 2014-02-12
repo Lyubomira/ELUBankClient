@@ -329,6 +329,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
         RegistrationPanel.add(tfieldLastNme, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 160, -1));
 
+        tfieldPIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfieldPINActionPerformed(evt);
+            }
+        });
         tfieldPIN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfieldPINKeyPressed(evt);
@@ -787,6 +792,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         /**
          * check EGN field for 10 digits
          */
+        
+
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
@@ -796,7 +803,10 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ЕГН съдържа твърде много символи! ");
             return;
         }
-
+        
+                
+                
+                
         newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
                 country, city, address, phone, email, access);
         newUser.setRequest(request);
@@ -1203,6 +1213,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         if (!m_val.find()) {
             JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
             return;
+        }else if (!m_val.find() && pin.length() > 10) {
+            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
+            return;
         }
 
         // select that row in the table in which contains the pin searched 
@@ -1213,10 +1226,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             if (pin.equalsIgnoreCase(allUsersTableModel.getValueAt(i, 3).toString())) {
                 allClientsTable.setRowSelectionInterval(i, i);
                 return;
-            }else if (!m_val.find() && pin.length() > 10) {
-            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
-            return;
-        }
+            }
         }
         JOptionPane.showMessageDialog(null, "Не е намерен потребител с такъв ЕГН!");
     }//GEN-LAST:event_btnSearchUserActionPerformed
@@ -1344,6 +1354,10 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void tfieldegnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldegnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfieldegnActionPerformed
+
+    private void tfieldPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldPINActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfieldPINActionPerformed
     /**
      * creates method for clearing out the form
      */
@@ -1414,7 +1428,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         return IBAN;
     }
 
-
+ 
 
     private final SSLClient client = new SSLClient();
     private Accounts accounts = new Accounts();
