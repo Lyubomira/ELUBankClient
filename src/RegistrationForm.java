@@ -329,11 +329,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
         RegistrationPanel.add(tfieldLastNme, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 160, -1));
 
-        tfieldPIN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfieldPINActionPerformed(evt);
-            }
-        });
         tfieldPIN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfieldPINKeyPressed(evt);
@@ -767,6 +762,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         String bmonth = (String) comboBoxMonthOfBirth.getSelectedItem();
         String byear = (String) comboBoxYearOfBirth.getSelectedItem();
         String country = (String) comboBoxCountry.getSelectedItem();
+        int bdayInt =  (Integer)comboBoxDateOfBirth.getSelectedItem();
+       // int bmonthInt = (Integer) comboBoxMonthOfBirth.getSelectedItem();
         String city = tfieldCity.getText();
         String address = tfieldAddress.getText();
         String phone = tfieldPhone.getText();
@@ -777,6 +774,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         /**
          * Check if all required fields are filled in
          */
+        
+        newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
+                country, city, address, phone, email, access);
+        
         if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
                 || Lname.trim().length() == 0 || pin.trim().length() == 0
                 || country.trim().length() == 0 || city.trim().length() == 0
@@ -790,10 +791,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         }
 
         /**
-         * check EGN field for 10 digits
+         * check PIN field for 10 digits
          */
         
-
+        
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
         if (!m_val.find()) {
@@ -804,11 +805,22 @@ public class RegistrationForm extends javax.swing.JFrame {
             return;
         }
         
+      
+// PIN verification 
+        
+        CheckPIN verify = new CheckPIN (newUser.getEgn());
+                
+        
+           if (verify.isValid()) {
+                    newUser.setEgn(pin);
+           }
+                else {JOptionPane.showMessageDialog(null, "Грешно ЕГН ! ");
+            return;
+                } 
+       
+        
                 
                 
-                
-        newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
-                country, city, address, phone, email, access);
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
 
@@ -1354,10 +1366,6 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void tfieldegnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldegnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfieldegnActionPerformed
-
-    private void tfieldPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldPINActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfieldPINActionPerformed
     /**
      * creates method for clearing out the form
      */
@@ -1391,9 +1399,11 @@ public class RegistrationForm extends javax.swing.JFrame {
     }
 
     private void clearDeleteAccountForm() {
+        tfieldEGN.setText("");
         lblFirstName_deleteAccount.setText("");
         lblSecondName_deleteAccount.setText("");
         lblLastName_deleteAccount.setText("");
+        
         while (accountsTableModel.getRowCount() > 0) {
             accountsTableModel.removeRow(0);
         }
