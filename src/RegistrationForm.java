@@ -762,8 +762,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         String bmonth = (String) comboBoxMonthOfBirth.getSelectedItem();
         String byear = (String) comboBoxYearOfBirth.getSelectedItem();
         String country = (String) comboBoxCountry.getSelectedItem();
-        int bdayInt =  (Integer)comboBoxDateOfBirth.getSelectedItem();
-       // int bmonthInt = (Integer) comboBoxMonthOfBirth.getSelectedItem();
         String city = tfieldCity.getText();
         String address = tfieldAddress.getText();
         String phone = tfieldPhone.getText();
