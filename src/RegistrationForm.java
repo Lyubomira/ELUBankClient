@@ -932,7 +932,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             return;
         }
         
-        // convet commas from numbers to dot (european standard)
+        // convert commas from numbers to dot (european standard)
         NumberFormat doubleFormat = NumberFormat.getInstance(Locale.GERMAN);
         Number doubleNumber = 0;
         try {
@@ -1029,16 +1029,15 @@ public class RegistrationForm extends javax.swing.JFrame {
         lblLastName_deleteAccount.setText(newUser.getFamilyname());
 
         if (newUser.getAccounts() != null) {
-            JOptionPane.showMessageDialog(null, "Imame akaunti za toq potebitel!");
+            //JOptionPane.showMessageDialog(null, "Imame akaunti za toq potebitel!");
             for (Accounts currentAccout : newUser.getAccounts()) {
                 int i = 0;
                 accountsTableModel.insertRow(i++, new Object[]{currentAccout.getIBAN(),
                     currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
                     currentAccout.getAmount(), currentAccout.getCurrency()});
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "ti si mega typo kopele java!");
-        }
+        } 
+       
     }//GEN-LAST:event_btnSearchAccountActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -1054,6 +1053,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
             accountsTableModel.removeRow(Accounts_table.getSelectedRow());
         }
+        clearDeleteAccountForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tfieldUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfieldUsernameKeyPressed
