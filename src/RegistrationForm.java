@@ -6,6 +6,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -107,7 +111,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         tfieldEgn = new javax.swing.JTextField();
         cmboxAccountType = new javax.swing.JComboBox();
         lblAccountType = new javax.swing.JLabel();
-        btnSerach = new javax.swing.JButton();
+        btnSerachAccount = new javax.swing.JButton();
         lblseparator = new javax.swing.JLabel();
         lblCurrency = new javax.swing.JLabel();
         CheckBox_Panel = new javax.swing.JPanel();
@@ -499,14 +503,14 @@ public class RegistrationForm extends javax.swing.JFrame {
         lblAccountType.setText("Вид на сметката");
         NewAccountPanel.add(lblAccountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
-        btnSerach.setBackground(new java.awt.Color(168, 199, 200));
-        btnSerach.setText("Търси");
-        btnSerach.addActionListener(new java.awt.event.ActionListener() {
+        btnSerachAccount.setBackground(new java.awt.Color(168, 199, 200));
+        btnSerachAccount.setText("Търси");
+        btnSerachAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSerachActionPerformed(evt);
+                btnSerachAccountActionPerformed(evt);
             }
         });
-        NewAccountPanel.add(btnSerach, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        NewAccountPanel.add(btnSerachAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
 
         lblseparator.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblseparator.setForeground(new java.awt.Color(0, 102, 102));
@@ -558,6 +562,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         initialAmount_lbl.setText("Първоначална сума");
         NewAccountPanel.add(initialAmount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
 
+        tfieldInitialAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfieldInitialAmountActionPerformed(evt);
+            }
+        });
         tfieldInitialAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfieldInitialAmountKeyPressed(evt);
@@ -839,7 +848,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void btnSerachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerachActionPerformed
+    private void btnSerachAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerachAccountActionPerformed
 
         pin = tfieldEgn.getText();
         String request = "search";
@@ -880,7 +889,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         lblFname.setText(newUser.getName());
         lblSname.setText(newUser.getSurname());
         lblLname.setText(newUser.getFamilyname());
-    }//GEN-LAST:event_btnSerachActionPerformed
+    }//GEN-LAST:event_btnSerachAccountActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         dispose();
@@ -911,6 +920,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         } else if (USD_checkbox.isSelected()) {
             accounts.setCurrency(USD_checkbox.getText());
         }
+        
         /**
          * Check if all required fields are filled in
          */
@@ -921,10 +931,23 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, поълнете всички полета!");
             return;
         }
+        
+        // convet commas from numbers to dot (european standard)
+        NumberFormat doubleFormat = NumberFormat.getInstance(Locale.GERMAN);
+        Number doubleNumber = 0;
+        try {
+            doubleNumber = doubleFormat.parse(InitialAmount_);
+        } catch (ParseException ex) {
+            //Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Грешка при форматиране на данните"); 
+            
+        }
+        Double doubleValue = doubleNumber.doubleValue();
+        tfieldInitialAmount.setText(doubleValue.toString());
 
         accounts.setUserEGN(tfieldEgn.getText());
         accounts.setAccountType(cmboxAccountType.getSelectedItem().toString());
-        accounts.setAmount(tfieldInitialAmount.getText());
+        accounts.setAmount(doubleValue.toString());
         accounts.setRequest("create");
 
         do {
@@ -1006,12 +1029,15 @@ public class RegistrationForm extends javax.swing.JFrame {
         lblLastName_deleteAccount.setText(newUser.getFamilyname());
 
         if (newUser.getAccounts() != null) {
+            JOptionPane.showMessageDialog(null, "Imame akaunti za toq potebitel!");
             for (Accounts currentAccout : newUser.getAccounts()) {
                 int i = 0;
                 accountsTableModel.insertRow(i++, new Object[]{currentAccout.getIBAN(),
                     currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
                     currentAccout.getAmount(), currentAccout.getCurrency()});
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "ti si mega typo kopele java!");
         }
     }//GEN-LAST:event_btnSearchAccountActionPerformed
 
@@ -1247,7 +1273,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void tfieldEgnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfieldEgnKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnSerach.doClick();
+            btnSerachAccount.doClick();
         } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             btnCreateAccount.grabFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -1364,6 +1390,10 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void tfieldegnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldegnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfieldegnActionPerformed
+
+    private void tfieldInitialAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldInitialAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfieldInitialAmountActionPerformed
     /**
      * creates method for clearing out the form
      */
@@ -1479,7 +1509,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSearchAccount;
     private javax.swing.JButton btnSearchUser;
-    private javax.swing.JButton btnSerach;
+    private javax.swing.JButton btnSerachAccount;
     private javax.swing.JComboBox cmboxAccountType;
     private javax.swing.JComboBox comboBoxCountry;
     private javax.swing.JComboBox comboBoxDateOfBirth;
