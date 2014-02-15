@@ -770,8 +770,8 @@
                   <Color blue="c8" green="c7" red="a8" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="33">
-                    <StringItem index="0" value="[&#x414;&#x435;&#x43d;]"/>
+                  <StringArray count="32">
+                    <StringItem index="0" value="&#x414;&#x435;&#x43d;"/>
                     <StringItem index="1" value="01"/>
                     <StringItem index="2" value="02"/>
                     <StringItem index="3" value="03"/>
@@ -803,7 +803,6 @@
                     <StringItem index="29" value="29"/>
                     <StringItem index="30" value="30"/>
                     <StringItem index="31" value="31"/>
-                    <StringItem index="32" value=""/>
                   </StringArray>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -826,19 +825,19 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="13">
-                    <StringItem index="0" value="[&#x41c;&#x435;&#x441;&#x435;&#x446;]"/>
-                    <StringItem index="1" value="Jan"/>
-                    <StringItem index="2" value="Feb"/>
-                    <StringItem index="3" value="March"/>
-                    <StringItem index="4" value="April"/>
-                    <StringItem index="5" value="May"/>
-                    <StringItem index="6" value="June"/>
-                    <StringItem index="7" value="July"/>
-                    <StringItem index="8" value="Aug"/>
-                    <StringItem index="9" value="Sep"/>
-                    <StringItem index="10" value="Oct"/>
-                    <StringItem index="11" value="Nov"/>
-                    <StringItem index="12" value="Dec"/>
+                    <StringItem index="0" value="&#x41c;&#x435;&#x441;&#x435;&#x446;"/>
+                    <StringItem index="1" value="&#x42f;&#x43d;&#x443;&#x430;&#x440;&#x438;"/>
+                    <StringItem index="2" value="&#x424;&#x435;&#x432;&#x440;&#x443;&#x430;&#x440;&#x438;"/>
+                    <StringItem index="3" value="&#x41c;&#x430;&#x440;&#x442;"/>
+                    <StringItem index="4" value="&#x410;&#x43f;&#x440;&#x438;&#x43b;"/>
+                    <StringItem index="5" value="&#x41c;&#x430;&#x439;"/>
+                    <StringItem index="6" value="&#x42e;&#x43d;&#x438;"/>
+                    <StringItem index="7" value="&#x42e;&#x43b;&#x438;"/>
+                    <StringItem index="8" value="&#x410;&#x432;&#x433;&#x443;&#x441;&#x442;"/>
+                    <StringItem index="9" value="&#x421;&#x435;&#x43f;&#x442;&#x435;&#x43c;&#x432;&#x440;&#x438;"/>
+                    <StringItem index="10" value="&#x41e;&#x43a;&#x442;&#x43e;&#x43c;&#x432;&#x440;&#x438;"/>
+                    <StringItem index="11" value="&#x41d;&#x43e;&#x435;&#x43c;&#x440;&#x432;&#x438;"/>
+                    <StringItem index="12" value="&#x414;&#x435;&#x43a;&#x435;&#x43c;&#x432;&#x440;&#x438;"/>
                   </StringArray>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -857,8 +856,8 @@
                   <Color blue="c8" green="c7" red="a8" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="68">
-                    <StringItem index="0" value="[&#x413;&#x43e;&#x434;&#x438;&#x43d;&#x430;]"/>
+                  <StringArray count="66">
+                    <StringItem index="0" value="&#x413;&#x43e;&#x434;&#x438;&#x43d;&#x430;"/>
                     <StringItem index="1" value="1950"/>
                     <StringItem index="2" value="1951"/>
                     <StringItem index="3" value="1952"/>
@@ -924,8 +923,6 @@
                     <StringItem index="63" value="2012"/>
                     <StringItem index="64" value="2013"/>
                     <StringItem index="65" value="2014"/>
-                    <StringItem index="66" value=""/>
-                    <StringItem index="67" value=""/>
                   </StringArray>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1062,13 +1059,11 @@
                   <Color blue="c8" green="c7" red="a0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
+                  <StringArray count="4">
                     <StringItem index="0" value="&#x418;&#x437;&#x431;&#x435;&#x440;&#x435;&#x442;&#x435; &#x432;&#x438;&#x434;"/>
-                    <StringItem index="1" value="-----------------------------"/>
-                    <StringItem index="2" value="&#x421;&#x442;&#x430;&#x43d;&#x434;&#x430;&#x440;&#x442;&#x435;&#x43d; &#x434;&#x435;&#x43f;&#x43e;&#x437;&#x438;&#x442;"/>
-                    <StringItem index="3" value="&#x421; &#x444;&#x438;&#x43a;&#x441;&#x438;&#x440;&#x430;&#x43d;&#x430; &#x43b;&#x438;&#x445;&#x432;&#x430;"/>
-                    <StringItem index="4" value="&#x420;&#x430;&#x437;&#x43f;&#x43b;&#x430;&#x449;&#x430;&#x442;&#x435;&#x43b;&#x43d;&#x430; &#x441;&#x43c;&#x435;&#x442;&#x43a;&#x430;"/>
-                    <StringItem index="5" value=" "/>
+                    <StringItem index="1" value="&#x421;&#x442;&#x430;&#x43d;&#x434;&#x430;&#x440;&#x442;&#x435;&#x43d; &#x434;&#x435;&#x43f;&#x43e;&#x437;&#x438;&#x442;"/>
+                    <StringItem index="2" value="&#x421; &#x444;&#x438;&#x43a;&#x441;&#x438;&#x440;&#x430;&#x43d;&#x430; &#x43b;&#x438;&#x445;&#x432;&#x430;"/>
+                    <StringItem index="3" value="&#x420;&#x430;&#x437;&#x43f;&#x43b;&#x430;&#x449;&#x430;&#x442;&#x435;&#x43b;&#x43d;&#x430; &#x441;&#x43c;&#x435;&#x442;&#x43a;&#x430;"/>
                   </StringArray>
                 </Property>
               </Properties>

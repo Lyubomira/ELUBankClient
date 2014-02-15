@@ -39,7 +39,7 @@ public class SSLClient {
             receivedObj = objInStream.readObject();
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Зададеният сървър не може да бъде достъпен!",
+            JOptionPane.showMessageDialog(null, "Сървърът не може да бъде достъпен!",
                     "Грешка", JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SSLClient.class.getName()).log(Level.SEVERE, null, ex);

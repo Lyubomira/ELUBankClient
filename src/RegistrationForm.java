@@ -424,7 +424,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         RegistrationPanel.add(lblDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         comboBoxDateOfBirth.setBackground(new java.awt.Color(168, 199, 200));
-        comboBoxDateOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Ден]", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "" }));
+        comboBoxDateOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ден", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         comboBoxDateOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
         comboBoxDateOfBirth.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -434,12 +434,12 @@ public class RegistrationForm extends javax.swing.JFrame {
         RegistrationPanel.add(comboBoxDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 70, -1));
 
         comboBoxMonthOfBirth.setBackground(new java.awt.Color(168, 199, 200));
-        comboBoxMonthOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Месец]", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        comboBoxMonthOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Месец", "Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септември", "Октомври", "Ноемрви", "Декември" }));
         comboBoxMonthOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
         RegistrationPanel.add(comboBoxMonthOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 70, -1));
 
         comboBoxYearOfBirth.setBackground(new java.awt.Color(168, 199, 200));
-        comboBoxYearOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Година]", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "", "" }));
+        comboBoxYearOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Година", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014" }));
         comboBoxYearOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
         RegistrationPanel.add(comboBoxYearOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 70, -1));
 
@@ -486,7 +486,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         NewAccountPanel.add(tfieldEgn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 130, -1));
 
         cmboxAccountType.setBackground(new java.awt.Color(160, 199, 200));
-        cmboxAccountType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете вид", "-----------------------------", "Стандартен депозит", "С фиксирана лихва", "Разплащателна сметка", " " }));
+        cmboxAccountType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете вид", "Стандартен депозит", "С фиксирана лихва", "Разплащателна сметка" }));
         cmboxAccountType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmboxAccountTypeActionPerformed(evt);
