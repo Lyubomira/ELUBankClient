@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+import javax.swing.JOptionPane;
 
 public class SSLClient {
 
@@ -33,12 +34,13 @@ public class SSLClient {
             // Initializing the streams for Communication with the Server
             objOutStream = new ObjectOutputStream(sslSocket.getOutputStream());
             objInStream = new ObjectInputStream(sslSocket.getInputStream());
-            
+
             objOutStream.writeObject(objectToSend);
             receivedObj = objInStream.readObject();
 
         } catch (IOException ex) {
-            Logger.getLogger(SSLClient.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Зададеният сървър не може да бъде достъпен!",
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SSLClient.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

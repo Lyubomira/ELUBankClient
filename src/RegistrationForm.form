@@ -1220,7 +1220,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tfieldInitialAmount">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfieldInitialAmountActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfieldInitialAmountKeyPressed"/>
               </Events>
               <Constraints>
@@ -1538,7 +1537,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tfieldegn">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfieldegnActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfieldegnKeyPressed"/>
               </Events>
               <Constraints>
