@@ -10,8 +10,23 @@ import javax.swing.JOptionPane;
 
 public class SSLClient {
 
-    public static final int PORT = 23579;
-    public static final String SERVER = "localhost";
+    private static int port = 23579;
+    private static String server = "localhost";
+    private static String keystore_pass = "SECRET123";
+    private static String keystore_location = "kstore.jks";
+    /**
+     * Function for getting the settings of the ini file for the server
+     * @throws IOException 
+     */
+    public static void setSettings() throws IOException {
+ 
+      IniParser settingi = new IniParser("config.ini");
+      server = settingi.getString("server","server_host",server);
+      port = settingi.getInt("server","server_port",port);
+      keystore_pass = settingi.getString("keystore","keystore_pass",keystore_pass);
+      keystore_location = settingi.getString("keystore","keystore_location",keystore_location);
+      
+    }  
 
     private SSLSocketFactory sslSocketFactory = null;
     private SSLSocket sslSocket = null;
@@ -23,13 +38,13 @@ public class SSLClient {
 
     public Object runClient(Object objectToSend) {
         //Specifying Trusted Keystore details
-        System.setProperty("javax.net.ssl.trustStore", "kstore.jks");
-        System.setProperty("javax.net.ssl.trustStorePassword", "SECRET123");
+        System.setProperty("javax.net.ssl.trustStore", keystore_location);
+        System.setProperty("javax.net.ssl.trustStorePassword", keystore_pass);
 
         try {
             // Creating Client Sockets
             sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-            sslSocket = (SSLSocket) sslSocketFactory.createSocket(SERVER, PORT);
+            sslSocket = (SSLSocket) sslSocketFactory.createSocket(server, port);
 
             // Initializing the streams for Communication with the Server
             objOutStream = new ObjectOutputStream(sslSocket.getOutputStream());

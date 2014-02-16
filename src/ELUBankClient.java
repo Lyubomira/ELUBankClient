@@ -1,3 +1,8 @@
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author madd
@@ -27,6 +32,13 @@ public class ELUBankClient {
             java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        /**
+         * Get the settings from the ini file for later use
+         */
+       try{ SSLClient.setSettings(); } catch (IOException ex) {
+            Logger.getLogger(ELUBankClient.class.getName()).log(Level.SEVERE, null, ex);
+        }        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
