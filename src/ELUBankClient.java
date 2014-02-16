@@ -1,9 +1,6 @@
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,22 +31,23 @@ public class ELUBankClient {
             java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /**
          * Get the settings from the ini file for later use
          */
-       try{ 
-      IniParser settingi = new IniParser("config.ini");
-      
-      SSLClient.setSettings(
-              settingi.getInt("server","server_port",23579), 
-              settingi.getString("server","server_host","localhost"),
-              settingi.getString("keystore","keystore_pass","SECRET123"),
-              settingi.getString("keystore","keystore_location","kstore.jks")
-             );
+        try {
+            IniParser settingi = new IniParser("config.ini");
+
+            SSLClient.setSettings(
+                    settingi.getInt("server", "server_port", 23579),
+                    settingi.getString("server", "server_host", "localhost"),
+                    settingi.getString("keystore", "keystore_pass", "SECRET123"),
+                    settingi.getString("keystore", "keystore_location", "kstore.jks")
+            );
         } catch (IOException ex) {
-            Logger.getLogger(ELUBankClient.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+            JOptionPane.showMessageDialog(null, "Инициализиращ файл не е намерен."
+                    + "\nСтойностите по подразбиране ще бъдат използвани.");
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

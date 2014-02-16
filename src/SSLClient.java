@@ -8,26 +8,36 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.swing.JOptionPane;
 
+/**
+ * Communicates with the server trough objects, using the object stream.
+ *
+ * @author Vasil Marinkov & Miglen Evlogiev
+ */
 public class SSLClient {
 
     private static int port = 23579;
     private static String server = "localhost";
     private static String keystore_pass = "SECRET123";
     private static String keystore_location = "kstore.jks";
+
     /**
-     * Function for getting the settings of the ini file for the server
-     * @throws IOException 
+     * Sets all information about the server connection and they keystore
+     * location & credentials
+     *
+     * @param config_port server port
+     * @param config_server server address
+     * @param config_kpass keystore password
+     * @param config_kloc path to keystore
      */
-    public static void setSettings(int config_port, 
-                                    String config_server,
-                                    String config_kpass,
-                                    String config_kloc){
-      server = config_server;
-      port = config_port;
-      keystore_pass = config_kpass;
-      keystore_location = config_kloc;
-      
-    }  
+    public static void setSettings(int config_port,
+            String config_server,
+            String config_kpass,
+            String config_kloc) {
+        server = config_server;
+        port = config_port;
+        keystore_pass = config_kpass;
+        keystore_location = config_kloc;
+    }
 
     private SSLSocketFactory sslSocketFactory = null;
     private SSLSocket sslSocket = null;
