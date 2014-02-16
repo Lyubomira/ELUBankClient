@@ -18,13 +18,14 @@ public class SSLClient {
      * Function for getting the settings of the ini file for the server
      * @throws IOException 
      */
-    public static void setSettings() throws IOException {
- 
-      IniParser settingi = new IniParser("config.ini");
-      server = settingi.getString("server","server_host",server);
-      port = settingi.getInt("server","server_port",port);
-      keystore_pass = settingi.getString("keystore","keystore_pass",keystore_pass);
-      keystore_location = settingi.getString("keystore","keystore_location",keystore_location);
+    public static void setSettings(int config_port, 
+                                    String config_server,
+                                    String config_kpass,
+                                    String config_kloc){
+      server = config_server;
+      port = config_port;
+      keystore_pass = config_kpass;
+      keystore_location = config_kloc;
       
     }  
 

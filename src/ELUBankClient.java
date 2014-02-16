@@ -1,5 +1,7 @@
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +38,16 @@ public class ELUBankClient {
         /**
          * Get the settings from the ini file for later use
          */
-       try{ SSLClient.setSettings(); } catch (IOException ex) {
+       try{ 
+      IniParser settingi = new IniParser("config.ini");
+      
+      SSLClient.setSettings(
+              settingi.getInt("server","server_port",23579), 
+              settingi.getString("server","server_host","localhost"),
+              settingi.getString("keystore","keystore_pass","SECRET123"),
+              settingi.getString("keystore","keystore_location","kstore.jks")
+             );
+        } catch (IOException ex) {
             Logger.getLogger(ELUBankClient.class.getName()).log(Level.SEVERE, null, ex);
         }        
 
