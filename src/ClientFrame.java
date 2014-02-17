@@ -59,7 +59,7 @@ public class ClientFrame extends javax.swing.JFrame {
 
         // Fire property change event so all listeners can update their state.
         firePropertyChange("currentUser", null, currentUser);
-        
+
         // Disable transactions panel for user type 3.
         if (Integer.parseInt(currentUser.getUserType()) == 3) {
             btnTransactions.setEnabled(false);
@@ -76,7 +76,7 @@ public class ClientFrame extends javax.swing.JFrame {
     }
 
     /**
-     * Returns current user instance.
+     * Sets current user instance and fires PropertyChangeEvent.
      *
      * @param user User instance.
      */

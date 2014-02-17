@@ -1,55 +1,55 @@
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author madd
+ * @author Elena Koevska
  */
 public class ELUBankClient {
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        // Set the Nimbus look and feel.
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (
+                ClassNotFoundException
+                |
+                InstantiationException
+                |
+                IllegalAccessException
+                |
+                UnsupportedLookAndFeelException ex
+                ) {
+            String className = ClientFrame.class.getName();
+            Logger.getLogger(className).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /**
-         * Get the settings from the ini file for later use
-         */
+        // Get INI settings for later use.
         try {
-            IniParser settingi = new IniParser("config.ini");
+            IniParser settings = new IniParser("config.ini");
 
             SSLClient.setSettings(
-                    settingi.getInt("server", "server_port", 23579),
-                    settingi.getString("server", "server_host", "localhost"),
-                    settingi.getString("keystore", "keystore_pass", "SECRET123"),
-                    settingi.getString("keystore", "keystore_location", "kstore.jks")
+                settings.getInt("server", "server_port", 23579),
+                settings.getString("server", "server_host", "localhost"),
+                settings.getString("keystore", "keystore_pass", "SECRET123"),
+                settings.getString("keystore", "keystore_location", "kstore.jks")
             );
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Инициализиращ файл не е намерен."
-                    + "\nСтойностите по подразбиране ще бъдат използвани.");
+            String msg = "Файлът с настройки не е намерен!\nЩе бъдат използвани стойностите по подразбиране.";
+            JOptionPane.showMessageDialog(null, msg, "Предупреждение", JOptionPane.WARNING_MESSAGE);
         }
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
