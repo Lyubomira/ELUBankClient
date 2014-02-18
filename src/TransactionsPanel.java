@@ -18,7 +18,7 @@ public class TransactionsPanel extends ClientFramePanel {
     /**
      * Contains user's checking accounts (if any).
      */
-    private ArrayList<Accounts> accountList = new ArrayList<>();
+    private ArrayList<Accounts> accountList = new ArrayList<Accounts>();
 
     /**
      * Creates new TransactionsPanel form.
@@ -133,7 +133,6 @@ public class TransactionsPanel extends ClientFramePanel {
      * @param accIndex account index in the account list.
      */
     private void updateAccTable(int accIndex) {
-        System.out.println("updateAccTable");
         Accounts selAccount = accountList.get(accIndex);
 
         DefaultTableModel model = (DefaultTableModel) tblAccList.getModel();
@@ -153,7 +152,12 @@ public class TransactionsPanel extends ClientFramePanel {
         });
     }
 
-    private void makeTransaction() {
+    /**
+     * "Make Transaction" button event handler.
+     *
+     * @param evt ActionEvent instance.
+     */
+    private void makeTransaction(ActionEvent evt) {
         // Ensure that required fields are not empty.
         for (Component c : getComponents()) {
             if (c instanceof JTextField) {
@@ -175,7 +179,7 @@ public class TransactionsPanel extends ClientFramePanel {
             return;
         }
 
-        // Valiate amount.
+        // Validate amount.
         try {
             Double.parseDouble(fieldAmount.getText());
         } catch (NumberFormatException ex) {
@@ -230,7 +234,7 @@ public class TransactionsPanel extends ClientFramePanel {
     }
 
     /**
-     * Choose account combo box event handler.
+     * Account combo box event handler.
      *
      * @param evt ActionEvent instance.
      */
@@ -367,7 +371,7 @@ public class TransactionsPanel extends ClientFramePanel {
         btnMakeTransaction.setPreferredSize(new java.awt.Dimension(140, 32));
         btnMakeTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMakeTransactionActionPerformed(evt);
+                makeTransaction(evt);
             }
         });
 
@@ -437,11 +441,6 @@ public class TransactionsPanel extends ClientFramePanel {
                 .addContainerGap(326, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMakeTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeTransactionActionPerformed
-        makeTransaction();
-    }//GEN-LAST:event_btnMakeTransactionActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMakeTransaction;

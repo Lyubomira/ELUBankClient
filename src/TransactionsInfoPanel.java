@@ -18,12 +18,12 @@ public class TransactionsInfoPanel extends ClientFramePanel {
     /**
      * List containing user accounts.
      */
-    private final ArrayList<Accounts> accountList = new ArrayList<>();
+    private final ArrayList<Accounts> accountList = new ArrayList<Accounts>();
 
     /**
      * Contains user's transactions, grouped by account number.
      */
-    private HashMap<String, ArrayList<Transactions>> transactionsMap = new HashMap<>();
+    private HashMap<String, ArrayList<Transactions>> transactionsMap = new HashMap<String, ArrayList<Transactions>>();
 
     /**
      * Creates new form TransactionsInfoPanel

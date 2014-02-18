@@ -15,6 +15,7 @@ public class ELUBankClient {
 
     public static void main(String args[]) {
         // Set the Nimbus look and feel.
+        String className = ClientFrame.class.getName();
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -22,16 +23,13 @@ public class ELUBankClient {
                     break;
                 }
             }
-        } catch (
-                ClassNotFoundException
-                |
-                InstantiationException
-                |
-                IllegalAccessException
-                |
-                UnsupportedLookAndFeelException ex
-                ) {
-            String className = ClientFrame.class.getName();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(className).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(className).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(className).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(className).log(Level.SEVERE, null, ex);
         }
 
@@ -40,10 +38,10 @@ public class ELUBankClient {
             IniParser settings = new IniParser("config.ini");
 
             SSLClient.setSettings(
-                settings.getInt("server", "server_port", 23579),
-                settings.getString("server", "server_host", "localhost"),
-                settings.getString("keystore", "keystore_pass", "SECRET123"),
-                settings.getString("keystore", "keystore_location", "kstore.jks")
+                    settings.getInt("server", "server_port", 23579),
+                    settings.getString("server", "server_host", "localhost"),
+                    settings.getString("keystore", "keystore_pass", "SECRET123"),
+                    settings.getString("keystore", "keystore_location", "kstore.jks")
             );
         } catch (IOException ex) {
             String msg = "Файлът с настройки не е намерен!\nЩе бъдат използвани стойностите по подразбиране.";
