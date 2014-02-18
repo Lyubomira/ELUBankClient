@@ -424,7 +424,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         RegistrationPanel.add(lblDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         comboBoxDateOfBirth.setBackground(new java.awt.Color(168, 199, 200));
-        comboBoxDateOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Ден]", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "" }));
+        comboBoxDateOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ден", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         comboBoxDateOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
         comboBoxDateOfBirth.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -434,12 +434,12 @@ public class RegistrationForm extends javax.swing.JFrame {
         RegistrationPanel.add(comboBoxDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 70, -1));
 
         comboBoxMonthOfBirth.setBackground(new java.awt.Color(168, 199, 200));
-        comboBoxMonthOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Месец]", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        comboBoxMonthOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Месец", "Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септември", "Октомври", "Ноемрви", "Декември" }));
         comboBoxMonthOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
         RegistrationPanel.add(comboBoxMonthOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 70, -1));
 
         comboBoxYearOfBirth.setBackground(new java.awt.Color(168, 199, 200));
-        comboBoxYearOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[Година]", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "", "" }));
+        comboBoxYearOfBirth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Година", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014" }));
         comboBoxYearOfBirth.setMaximumSize(new java.awt.Dimension(61, 20));
         RegistrationPanel.add(comboBoxYearOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 70, -1));
 
@@ -486,7 +486,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         NewAccountPanel.add(tfieldEgn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 130, -1));
 
         cmboxAccountType.setBackground(new java.awt.Color(160, 199, 200));
-        cmboxAccountType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете вид", "-----------------------------", "Стандартен депозит", "С фиксирана лихва", "Разплащателна сметка", " " }));
+        cmboxAccountType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Изберете вид", "Стандартен депозит", "С фиксирана лихва", "Разплащателна сметка" }));
         cmboxAccountType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmboxAccountTypeActionPerformed(evt);
@@ -562,11 +562,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         initialAmount_lbl.setText("Първоначална сума");
         NewAccountPanel.add(initialAmount_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
 
-        tfieldInitialAmount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfieldInitialAmountActionPerformed(evt);
-            }
-        });
         tfieldInitialAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfieldInitialAmountKeyPressed(evt);
@@ -685,11 +680,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         lblEGN.setText("Единен граждански номер");
         DeleteClientPanel.add(lblEGN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
-        tfieldegn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfieldegnActionPerformed(evt);
-            }
-        });
         tfieldegn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfieldegnKeyPressed(evt);
@@ -781,10 +771,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         /**
          * Check if all required fields are filled in
          */
-        
         newUser = new User(user, pass, Fname, Mname, Lname, pin, bday, bmonth, byear,
                 country, city, address, phone, email, access);
-        
+
         if (user.trim().length() == 0 || Fname.length() == 0 || Mname.trim().length() == 0
                 || Lname.trim().length() == 0 || pin.trim().length() == 0
                 || country.trim().length() == 0 || city.trim().length() == 0
@@ -800,55 +789,41 @@ public class RegistrationForm extends javax.swing.JFrame {
         /**
          * check PIN field for 10 digits
          */
-        
-        
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
-        if (!m_val.find()) {
-            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
-            return;
-        } else if (!m_val.find() && pin.length() > 10) {
-            JOptionPane.showMessageDialog(null, "ЕГН съдържа твърде много символи! ");
+        if (!m_val.find() || pin.length() != 10) {
+            JOptionPane.showMessageDialog(null, "ЕГН трябва да съдържа само цифри"
+                    + "\nи да има дължина равна на 10 символа.",
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-      
+
 // PIN verification 
-        
-        CheckPIN verify = new CheckPIN (newUser.getEgn());
-                
-        
-           if (verify.isValid()) {
-                    newUser.setEgn(pin);
-           }
-                else {JOptionPane.showMessageDialog(null, "Грешно ЕГН ! ");
+        CheckPIN verify = new CheckPIN(newUser.getEgn());
+
+        if (verify.isValid()) {
+            newUser.setEgn(pin);
+        } else {
+            JOptionPane.showMessageDialog(null, "Грешно ЕГН!", "Грешка",
+                    JOptionPane.ERROR_MESSAGE);
             return;
-                } 
-       
-        
-                
-                
+        }
+
         newUser.setRequest(request);
         newUser = (User) client.runClient(newUser);
 
-        if (newUser.getResponse() == null) {
-            clearRegistrationForm();
+        if (newUser.getResponse() != null) {
+            JOptionPane.showMessageDialog(null, newUser.getResponse(),
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
+        } else {
             JOptionPane.showMessageDialog(null, "Успешно създадохте нов потребител!");
-            return;
-        }
-
-        if (newUser.getResponse().equalsIgnoreCase("userExists")) {
-            JOptionPane.showMessageDialog(null, "Съществува потребител с такова име!");
-            return;
-        }
-
-        if (newUser.getResponse().equalsIgnoreCase("egnExists")) {
-            JOptionPane.showMessageDialog(null, "Съществува потебител с такова ЕГН!");
-            return;
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void btnSerachAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerachAccountActionPerformed
+        lblFname.setText("");
+        lblSname.setText("");
+        lblLname.setText("");
 
         pin = tfieldEgn.getText();
         String request = "search";
@@ -858,11 +833,10 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
-        if (!m_val.find()) {
-            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
-            return;
-        } else if (!m_val.find() && pin.length() > 10) {
-            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
+        if (!m_val.find() || pin.length() != 10) {
+            JOptionPane.showMessageDialog(null, "ЕГН трябва да съдържа само цифри"
+                    + "\nи да има дължина равна на 10 символа.",
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
         /**
@@ -877,10 +851,13 @@ public class RegistrationForm extends javax.swing.JFrame {
          *
          */
         if (newUser.getResponse() != null) {
-            if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
-                JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
-                return;
-            }
+            JOptionPane.showMessageDialog(null, newUser.getResponse(),
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (newUser.getUserType().equalsIgnoreCase("1")) {
+            JOptionPane.showMessageDialog(null, "Банковите служители нямат право"
+                    + " на лични сметки", "Грешка", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         /**
@@ -920,7 +897,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         } else if (USD_checkbox.isSelected()) {
             accounts.setCurrency(USD_checkbox.getText());
         }
-        
+
         /**
          * Check if all required fields are filled in
          */
@@ -931,16 +908,15 @@ public class RegistrationForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Моля, поълнете всички полета!");
             return;
         }
-        
+
         // convert commas from numbers to dot (european standard)
         NumberFormat doubleFormat = NumberFormat.getInstance(Locale.GERMAN);
         Number doubleNumber = 0;
         try {
             doubleNumber = doubleFormat.parse(InitialAmount_);
         } catch (ParseException ex) {
-            //Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Грешка при форматиране на данните"); 
-            
+            JOptionPane.showMessageDialog(null, "Грешка при форматиране на данните");
+            return;
         }
         Double doubleValue = doubleNumber.doubleValue();
         tfieldInitialAmount.setText(doubleValue.toString());
@@ -957,15 +933,15 @@ public class RegistrationForm extends javax.swing.JFrame {
         } while (accounts.getResponse() != null
                 && accounts.getResponse().equalsIgnoreCase("ibanExists"));
 
-        if (accounts.getResponse() == null) {
-
+        if (accounts.getResponse() != null) {
+            JOptionPane.showMessageDialog(null, accounts.getResponse(),
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
+        } else {
             JOptionPane.showMessageDialog(null, "Успешно създадохте нова потребителска сметка!\n"
                     + "IBAN: " + tfieldIBAN.getText());
-
         }
+
         clearNewAccountForm();
-
-
     }//GEN-LAST:event_btnCreateNewAccountActionPerformed
 
     private void cmboxAccountTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboxAccountTypeActionPerformed
@@ -996,11 +972,10 @@ public class RegistrationForm extends javax.swing.JFrame {
          */
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
-        if (!m_val.find()) {
-            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
-            return;
-        } else if (!m_val.find() && pin.length() > 10) {
-            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
+        if (!m_val.find() || pin.length() != 10) {
+            JOptionPane.showMessageDialog(null, "ЕГН трябва да съдържа само цифри"
+                    + "\nи да има дължина равна на 10 символа.",
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -1018,10 +993,13 @@ public class RegistrationForm extends javax.swing.JFrame {
         newUser = (User) client.runClient(newUser);
 
         if (newUser.getResponse() != null) {
-            if (newUser.getResponse().equalsIgnoreCase("userNotFound")) {
-                JOptionPane.showMessageDialog(null, "Не е намерен потебител с такова ЕГН!");
-                return;
-            }
+            JOptionPane.showMessageDialog(null, newUser.getResponse(),
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (newUser.getUserType().equalsIgnoreCase("1")) {
+            JOptionPane.showMessageDialog(null, "Банковите служители нямат право"
+                    + " на лични сметки", "Грешка", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         lblFirstName_deleteAccount.setText(newUser.getName());
@@ -1036,13 +1014,14 @@ public class RegistrationForm extends javax.swing.JFrame {
                     currentAccout.getIBAN().substring(10), currentAccout.getAccountType(),
                     currentAccout.getAmount(), currentAccout.getCurrency()});
             }
-        } 
-       
+        }
+
     }//GEN-LAST:event_btnSearchAccountActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
-        int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате да изтриете избраната сметка?", "Изтриване", JOptionPane.YES_NO_OPTION);
+        int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате"
+                + " да изтриете избраната сметка?", "Изтриване", JOptionPane.YES_NO_OPTION);
 
         if (answer == 0) {
             int row = Accounts_table.getSelectedRow();
@@ -1246,11 +1225,10 @@ public class RegistrationForm extends javax.swing.JFrame {
          */
         Pattern egn_val = Pattern.compile("\\d{10,10}");
         Matcher m_val = egn_val.matcher(pin);
-        if (!m_val.find()) {
-            JOptionPane.showMessageDialog(null, "ЕГН може да съдържа само 10 цифри");
-            return;
-        }else if (!m_val.find() && pin.length() > 10) {
-            JOptionPane.showMessageDialog(null, "Твърде много символи! ");
+        if (!m_val.find() || pin.length() != 10) {
+            JOptionPane.showMessageDialog(null, "ЕГН трябва да съдържа само цифри"
+                    + "\nи да има дължина равна на 10 символа.",
+                    "Грешка", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -1365,11 +1343,11 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitKeyPressed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
-      
+
         int answer = JOptionPane.showConfirmDialog(null, "Сигурни ли сте, че искате"
                 + " да изтриете потребителския акаунт?", "Изтриване", JOptionPane.YES_NO_OPTION);
 
-       if (answer == 0) {
+        if (answer == 0) {
             int row = allClientsTable.getSelectedRow();
             pin = allClientsTable.getValueAt(row, 3).toString();
 
@@ -1381,23 +1359,12 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
 
             allUsersTableModel.removeRow(allClientsTable.getSelectedRow());
-       }
-        
-        
-        
+        }
     }//GEN-LAST:event_btnDeleteUserActionPerformed
-
-    private void tfieldegnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldegnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfieldegnActionPerformed
-
-    private void tfieldInitialAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldInitialAmountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfieldInitialAmountActionPerformed
     /**
      * creates method for clearing out the form
      */
- 
+
     private void clearRegistrationForm() {
         tfieldUsername.setText("");
         tfieldNme.setText("");
@@ -1427,11 +1394,10 @@ public class RegistrationForm extends javax.swing.JFrame {
     }
 
     private void clearDeleteAccountForm() {
-        tfieldEGN.setText("");
         lblFirstName_deleteAccount.setText("");
         lblSecondName_deleteAccount.setText("");
         lblLastName_deleteAccount.setText("");
-        
+
         while (accountsTableModel.getRowCount() > 0) {
             accountsTableModel.removeRow(0);
         }
@@ -1465,8 +1431,6 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         return IBAN;
     }
-
- 
 
     private final SSLClient client = new SSLClient();
     private Accounts accounts = new Accounts();

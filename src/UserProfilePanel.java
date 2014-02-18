@@ -54,7 +54,21 @@ public class UserProfilePanel extends ClientFramePanel {
                 }
             }
         }
-
+        
+        // Validate e-mail address field.
+        // http://www.regular-expressions.info/email.html
+        String regex = "^(?i)[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$";
+        if (!fieldMail.getText().matches(regex)) {
+            showErrMsg("Въвели сте невалиден e-mail адрес!");
+            return;
+        }
+        
+        // Validate phone number field.
+        if (!fieldPhone.getText().replaceAll("[+\\s/-]", "").matches("^\\d+$")) {
+            showErrMsg("Въвели сте невалиден телефонен номер!");
+            return;
+        }
+        
         // Make new request object.
         User request = new User();
 

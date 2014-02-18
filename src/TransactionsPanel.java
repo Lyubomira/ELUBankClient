@@ -63,7 +63,7 @@ public class TransactionsPanel extends ClientFramePanel {
     public void setAccountList(Accounts[] accList) {
         // Reset internal ArrayList.
         accountList.clear();
-        
+
         // Filter only checking accounts.
         for (Accounts account : accList) {
             if (account.getAccountType().equalsIgnoreCase("разплащателна сметка")) {
@@ -89,18 +89,18 @@ public class TransactionsPanel extends ClientFramePanel {
         if (!accountList.isEmpty()) {
             // Ensure there are no listeners attached to choose account combo
             // box because removeAllItems() will trigger an action event.
-            for (ActionListener al: comboChooseAcc.getActionListeners()) {
+            for (ActionListener al : comboChooseAcc.getActionListeners()) {
                 comboChooseAcc.removeActionListener(al);
             }
-            
+
             // Remove all elements (if any) from choose account combo box.
             comboChooseAcc.removeAllItems();
-            
+
             // Populate choose account combo box with account IBANs.
             for (Accounts acc : accountList) {
                 comboChooseAcc.addItem(acc.getIBAN());
             }
-            
+
             // Attach the action listener.
             comboChooseAcc.addActionListener(new ActionListener() {
                 @Override
@@ -108,13 +108,13 @@ public class TransactionsPanel extends ClientFramePanel {
                     comboChooseAccActionPerformed(evt);
                 }
             });
-            
+
             // Enable it.
             comboChooseAcc.setEnabled(true);
-            
+
             // Update account info table.
             updateAccTable(comboChooseAcc.getSelectedIndex());
-            
+
             // Enable all text fields.
             for (Component c : getComponents()) {
                 if (c instanceof JTextField) {
@@ -164,17 +164,22 @@ public class TransactionsPanel extends ClientFramePanel {
             }
         }
 
+        // Validate IBAN.
         String iban = fieldIBAN.getText();
-
-        // Validate IBAN length.
         if (iban.length() < 5 || iban.length() > 34) {
             showErrMsg("Невалидна дължина на полето IBAN!");
             return;
         }
-
-        // Validate IBAN characters.
         if (!iban.matches("[A-Z0-9]+")) {
             showErrMsg("Невалидни символи в полето IBAN!");
+            return;
+        }
+
+        // Valiate amount.
+        try {
+            Double.parseDouble(fieldAmount.getText());
+        } catch (NumberFormatException ex) {
+            showErrMsg("Въвели сте невалидна сума!");
             return;
         }
 
@@ -229,10 +234,10 @@ public class TransactionsPanel extends ClientFramePanel {
      *
      * @param evt ActionEvent instance.
      */
-    private void comboChooseAccActionPerformed(ActionEvent evt) {                                                
+    private void comboChooseAccActionPerformed(ActionEvent evt) {
         updateAccTable(comboChooseAcc.getSelectedIndex());
-    } 
-    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
