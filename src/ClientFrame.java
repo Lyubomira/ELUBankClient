@@ -286,12 +286,7 @@ public class ClientFrame extends javax.swing.JFrame {
      */
     private void menuButtonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonsActionPerformed
         if (evt.getSource().equals(btnLogout)) {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    new LoginFrame().setVisible(true);
-                }
-            });
+            new LoginFrame().setVisible(true);
             dispose();
         } else {
             String panelName = ((JButton) evt.getSource()).getText();
