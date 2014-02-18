@@ -27,6 +27,9 @@ public class AccountBalancePanel extends ClientFramePanel {
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
+        // Call parent implementation first.
+        super.propertyChange(pce);
+        
         // Set holder's name (current value + first name + last name.
         StringBuilder sb = new StringBuilder(lblHolderName.getText());
         sb.append(" ");
