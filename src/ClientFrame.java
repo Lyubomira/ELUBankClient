@@ -1,10 +1,15 @@
 
 import java.awt.CardLayout;
 import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 /**
+ * ClientFrame is the main client area window which consists of a left side menu
+ * and a main panel where sub-sections are shown using the CardLayout manager.
+ * The side menu contains buttons for each sub-section, a logout button and a
+ * currency information panel which can show up to three currencies at a time.
  *
  * @author Elena Koevska & Julia Protich
  */
@@ -37,8 +42,8 @@ public class ClientFrame extends javax.swing.JFrame {
         try {
             String bg = "client_frame_bg.jpg";
             setContentPane(new BackgroundImage(ImageIO.read(new File(bg))));
-        } catch (java.io.IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            // Fail silently.
         }
 
         // Init components.
