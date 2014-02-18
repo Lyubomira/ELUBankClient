@@ -8,6 +8,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
+ * This class is the entry point of the bank client application.
  *
  * @author Elena Koevska
  */
@@ -48,6 +49,7 @@ public class ELUBankClient {
             JOptionPane.showMessageDialog(null, msg, "Предупреждение", JOptionPane.WARNING_MESSAGE);
         }
 
+        // Display the login form.
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

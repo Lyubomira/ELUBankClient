@@ -1,74 +1,71 @@
 
 import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Custom UI component that displays client's bank accounts summary. It shows
+ * account information for all available accounts in a table that resizes
+ * vertically to fit all data.
  *
  * @author Julia Protich
  */
-public class AccountBalancePanel extends javax.swing.JPanel implements PropertyChangeListener {
+public class AccountBalancePanel extends ClientFramePanel {
 
     /**
-     * Creates new form AccountBalancePanel
+     * Creates AccountBalancePanel form.
      */
     public AccountBalancePanel() {
         initComponents();
     }
 
     /**
-     * Used to update component's UI state when the main frame fires a property
-     * change event.
+     * Updates component state when main frame fires a property change event.
      *
-     * @param pce event's instance
+     * @param pce PropertyChangeEvent instance.
+     * @see ClientFramePanel#propertyChange
      */
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
-        if (pce.getPropertyName().equals("currentUser")) {
-            // Get current user from the event object.
-            User user = (User) pce.getNewValue();
+        // Set holder's name (current value + first name + last name.
+        StringBuilder sb = new StringBuilder(lblHolderName.getText());
+        sb.append(" ");
+        sb.append(user.getName());
+        sb.append(" ");
+        sb.append(user.getFamilyname());
+        lblHolderName.setText(sb.toString());
 
-            // Set holder's name (current value + first name + last name.
-            StringBuilder sb = new StringBuilder(lblHolderName.getText());
-            sb.append(" ");
-            sb.append(user.getName());
-            sb.append(" ");
-            sb.append(user.getFamilyname());
-            lblHolderName.setText(sb.toString());
+        // Get all user accounts.
+        Accounts[] accounts = user.getAccounts();
 
-            // Get all user accounts.
-            Accounts[] accounts = user.getAccounts();
+        // Get table model instance.
+        DefaultTableModel model = (DefaultTableModel) tblAccBallance.getModel();
 
-            // Get table model instance.
-            DefaultTableModel model = (DefaultTableModel) tblAccBallance.getModel();
+        // Populate the table.
+        int i = 0;
+        for (Accounts acc : accounts) {
+            model.addRow(new Object[]{
+                acc.getAccountType(),
+                acc.getIBAN(),
+                acc.getCurrency(),
+                acc.getAmount()
 
-            // Populate the table.
-            int i = 0;
-            for (Accounts acc : accounts) {
-                model.addRow(new Object[]{
-                    acc.getAccountType(),
-                    acc.getIBAN(),
-                    acc.getCurrency(),
-                    acc.getAmount()
+            });
 
-                });
+            // Increment row counter.
+            i++;
+        }
 
-                // Increment row counter.
-                i++;
-            }
+        // If more than one row, update table's height.
+        if (i > 1) {
+            // Get current size (preffered height is one row by default).
+            Dimension curSize = tblAccBallance.getSize();
 
-            // If more than one row, update table's height.
-            if (i > 1) {
-                // Get current size (preffered height is one row by default).
-                Dimension curSize = tblAccBallance.getSize();
+            // Multiply by the number of rows (e.g. 24 * 2).
+            curSize.height *= i;
 
-                // Multiply by the number of rows (e.g. 24 * 2).
-                curSize.height *= i;
-
-                // Set new size.
-                tblAccBallance.setPreferredSize(curSize);
-            }
+            // Set new size.
+            tblAccBallance.setPreferredSize(curSize);
         }
     }
 
