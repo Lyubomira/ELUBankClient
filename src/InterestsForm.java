@@ -44,8 +44,8 @@ public class InterestsForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBackHomePage = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,25 +82,25 @@ public class InterestsForm extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 980, 370));
 
-        jButton1.setBackground(new java.awt.Color(168, 199, 200));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
-        jButton1.setText("Back to home page");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBackHomePage.setBackground(new java.awt.Color(168, 199, 200));
+        btnBackHomePage.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btnBackHomePage.setText("Back to home page");
+        btnBackHomePage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackHomePageActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 140, 40));
+        getContentPane().add(btnBackHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 140, 40));
 
-        jButton2.setBackground(new java.awt.Color(168, 199, 200));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
-        jButton2.setText("Exit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setBackground(new java.awt.Color(168, 199, 200));
+        btnExit.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, 130, 40));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, 130, 40));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
         backgroundLabel.setPreferredSize(new java.awt.Dimension(1024, 720));
@@ -109,20 +109,21 @@ public class InterestsForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBackHomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomePageActionPerformed
         dispose();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LoginFrame().setVisible(true);
                 new InterestsForm().setVisible(false);
             }
         });
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBackHomePageActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,8 +131,8 @@ public class InterestsForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBackHomePage;
+    private javax.swing.JButton btnExit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

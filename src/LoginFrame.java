@@ -39,7 +39,6 @@ public class LoginFrame extends javax.swing.JFrame {
         BackgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1040, 700));
         setMinimumSize(new java.awt.Dimension(1040, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,10 +133,17 @@ public class LoginFrame extends javax.swing.JFrame {
         ElectronicServices_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         ElectronicServices_lbl.setForeground(new java.awt.Color(0, 153, 153));
         ElectronicServices_lbl.setText("Интернет банкиране");
+        ElectronicServices_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ElectronicServices_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ElectronicServices_lblMouseClicked(evt);
+            }
+        });
 
         tariff_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         tariff_lbl.setForeground(new java.awt.Color(0, 153, 153));
         tariff_lbl.setText("Спестовна компонента");
+        tariff_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tariff_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tariff_lblMouseClicked(evt);
@@ -147,6 +153,12 @@ public class LoginFrame extends javax.swing.JFrame {
         contact_lbl.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         contact_lbl.setForeground(new java.awt.Color(0, 153, 153));
         contact_lbl.setText("За контакти");
+        contact_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contact_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contact_lblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -264,6 +276,15 @@ public class LoginFrame extends javax.swing.JFrame {
         dispose();
         new InterestsForm().setVisible(true);
     }//GEN-LAST:event_tariff_lblMouseClicked
+
+    private void contact_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contact_lblMouseClicked
+       new ContactsInfo().setVisible(true);
+    }//GEN-LAST:event_contact_lblMouseClicked
+
+    private void ElectronicServices_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElectronicServices_lblMouseClicked
+       
+        new OnlineBankingInfo().setVisible(true);
+    }//GEN-LAST:event_ElectronicServices_lblMouseClicked
 
     private final SSLClient client = new SSLClient();
     private User currentUser = new User();
