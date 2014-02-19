@@ -16,7 +16,6 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -265,21 +264,22 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tariff_lblMouseClicked
 
     private void ElectronicServices_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElectronicServices_lblMouseClicked
-       
+
         new OnlineBankingInfo().setVisible(true);
     }//GEN-LAST:event_ElectronicServices_lblMouseClicked
 
     private void contact_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contact_lblMouseClicked
-        String msg = "Приложението е разработено от екип:\n "
-                + "Елена Стефанова, \n"
-                + " Юлия Протич, \n"
-                + " Любомира Казанджиева,\n"
-                + " Васил Маринков, \n"
-                + " Миглен Евлогиев, ";
-            JOptionPane.showMessageDialog(null, msg, "Контакти", JOptionPane.PLAIN_MESSAGE);
-        
+        String msg = "Приложението е разработено от екип:\n\n"
+                + "\tЕлена Стефанова \n"
+                + "\tЮлия Протич \n"
+                + "\tЛюбомира Казанджиева\n"
+                + "\tВасил Маринков \n"
+                + "\tМиглен Евлогиев \n\n"
+                + "Нов Български Университет  2014";
+        JOptionPane.showMessageDialog(null, msg, "Контакти", JOptionPane.PLAIN_MESSAGE);
+
     }//GEN-LAST:event_contact_lblMouseClicked
-     private final SSLClient client = new SSLClient();
+    private final SSLClient client = new SSLClient();
     private User currentUser = new User();
     private Currency currencyInfo = new Currency();
 
