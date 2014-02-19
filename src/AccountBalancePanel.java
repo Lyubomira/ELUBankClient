@@ -64,8 +64,8 @@ public class AccountBalancePanel extends ClientFramePanel {
             // Get current size (preffered height is one row by default).
             Dimension curSize = tblAccBallance.getSize();
 
-            // Multiply by the number of rows (e.g. 24 * 2).
-            curSize.height *= i;
+            // Multiply default row height by the number of rows (e.g. 24 * 2).
+            curSize.height = tblAccBallance.getRowHeight() * i;
 
             // Set new size.
             tblAccBallance.setPreferredSize(curSize);
