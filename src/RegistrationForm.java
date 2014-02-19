@@ -151,6 +151,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1040, 700));
+        setPreferredSize(new java.awt.Dimension(1040, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -634,21 +635,31 @@ public class RegistrationForm extends javax.swing.JFrame {
             new String [] {
                 "IBAN", "N сметка", "Тип сметка", "Сума", "Валута"
             }
-        ));
-        Accounts_table.setColumnSelectionAllowed(true);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         Accounts_table.setOpaque(false);
+        Accounts_table.getTableHeader().setResizingAllowed(false);
+        Accounts_table.getTableHeader().setReorderingAllowed(false);
         table_ScrollPane.setViewportView(Accounts_table);
         Accounts_table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         if (Accounts_table.getColumnModel().getColumnCount() > 0) {
-            Accounts_table.getColumnModel().getColumn(2).setMinWidth(100);
+            Accounts_table.getColumnModel().getColumn(0).setResizable(false);
+            Accounts_table.getColumnModel().getColumn(0).setPreferredWidth(60);
+            Accounts_table.getColumnModel().getColumn(1).setResizable(false);
+            Accounts_table.getColumnModel().getColumn(1).setPreferredWidth(40);
+            Accounts_table.getColumnModel().getColumn(2).setResizable(false);
             Accounts_table.getColumnModel().getColumn(2).setPreferredWidth(100);
-            Accounts_table.getColumnModel().getColumn(2).setMaxWidth(100);
-            Accounts_table.getColumnModel().getColumn(3).setMinWidth(100);
+            Accounts_table.getColumnModel().getColumn(3).setResizable(false);
             Accounts_table.getColumnModel().getColumn(3).setPreferredWidth(100);
-            Accounts_table.getColumnModel().getColumn(3).setMaxWidth(100);
-            Accounts_table.getColumnModel().getColumn(4).setMinWidth(50);
+            Accounts_table.getColumnModel().getColumn(4).setResizable(false);
             Accounts_table.getColumnModel().getColumn(4).setPreferredWidth(50);
-            Accounts_table.getColumnModel().getColumn(4).setMaxWidth(50);
         }
 
         DeleteAccountPanel.add(table_ScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 590, 320));
@@ -707,6 +718,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         ));
         allClientsTable.setOpaque(false);
+        allClientsTable.getTableHeader().setResizingAllowed(false);
+        allClientsTable.getTableHeader().setReorderingAllowed(false);
         TableScrollPane1.setViewportView(allClientsTable);
 
         DeleteClientPanel.add(TableScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 590, 410));
@@ -724,8 +737,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         getContentPane().add(CentralCardLayoutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 610, 590));
 
         BackgroundLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
-        BackgroundLbl.setPreferredSize(new java.awt.Dimension(1024, 720));
-        getContentPane().add(BackgroundLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, -1, 700));
+        BackgroundLbl.setPreferredSize(new java.awt.Dimension(1040, 700));
+        getContentPane().add(BackgroundLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -10, -1, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

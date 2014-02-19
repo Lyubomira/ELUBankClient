@@ -32,7 +32,6 @@ public class ContactsInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1050, 580));
-        setPreferredSize(new java.awt.Dimension(1050, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setOpaque(false);
@@ -47,8 +46,6 @@ public class ContactsInfo extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 570, 280));
 
         lblBackgr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
-        lblBackgr.setMaximumSize(new java.awt.Dimension(1600, 1175));
-        lblBackgr.setMinimumSize(new java.awt.Dimension(1600, 1175));
         lblBackgr.setPreferredSize(new java.awt.Dimension(1024, 720));
         getContentPane().add(lblBackgr, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
