@@ -43,7 +43,13 @@ public class AccountBalancePanel extends ClientFramePanel {
 
         // Get table model instance.
         DefaultTableModel model = (DefaultTableModel) tblAccBallance.getModel();
-
+        
+        // Remove all rows (if any).
+        if (model.getRowCount() > 0) {
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
+        }
+        
         // Populate the table.
         int i = 0;
         for (Accounts acc : accounts) {
