@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-    // Бубе, само малко ти форматирах текстовете 
-    // weights я направих WEIGHTS, по конвенция константите се записват с големи букви
-    // ПП: javadoc :)
-    // ПП2: долу в променливите имаш някаква, която май не ползваш
+
 /**
- *
- * @author USER
+ * Class used for verification of PIN 
+ * 
+ * @author Lyubomira K.
  */
 public class CheckPIN {
 
@@ -34,10 +27,8 @@ public class CheckPIN {
         int year;
         int month;
         int day;
-        /**
-         *  тази променлива май не се ползва?
-         */
-        int num;           
+        
+        int num;       
         int checkSum = 0;
 
         if (pin.length() != 10) {

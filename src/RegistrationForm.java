@@ -11,14 +11,14 @@ import java.text.ParseException;
 import java.util.Locale;
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author USER
+/** 
+ * Class used for managing client accounts including: 
+ * creating new client's accounts 
+ * deleting client's account
+ * deleting clients 
+ * opening new banking accounts
+ * 
+ * @author Lyubomira Kazandzhieva
  */
 public class RegistrationForm extends javax.swing.JFrame {
 
@@ -738,7 +738,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
         BackgroundLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abstract_background.jpg"))); // NOI18N
         BackgroundLbl.setPreferredSize(new java.awt.Dimension(1040, 700));
-        getContentPane().add(BackgroundLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -10, -1, 700));
+        getContentPane().add(BackgroundLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, -1, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -761,7 +761,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         accoutPanel.show(CentralCardLayoutPanel, "createAccountCard");
         tfieldEgn.grabFocus();
     }//GEN-LAST:event_btnCreateAccountActionPerformed
-
+/**
+ * 
+ * @param evt 
+ */
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
 
         String user = tfieldUsername.getText();
@@ -1045,7 +1048,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
             accountsTableModel.removeRow(Accounts_table.getSelectedRow());
         }
-        clearDeleteAccountForm();
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tfieldUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfieldUsernameKeyPressed

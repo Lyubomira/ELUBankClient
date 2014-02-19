@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author USER
+ * Class used to show information about Internet Banking 
+ * 
+ * @author Lyubomira Kazandzhieva
  */
 public class OnlineBankingInfo extends javax.swing.JFrame {
 
@@ -30,19 +26,21 @@ public class OnlineBankingInfo extends javax.swing.JFrame {
         txtAreaOnlineBankingInfo = new javax.swing.JTextArea();
         lblbackgr = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1050, 680));
         setMinimumSize(new java.awt.Dimension(1050, 680));
-        setPreferredSize(new java.awt.Dimension(1040, 700));
+        setPreferredSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setOpaque(false);
 
+        txtAreaOnlineBankingInfo.setEditable(false);
         txtAreaOnlineBankingInfo.setColumns(20);
         txtAreaOnlineBankingInfo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtAreaOnlineBankingInfo.setRows(5);
-        txtAreaOnlineBankingInfo.setText("Какво представлява?\nДа проверите в реално време:\n•\tНаличността, плащанията и постъпленията по Вашите сметки (разплащателни, спестовни, депозитни); \n•\tНаличностите по разплащателните сметки в ELUBank са в реално време; \n•\tОперациите извършени с Ваши банкови карти и статус на картите; \n•\tИнформация за Вашите кредити (остатък, вноска, падежна дата и т.н.); \n•\tРазмерът на начислената до момента лихва по Вашите спестовни сметки и депозити, падежни дати и др.; \nДа наредите преводи:\n•\tМежду Ваши сметки в Банката – в лева и валута. \n•\tПреводите по сметки в банката (Ваши или към трети лица) се извършват в реално време. \nДа спестявате:\n•\tЧрез спестовна компонента Банка ELUBank Ви предоставя възможност да спестявате, като парите остават винаги на Ваше разположение, без ограничения за падежна дата, минимални суми, брой тегления, без допълнителни такси. \n•\tЧрез Виртуалния срочен депозит получавате атрактивни лихвени нива \nКолко ще ми струва?\n•\tДостъпът до портала за електронно банкиране е безплатен \n");
+        txtAreaOnlineBankingInfo.setText("Какво представлява?\n\nДа проверите в реално време:\n•\tНаличността, плащанията и постъпленията по Вашите сметки (разплащателни, спестовни, депозитни); \n•\tНаличностите по разплащателните сметки в ELUBank са в реално време; \n•\tОперациите извършени с Ваши банкови карти и статус на картите; \n•\tИнформация за Вашите кредити (остатък, вноска, падежна дата и т.н.); \n•\tРазмерът на начислената до момента лихва по Вашите спестовни сметки и депозити, падежни дати и др.; \n\nДа наредите преводи:\n•\tМежду Ваши сметки в Банката – в лева и валута. \n•\tПреводите по сметки в банката (Ваши или към трети лица) се извършват в реално време. \n\nДа спестявате:\n•\tЧрез спестовна компонента Банка ELUBank Ви предоставя възможност да спестявате, като парите остават винаги на Ваше разположение, без ограничения за падежна дата, минимални суми, брой тегления, без допълнителни такси. \n•\tЧрез Виртуалния срочен депозит получавате атрактивни лихвени нива;\n\nКолко ще ми струва?\n•\tДостъпът до портала за електронно банкиране е безплатен \n");
         txtAreaOnlineBankingInfo.setOpaque(false);
+        txtAreaOnlineBankingInfo.setPreferredSize(new java.awt.Dimension(1200, 276));
         jScrollPane1.setViewportView(txtAreaOnlineBankingInfo);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 980, 400));
@@ -53,40 +51,7 @@ public class OnlineBankingInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OnlineBankingInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OnlineBankingInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OnlineBankingInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OnlineBankingInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new OnlineBankingInfo().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

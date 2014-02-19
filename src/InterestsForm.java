@@ -1,6 +1,7 @@
 /**
- *
- * @author USER
+ * Class used for showing interest rates displayed in a table
+ * 
+ * @author Lyubomira Kazandzhieva
  */
 import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
